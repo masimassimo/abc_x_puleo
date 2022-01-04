@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Nominativo di riferimento",
+    'name': "ABC - Nominativo di riferimento",
 
     'summary': """
         Modulo che estende la vista del sale.view_order_form e permette l'aggiunta di un

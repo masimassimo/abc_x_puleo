@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+{
+    'name': "Nominativo di riferimento",
+
+    'summary': """
+        Modulo che estende la vista del sale.view_order_form e permette l'aggiunta di un
+        campo relazionale il quale in base al Cliente selezionato ti permette di scegliere
+        un dipendente della stessa Azienda.""",
+
+    'description': """
+        Modulo che estende la vista del sale.view_order_form e permette l'aggiunta di un
+        campo relazionale il quale in base al Cliente selezionato ti permette di scegliere
+        un dipendente della stessa Azienda.
+    """,
+
+    'author': "A.B.C. Strategie",
+    'website': "https://www.abcstrategie.it/",
+
+    'category': 'Sale',
+    'version': '0.1',
+
+    # any module necessary for this one to work correctly
+    'depends': ['base', 'sale'],
+
+    # always loaded
+    'data': [
+        'security/ir.model.access.csv',
+        'views/views.xml',
+    ],
+    # only loaded in demonstration mode
+    'demo': [
+    ],
+    "installable": True,
+    "application": True,
+}

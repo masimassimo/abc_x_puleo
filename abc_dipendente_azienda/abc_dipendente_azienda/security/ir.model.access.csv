@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_abc_dipendente_azienda_abc_dipendente_azienda,abc_dipendente_azienda.abc_dipendente_azienda,model_abc_dipendente_azienda_abc_dipendente_azienda,base.group_user,1,1,1,1

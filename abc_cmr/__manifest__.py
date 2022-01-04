@@ -20,7 +20,7 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         'data/cmr_paperformat.xml',
         'views/report_cmr.xml',
         'views/stock_picking_view.xml',

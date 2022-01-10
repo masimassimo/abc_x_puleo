@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+      
+    <record model="ir.ui.view" id="res_partner_form_inherit_1">
+      <field name="name">res_partner_form_inherit_1</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+          <xpath expr="//field[@name='vat']" position="after">
+              <h3>Tipologia Contatto</h3>
+              <field name="cliente"/>
+              <field name="fornitore"/>
+              <field name="banca"/>
+              <field name="vettore"/>
+              <field name="agente"/>
+              <field name="dipendente"/>
+          </xpath>
+        </field>
+      </record>
+      
+    <record model="ir.ui.view" id="res_partner_form_inherit_2">
+        <field name="name">res_partner_form_inherit_2</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="zona"/>
+            </xpath>
+        </field>
+      </record>
+      
+    <record model="ir.ui.view" id="res_partner_form_inherit_3">
+        <field name="name">res_partner_form_inherit_3</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='internal_notes']/field" position="before">
+                <h3>Leve emozionali</h3>
+                <!-- <field name="leve_emozionali"/> -->
+            </xpath>
+        </field>
+      </record>
+       
+  </data>
+</odoo>
+

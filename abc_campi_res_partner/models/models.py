@@ -6,6 +6,7 @@ from odoo import models, fields, api
 class abc_campi_res_partner(models.Model):
     _name = 'abc_campi_res_partner.abc_campi_res_partner'
     _description = 'abc_campi_res_partner.abc_campi_res_partner'
+    #TEST
 
 
 class resPartner(models.Model):

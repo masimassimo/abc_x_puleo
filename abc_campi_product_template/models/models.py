@@ -19,7 +19,8 @@ class productTemplate(models.Model):
     codice_merce = fields.Char(string = "Codice Merce", store = True)
     descrizione_nomenclatura_combinata = fields.Char(string = "Descrizione nomenclatura combinata", store = True)
     
-    tipo_produzione_articolo = fields.Selection([("commerciale", "Commerciale"), ("fantasma", "Fantasma"), ("interno", "Interno"),], string = "Tipo produzione articolo", store = True)
+    tipo_produzione_articolo = fields.Selection([("commerciale", "Commerciale"), ("fantasma", "Fantasma"), 
+                                                 ("interno", "Interno"), ("esterno", "Esterno")], string = "Tipo produzione articolo", store = True)
     
     stato_articolo = fields.Selection([("gestito", "Gestito"), ("installabile", "Installabile"), ("superato", "Superato"),], string = "Stato articolo", store = True)
     

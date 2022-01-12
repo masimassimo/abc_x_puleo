@@ -10,7 +10,6 @@ class abc_campi_product_template(models.Model):
 class productTemplate(models.Model):
     _name= "product.template"
     _inherit = "product.template"
-    #TEST
     
     codice_prodotto_sam = fields.Char(string = "Codice prodotto SAM", store = True)
     

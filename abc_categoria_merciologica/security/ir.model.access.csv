@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_abc_categoria_merciologica_abc_categoria_merciologica,abc_categoria_merciologica.abc_categoria_merciologica,model_abc_categoria_merciologica_abc_categoria_merciologica,base.group_user,1,1,1,1

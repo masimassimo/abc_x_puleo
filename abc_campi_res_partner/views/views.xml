@@ -25,7 +25,7 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="cliente_id_sam"/>
+                <field name="cliente_o_fornitore_id_sam"/>
                 <field name="persona_id_sam"/>
                 <field name="codice_sam_contatti"/>
                 <field name="codice_zona"/>
@@ -39,8 +39,7 @@
                 <field name="descrizione_area"/>
                 <field name="codice_settore"/>
                 <field name="descrizione_settore"/>
-              
-                
+
             </xpath>
         </field>
       </record>

@@ -33,7 +33,7 @@ class resPartner(models.Model):
     
     agente_id = fields.Many2one('res.partner', string ='Agente ID', change_default=True, index=True, tracking=1)
     
-    segnalatore_Id = fields.Many2one('res.partner', string ='Segnalatore ID', change_default=True, index=True, tracking=1)
+    segnalatore_id = fields.Many2one('res.partner', string ='Segnalatore ID', change_default=True, index=True, tracking=1)
     
     codice_area = fields.Char(string = "Codice area", store = True)
     descrizione_area = fields.Char(string = "Descrizione area", store = True)

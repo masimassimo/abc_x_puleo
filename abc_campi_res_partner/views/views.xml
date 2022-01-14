@@ -1,6 +1,6 @@
 <odoo>
   <data>
-      
+    <!--  
     <record model="ir.ui.view" id="res_partner_form_inherit_1">
       <field name="name">res_partner_form_inherit_1</field>
       <field name="model">res.partner</field>
@@ -17,6 +17,7 @@
           </xpath>
         </field>
       </record>
+      -->
       
     <record model="ir.ui.view" id="res_partner_form_inherit_2">
         <field name="name">res_partner_form_inherit_2</field>
@@ -24,7 +25,22 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
-                <field name="zona"/>
+                <field name="cliente_id_sam"/>
+                <field name="persona_id_sam"/>
+                <field name="codice_sam_contatti"/>
+                <field name="codice_zona"/>
+                <field name="descrizione_zona"/>
+                <field name="fax"/>
+                <field name="codice_categoria_contatto"/>
+                <field name="descrizione_categoria_contatto"/>
+                <field name="agente_id"/>
+                <field name="segnalatore_id"/>
+                <field name="codice_area"/>
+                <field name="descrizione_area"/>
+                <field name="codice_settore"/>
+                <field name="descrizione_settore"/>
+              
+                
             </xpath>
         </field>
       </record>

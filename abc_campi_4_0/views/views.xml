@@ -1,0 +1,22 @@
+<odoo>
+  <data>
+     <record model="ir.ui.view" id="mrp_production_form_inherit">
+      <field name="name">mrp_production_form_inherit</field>
+      <field name="model">mrp.production</field>
+      <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+      <field name="arch" type="xml">
+          <xpath expr="//div[@class='o_row no-gutters d-flex']" position="after">
+              <label for="qty_scarto_1" string="Scarto 1"/>
+              <div class="o_row no-gutters d-flex">
+                  <field name="qty_scarto_1"/>
+              
+              </div>
+              <label for="qty_scarto_2" string="Scarto 2"/>
+              <div class="o_row no-gutters d-flex">
+                  <field name="qty_scarto_2"/>
+              </div>
+          </xpath>
+        </field>
+      </record>
+  </data>
+</odoo>

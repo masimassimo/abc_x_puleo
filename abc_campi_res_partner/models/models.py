@@ -19,8 +19,6 @@ class resPartner(models.Model):
     agente = fields.Boolean(string="Agente", default = False, store=True)
     dipendente = fields.Boolean(string="Dipendente", default = False, store=True)
     
-    zona = fields.Char(string = "Zona", store = True)
-    
     cliente_id_sam = fields.Char(string = "Cliente ID SAM", store = True)
     persona_id_sam = fields.Char(string = "Persona ID SAM", store = True)
     codice_sam_contatti = fields.Char(string= "Codice SAM Contatti", store = True)

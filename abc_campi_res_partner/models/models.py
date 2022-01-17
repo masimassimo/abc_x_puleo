@@ -40,3 +40,6 @@ class resPartner(models.Model):
         
     codice_settore = fields.Char(string = "Codice settore", store = True)
     descrizione_settore = fields.Char(string = "Descrizione settore", store = True)
+    
+    funzione = fields.Char(string = "Funzione", store = True)
+    tipologia = fields.Char(string = "Tipologia", store = True)

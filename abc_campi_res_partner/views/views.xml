@@ -39,7 +39,8 @@
                 <field name="descrizione_area"/>
                 <field name="codice_settore"/>
                 <field name="descrizione_settore"/>
-
+                <field name="funzione"/>
+                <field name="tipologia"/>
             </xpath>
         </field>
       </record>

@@ -43,3 +43,5 @@ class resPartner(models.Model):
     
     funzione = fields.Char(string = "Funzione", store = True)
     tipologia = fields.Char(string = "Tipologia", store = True)
+    
+    id_lead = fields.Char(stirng = "ID Lead", store = True)

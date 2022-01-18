@@ -28,7 +28,7 @@
                 <field name="cliente_o_fornitore_id_sam"/>
                 <field name="persona_id_sam"/>
                 <field name="codice_sam_contatti"/>
-                <field name="id_lead" attrs="{'invisible':[('category_id', 'not ilike', 'Fornitore')]}"/>
+                <field name="id_lead" attrs="{'invisible':[('category_id', 'not ilike', 'Lead')]}"/>
                 <field name="fax"/>
                 <field name="codice_categoria_contatto"/>
                 <field name="descrizione_categoria_contatto"/>

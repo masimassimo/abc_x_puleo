@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Partners',
-    'version': '0.2',
+    'version': '0.3',
 
     'depends': ['base'],
 

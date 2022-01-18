@@ -28,15 +28,9 @@
                 <field name="cliente_o_fornitore_id_sam"/>
                 <field name="persona_id_sam"/>
                 <field name="codice_sam_contatti"/>
-                <field name="codice_zona"/>
-                <field name="descrizione_zona"/>
                 <field name="fax"/>
                 <field name="codice_categoria_contatto"/>
                 <field name="descrizione_categoria_contatto"/>
-                <field name="agente_id"/>
-                <field name="segnalatore_id"/>
-                <field name="codice_area"/>
-                <field name="descrizione_area"/>
                 <field name="codice_settore"/>
                 <field name="descrizione_settore"/>
                 <field name="funzione"/>
@@ -51,12 +45,28 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='internal_notes']/field" position="before">
-                <h3>Leve emozionali</h3>
+                <h3>Note & Leve emozionali</h3>
                 <!-- <field name="leve_emozionali"/> -->
             </xpath>
         </field>
       </record>
-       
+    
+    <record model="ir.ui.view" id="res_partner_form_inherit_4">
+      <field name="name">res_partner_form_inherit_4</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='sale']/field[@name='user_id']" position="after">
+          <field name="codice_zona"/>
+          <field name="descrizione_zona"/>
+          <field name="codice_area"/>
+          <field name="descrizione_area"/>
+          <field name="agente_id"/>
+          <field name="segnalatore_id"/>
+        </xpath>
+      </field>
+    </record>
+      
   </data>
 </odoo>
 

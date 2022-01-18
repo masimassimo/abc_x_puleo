@@ -31,9 +31,9 @@ class resPartner(models.Model):
     codice_categoria_contatto = fields.Char(string = "Codice categoria contatto", store = True)
     descrizione_categoria_contatto = fields.Char(string = "Descrizione categoria contatto", store = True)
     
-    agente_id = fields.Many2one('res.partner', string ='Agente ID', change_default=True, index=True, tracking=1)
+    agente_id = fields.Many2one('res.partner', string ='Agente ID', change_default=True, index=True)
     
-    segnalatore_id = fields.Many2one('res.partner', string ='Segnalatore ID', change_default=True, index=True, tracking=1)
+    segnalatore_id = fields.Many2one('res.partner', string ='Segnalatore ID', change_default=True, index=True)
     
     codice_area = fields.Char(string = "Codice area", store = True)
     descrizione_area = fields.Char(string = "Descrizione area", store = True)
@@ -44,4 +44,4 @@ class resPartner(models.Model):
     funzione = fields.Char(string = "Funzione", store = True)
     tipologia = fields.Char(string = "Tipologia", store = True)
     
-    id_lead = fields.Char(stirng = "ID Lead", store = True)
+    id_lead = fields.Char(string = "ID Lead", store = True)

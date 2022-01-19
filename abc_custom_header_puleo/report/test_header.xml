@@ -2,7 +2,12 @@
 <odoo>
     <template id="iban_print_external_layout_clean_inherit" inherit_id="web.external_layout_clean">
         <xpath expr="//img[1]" position="replace">
-            <img t-att-src="image_data_uri(docs[0].team_id.x_avatar_image)" style="max-height: 45px;" alt="Logo"/>
+            <t t-if="'team_id' in docs">
+                <img  t-att-src="image_data_uri(docs[0].team_id.x_avatar_image)" style="max-height: 45px;" alt="Logo"/>
+            </t>
+            <t t-else="">
+                <img t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+            </t>
         </xpath>
     </template>
 </odoo>

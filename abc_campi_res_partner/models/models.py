@@ -45,3 +45,5 @@ class resPartner(models.Model):
     tipologia = fields.Char(string = "Tipologia", store = True)
     
     id_lead = fields.Char(string = "ID Lead", store = True)
+    
+    IDNOMIRIFMRK = fields.Char(string = "IDNOMIRIFMRK", store = True)

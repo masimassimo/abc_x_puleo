@@ -29,6 +29,7 @@
                 <field name="persona_id_sam"/>
                 <field name="codice_sam_contatti"/>
                 <field name="id_lead"/>
+                <field name="IDNOMIRIFMRK"/>
                 <field name="fax"/>
                 <field name="codice_categoria_contatto"/>
                 <field name="descrizione_categoria_contatto"/>

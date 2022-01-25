@@ -14,5 +14,5 @@ class SaleOrder(models.Model):
     nominativo_di_riferimento = fields.Many2one(
         'res.partner', string='Nominativo di riferimento', readonly=True,
         states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
-        required=True, change_default=True, index=True, tracking=1,
+        change_default=True, index=True, tracking=1,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id), ('parent_id', '=', partner_id)]",)

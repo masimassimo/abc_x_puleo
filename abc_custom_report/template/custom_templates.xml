@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <template id="report_invoice_document_inherit_1" inherit_id="account.report_invoice_document">
+            <xpath expr="//t[3]/tr[1]/t[1]/td[1]" position="replace">
+                                <td name="account_invoice_line_name">
+                                            <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                         <t t-if ="'Acconto' == line.product_id.name"> 
+                                                  <span> per </span>
+                                            <t t-foreach="o.invoice_line_ids.sale_line_ids.order_id.order_line" t-as="for_order_line">
+                                             <t t-if="'Down Payment:' not in for_order_line.name">
+                                                 <br/>
+                                                <span t-esc="for_order_line.name"/>
+                            
+                                            </t>
+                                            </t>
+                                            </t>
+ 
+                                        </td>
+            </xpath>
+        </template>
+    </data>
+</odoo>

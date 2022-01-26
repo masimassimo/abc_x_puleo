@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_abc_conto_banca_abc_conto_banca,abc_conto_banca.abc_conto_banca,model_abc_conto_banca_abc_conto_banca,base.group_user,1,1,1,1

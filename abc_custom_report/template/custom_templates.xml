@@ -9,7 +9,7 @@
                                             <t t-foreach="o.invoice_line_ids.sale_line_ids.order_id.order_line" t-as="for_order_line">
                                              <t t-if="'Down Payment:' not in for_order_line.name">
                                                  <br/>
-                                                <span t-esc="for_order_line.name"/>
+                                                <span t-raw="for_order_line.name"/>
                             
                                             </t>
                                             </t>

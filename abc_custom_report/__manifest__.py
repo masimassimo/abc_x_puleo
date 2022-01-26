@@ -16,7 +16,7 @@
 
     'data': [
         'security/ir.model.access.csv',
-        'template/custom_templates.xml',
+        'report/custom_templates.xml',
     ],
     "application":True,
     "installable": True,

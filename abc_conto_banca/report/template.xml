@@ -1,16 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-  <data>
-      
-     
-    <record model="ir.ui.view" id="sale_order_inherit_banca_1">
-      <field name="name">sale_order_inherit_banca_2</field>
-      <field name="model">sale.order</field>
-      <field name="inherit_id" ref="sale.view_order_form"/>
-      <field name="arch" type="xml">
-        <xpath expr="//field[@name='partner_shipping_id']" position="after">
-          <field name="banca" widget="selection"/>
+    <template id="report_saleorder_document_inherit_1" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@class='col-auto col-3 mw-100 mb-2'][5]" position="after">
+            <div t-if="doc.banca" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Banca:</strong>
+                    <p class="m-0" t-field="doc.banca"/>
+                </div>
         </xpath>
-      </field>
-    </record>
-  </data>
+    </template>
+
+
+    <template id="report_invoice_document_inherit_2" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='col-auto col-3 mw-100 mb-2'][5]" position="after">
+            <div t-if="o.invoice_line_ids.sale_line_ids.order_id.banca" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Banca:</strong>
+                    <p class="m-0" t-field="o.invoice_line_ids.sale_line_ids.order_id.banca"/>
+                </div>
+        </xpath>
+    </template>
+
 </odoo>

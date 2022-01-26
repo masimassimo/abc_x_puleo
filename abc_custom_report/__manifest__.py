@@ -12,7 +12,7 @@
     'category': 'Account',
     'version': '0.1',
 
-    'depends': ['base', 'account'],
+    'depends': ['base', 'account', 'sale'],
 
     'data': [
         'security/ir.model.access.csv',

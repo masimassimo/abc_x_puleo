@@ -18,5 +18,26 @@
                                         </td>
             </xpath>
         </template>
+
+               <template id="report_saleorder_document_inherit_11" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//t[2]/tr[1]/t[1]/td[1]" position="replace">
+                                         <td name="td_name">
+                                    <span t-raw="line.name"/>
+                                    <t t-if ="'Acconto' == line.product_id.name"> 
+                                            <span> per </span>
+                                            <t t-foreach="doc.order_line" t-as="for_order_line">
+                                             <t t-if="'Down Payment:' not in for_order_line.name">
+                                                 <br/>
+                                                <span t-raw="for_order_line.name"/>
+                               </t>
+                                         
+                                            </t>
+                                            </t>
+             </td>
+            </xpath>
+        </template>
+
+
+
     </data>
 </odoo>

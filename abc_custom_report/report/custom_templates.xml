@@ -36,8 +36,31 @@
              </td>
             </xpath>
         </template>
+        
+        
+               <template id="report_saleorder_document_inherit_112" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//tbody[@class='sale_tbody'][1]/t[1]" position="after">
+                                      <t t-set = "numProdotto" t-value = "0" />
+            </xpath>
+        </template>
+        
+            <template id="report_saleorder_document_inherit_1122" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//t[3]/t[2]" position="before">
+                                      <t t-set="numProdotto" t-value="numProdotto + 1"> </t>
+            </xpath>
+        </template>
 
+        
+              <template id="report_saleorder_document_inherit_113" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//t[3]/tr[1]/t[1]/td[1]/span[1]" position="before">
+                                      <t t-esc="numProdotto"> </t>
+                <span> - </span> 
+            </xpath>
+        </template>
 
+        
+        
+        
 
     </data>
 </odoo>

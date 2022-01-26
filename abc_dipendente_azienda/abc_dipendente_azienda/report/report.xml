@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_saleorder_document_inherit_nominativo_di_riferimento" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@class='col-auto col-3 mw-100 mb-2'][5]" position="after">
+            <div t-if="doc.nominativo_di_riferimento" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Riferimento:</strong>
+                    <p class="m-0" t-esc="doc.nominativo_di_riferimento.name"/>
+                </div>
+        </xpath>
+    </template>
+
+
+    <template id="report_invoice_document_inherit_nominativo_di_riferimento" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='col-auto col-3 mw-100 mb-2'][5]" position="after">
+            <div t-if="o.invoice_line_ids.sale_line_ids.order_id.nominativo_di_riferimento" class="col-auto col-3 mw-100 mb-2">
+                    <strong>Riferimento:</strong>
+                    <p class="m-0" t-field="o.invoice_line_ids.sale_line_ids.order_id.nominativo_di_riferimento.name"/>
+                </div>
+        </xpath>
+    </template>
+
+</odoo>

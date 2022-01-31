@@ -1,0 +1,61 @@
+<odoo>
+  <data>
+   
+   
+        <record model="ir.ui.view" id="sale_order_inherit_1">
+      <field name="name">sale_order_inherit_1</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='product_template_id']" position="attributes">
+            
+            <attribute name="options">{"no_create":true}</attribute>
+            <attribute name="widget">many2one</attribute>
+            <attribute name="widget">product_configurator</attribute>
+
+        </xpath>
+      </field>
+    </record>
+      
+      
+           <record model="ir.ui.view" id="sale_order_inherit_2">
+      <field name="name">sale_order_inherit_2</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='order_lines']/field[@name='order_line']/tree[1]/field[@name='product_id']" position="attributes">
+            
+            <attribute name="options">{"no_create":true}</attribute>
+            <attribute name="widget">many2one</attribute>
+            <attribute name="widget">product_configurator</attribute>
+
+        </xpath>
+      </field>
+    </record>
+      
+     <!--
+            
+        <record model="ir.ui.view" id="sale_order_inherit_2">
+      <field name="name">sale_order_inherit_2</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//tree[1]/field[5]" position="attributes">
+
+    <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+            
+
+
+        </xpath>
+      </field>
+    </record>
+-->
+      
+  </data>
+</odoo>
+
+<!-- //form[1]/group[1]/group[1]/field[2] 
+        //tree[1]/field[5] 
+//kanban[@class='o_kanban_mobile'][1]/field[2]-->
+
+<!--field name="product_id" options="{'no_create': True, 'no_edit': True}"/-->

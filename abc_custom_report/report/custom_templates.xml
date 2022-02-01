@@ -16,7 +16,7 @@
                                                     <br/>
                                             <t t-foreach="o.invoice_line_ids.sale_line_ids.order_id.order_line" t-as="for_order_line">
                                              <t t-if="'Anticipo:' not in for_order_line.name and for_order_line.product_id.id">
-                                               - <span t-raw="for_order_line.product_id.name"/>
+                                               - <span t-raw="for_order_line.product_id.name"/> </br>
                             
                                             </t>
                                             </t>

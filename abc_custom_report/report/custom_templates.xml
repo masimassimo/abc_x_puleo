@@ -44,8 +44,8 @@
         <!-- Accedo alla vista del Preventivo/Ordine di vendita per inserire il Down Payment collegato ai prodotti selezionati
                 tra le righe d'ordine e far si che le sezioni Note e Sezione siano t-raw. Infine creo un elenco numerato per i prodotti. -->
 
-               <template id="report_saleorder_document_inherit_1abc" inherit_id="sale.report_saleorder_document">
-            <xpath expr="//t[2]/tr[1]/t[1]/td[1]" position="replace">
+               <template id="report_saleorder_document_inherit_1" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//td[@name='td_name']" position="replace">
                                    <td name="td_name">
                                     <span t-raw="line.name"/>
              <t t-if="'Acconto' == line.product_id.name"> 

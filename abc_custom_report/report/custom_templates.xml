@@ -87,7 +87,7 @@
         </template>
         
             <template id="report_saleorder_document_inherit_5" inherit_id="sale.report_saleorder_document">
-            <xpath expr="//t[3]/t[2]" position="before">
+            <xpath expr="//t[@t-set='current_subtotal'][@groups='account.group_show_line_subtotals_tax_excluded']" position="before">
                                       <t t-set="numProdotto" t-value="numProdotto + 1"> </t>
             </xpath>
         </template>

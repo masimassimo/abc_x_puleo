@@ -66,7 +66,7 @@
       
         
         <template id="report_saleorder_document_inherit_2" inherit_id="sale.report_saleorder_document">
-            <xpath expr="//t[2]/tr[1]/t[2]/td[1]/span[1]" position="replace">
+            <xpath expr="//t[3]/tr[1]/t[2]/td[1]/span[1]" position="replace">
                 <span t-raw="line.name"/>
             </xpath>
         </template>

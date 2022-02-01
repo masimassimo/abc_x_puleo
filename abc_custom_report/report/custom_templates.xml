@@ -59,8 +59,36 @@
         </template>
 
         
+<!-- Per far si che il campo name dell'ordine di vendita non venga formattato con i tag HTML si deve modificare un campo all'interno della vista del Preventivo Online (Anteprima Cliente) chiamata sale.sale_order_portal_content  -->
+        
+ <template id="sale_order_portal_content_inherit_2" inherit_id="sale.sale_order_portal_content">
+     <xpath expr="//tbody[@class='sale_tbody'][1]/t[1]" position="after">
+         <t t-set = "numProdotto" t-value = "0" />
+     </xpath>
+ </template>
+        
+                <template id="sale_order_portal_content_inherit_3" inherit_id="sale.sale_order_portal_content">
+            <xpath expr="//td[@id='product_name'][1]" position="before">
+              <t t-set="numProdotto" t-value="numProdotto + 1"> </t>
+            </xpath>
+        </template>
         
         
+                <template id="sale_order_portal_content_inherit_4" inherit_id="sale.sale_order_portal_content">
+            <xpath expr="//td[@id='product_name'][1]/span[1]" position="before">
+                           <t t-esc="numProdotto"> </t> - 
+                
+            </xpath>
+        </template>
+        
+        
+        <template id="sale_order_portal_content_inherit_1" inherit_id="sale.sale_order_portal_content">
+            <xpath expr="//td[@id='product_name'][1]" position="replace">
+                <td id="product_name">
+                    <span t-raw="line.name"/>
+                </td>
+            </xpath>
+        </template>
 
     </data>
 </odoo>

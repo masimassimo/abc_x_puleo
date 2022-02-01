@@ -66,14 +66,14 @@
       
         
         <template id="report_saleorder_document_inherit_2" inherit_id="sale.report_saleorder_document">
-            <xpath expr="//t[3]/tr[1]/t[2]/td[1]/span[1]" position="replace">
+            <xpath expr="//td[@name='td_section_line']/span" position="replace">
                 <span t-raw="line.name"/>
             </xpath>
         </template>
         
 
         <template id="report_saleorder_document_inherit_3" inherit_id="sale.report_saleorder_document">
-            <xpath expr="//t[3]/td[1]/span[1]" position="replace">
+            <xpath expr="//td[@name='td_note_line']/span" position="replace">
                 <span t-raw="line.name"/>
             </xpath>
         </template>

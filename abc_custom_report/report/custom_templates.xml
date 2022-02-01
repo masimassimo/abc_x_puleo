@@ -94,7 +94,7 @@
 
         
               <template id="report_saleorder_document_inherit_6" inherit_id="sale.report_saleorder_document">
-            <xpath expr="//t[3]/tr[1]/t[1]/td[1]/span[2]" position="before">
+            <xpath expr="//td[@name='td_name']/span[@t-raw]" position="before">
                                       <t t-esc="numProdotto"> </t> -
                 
             </xpath>

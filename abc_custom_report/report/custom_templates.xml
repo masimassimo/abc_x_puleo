@@ -1,14 +1,20 @@
 <odoo>
     <data>
+     <!-- Accedo ai report di Preventivo/Ordine di vendita e Fattura per modificarli. -->
+
+        <!-- Accedo alla vista della Fattura account.report_invoice_document per inserire il Down Payment collegato ai prodotti 
+             precedentemente selezionati nell'ordine di vendita. -->
+        
         <template id="report_invoice_document_inherit_1" inherit_id="account.report_invoice_document">
             <xpath expr="//t[3]/tr[1]/t[1]/td[1]" position="replace">
                                 <td name="account_invoice_line_name">
-                                            <span t-field="line.name" t-options="{'widget': 'text'}"/>
+                                            <span t-raw="line.name"/>
                                          <t t-if ="'Acconto' == line.product_id.name"> 
                                                   <span> per </span>
+                                                     <br/>
+                                                    <br/>
                                             <t t-foreach="o.invoice_line_ids.sale_line_ids.order_id.order_line" t-as="for_order_line">
-                                             <t t-if="'Down Payment:' not in for_order_line.name">
-                                                 <br/>
+                                             <t t-if="'Down Payment:' not in for_order_line.name and for_order_line.product_id.id">
                                                 <span t-raw="for_order_line.name"/>
                             
                                             </t>
@@ -18,16 +24,21 @@
                                         </td>
             </xpath>
         </template>
+   
 
-               <template id="report_saleorder_document_inherit_11" inherit_id="sale.report_saleorder_document">
+        <!-- Accedo alla vista del Preventivo/Ordine di vendita per inserire il Down Payment collegato ai prodotti selezionati
+                tra le righe d'ordine e far si che le sezioni Note e Sezione siano t-raw. Infine creo un elenco numerato per i prodotti. -->
+
+               <template id="report_saleorder_document_inherit_1" inherit_id="sale.report_saleorder_document">
             <xpath expr="//t[2]/tr[1]/t[1]/td[1]" position="replace">
-                                         <td name="td_name">
+                                   <td name="td_name">
                                     <span t-raw="line.name"/>
-                                    <t t-if ="'Acconto' == line.product_id.name"> 
+             <t t-if="'Acconto' == line.product_id.name"> 
                                             <span> per </span>
+                                            <br/>
+                                            <br/>
                                             <t t-foreach="doc.order_line" t-as="for_order_line">
-                                             <t t-if="'Down Payment:' not in for_order_line.name">
-                                                 <br/>
+                                             <t t-if="'Down Payment:' not in for_order_line.name and for_order_line.product_id.id">
                                                 <span t-raw="for_order_line.name"/>
                                </t>
                                          
@@ -37,21 +48,37 @@
             </xpath>
         </template>
         
+      
         
-               <template id="report_saleorder_document_inherit_112" inherit_id="sale.report_saleorder_document">
+        <template id="report_saleorder_document_inherit_2" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//t[2]/tr[1]/t[2]/td[1]/span[1]" position="replace">
+                <span t-raw="line.name"/>
+            </xpath>
+        </template>
+        
+
+        <template id="report_saleorder_document_inherit_3" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//t[3]/td[1]/span[1]" position="replace">
+                <span t-raw="line.name"/>
+            </xpath>
+        </template>
+  
+        
+        
+               <template id="report_saleorder_document_inherit_4" inherit_id="sale.report_saleorder_document">
             <xpath expr="//tbody[@class='sale_tbody'][1]/t[1]" position="after">
                                       <t t-set = "numProdotto" t-value = "0" />
             </xpath>
         </template>
         
-            <template id="report_saleorder_document_inherit_1122" inherit_id="sale.report_saleorder_document">
+            <template id="report_saleorder_document_inherit_5" inherit_id="sale.report_saleorder_document">
             <xpath expr="//t[3]/t[2]" position="before">
                                       <t t-set="numProdotto" t-value="numProdotto + 1"> </t>
             </xpath>
         </template>
 
         
-              <template id="report_saleorder_document_inherit_113" inherit_id="sale.report_saleorder_document">
+              <template id="report_saleorder_document_inherit_6" inherit_id="sale.report_saleorder_document">
             <xpath expr="//t[3]/tr[1]/t[1]/td[1]/span[1]" position="before">
                                       <t t-esc="numProdotto"> </t>
                 <span> - </span> 
@@ -60,7 +87,18 @@
 
         
 <!-- Per far si che il campo name dell'ordine di vendita non venga formattato con i tag HTML si deve modificare un campo all'interno della vista del Preventivo Online (Anteprima Cliente) chiamata sale.sale_order_portal_content  -->
+
         
+        
+        <template id="sale_order_portal_content_inherit_1" inherit_id="sale.sale_order_portal_content">
+            <xpath expr="//td[@id='product_name'][1]" position="replace">
+                <td id="product_name">
+                    <span t-raw="line.name"/>
+                </td>
+            </xpath>
+        </template>
+        
+                
  <template id="sale_order_portal_content_inherit_2" inherit_id="sale.sale_order_portal_content">
      <xpath expr="//tbody[@class='sale_tbody'][1]/t[1]" position="after">
          <t t-set = "numProdotto" t-value = "0" />
@@ -78,15 +116,6 @@
             <xpath expr="//td[@id='product_name'][1]/span[1]" position="before">
                            <t t-esc="numProdotto"> </t> - 
                 
-            </xpath>
-        </template>
-        
-        
-        <template id="sale_order_portal_content_inherit_1" inherit_id="sale.sale_order_portal_content">
-            <xpath expr="//td[@id='product_name'][1]" position="replace">
-                <td id="product_name">
-                    <span t-raw="line.name"/>
-                </td>
             </xpath>
         </template>
 

@@ -3,7 +3,8 @@
      <!-- Accedo ai report di Preventivo/Ordine di vendita e Fattura per modificarli. -->
 
         <!-- Accedo alla vista della Fattura account.report_invoice_document per inserire il Down Payment collegato ai prodotti 
-             precedentemente selezionati nell'ordine di vendita. -->
+             precedentemente selezionati nell'ordine di vendita. Modifico anche l'attributo t-raw delle sezioni Note e Section così da non dare problemi 
+               con il campo HTML. -->
         
         <template id="report_invoice_document_inherit_1" inherit_id="account.report_invoice_document">
             <xpath expr="//t[3]/tr[1]/t[1]/td[1]" position="replace">
@@ -25,6 +26,20 @@
             </xpath>
         </template>
    
+              <template id="report_invoice_document_inherit_2" inherit_id="account.report_invoice_document">
+            <xpath expr="//t[3]/tr[1]/t[2]/td[1]/span[1]" position="replace">
+                              <span t-raw="line.name"/>
+            </xpath>
+        </template>
+        
+           <template id="report_invoice_document_inherit_3" inherit_id="account.report_invoice_document">
+            <xpath expr="//t[3]/td[1]/span[1]" position="replace">
+                              <span t-raw="line.name"/>
+            </xpath>
+        </template>
+        
+        
+        
 
         <!-- Accedo alla vista del Preventivo/Ordine di vendita per inserire il Down Payment collegato ai prodotti selezionati
                 tra le righe d'ordine e far si che le sezioni Note e Sezione siano t-raw. Infine creo un elenco numerato per i prodotti. -->

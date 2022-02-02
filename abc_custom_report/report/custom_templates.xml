@@ -1,6 +1,19 @@
 <odoo>
     <data>
-     <!-- Accedo ai report di Preventivo/Ordine di vendita e Fattura per modificarli. -->
+     <!-- Accedo ai report di Preventivo/Ordine di vendita , Fattura  e Ordine di Produzione per modificarli. -->
+        
+        <!-- Accedo al report dell'ordine di Produzione -->
+        
+           <template id="report_mrporder_inherit_1" inherit_id="mrp.report_mrporder">
+            <xpath expr="//div[@class='col-3']" position="after">
+                   <br/>
+                        <div t-if="o.lot_producing_id">
+                        <strong>Lotto:</strong>
+                        <t t-esc="o.lot_producing_id.name"></t>
+                    </div>
+                     <br/>
+            </xpath>
+        </template>
 
         <!-- Accedo alla vista della Fattura account.report_invoice_document per inserire il Down Payment collegato ai prodotti 
              precedentemente selezionati nell'ordine di vendita. Modifico anche l'attributo t-raw delle sezioni Note e Section così da non dare problemi 

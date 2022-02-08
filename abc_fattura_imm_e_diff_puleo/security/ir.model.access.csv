@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_abc_fattura_imm_e_diff_puleo_abc_fattura_imm_e_diff_puleo,abc_fattura_imm_e_diff_puleo.abc_fattura_imm_e_diff_puleo,model_abc_fattura_imm_e_diff_puleo_abc_fattura_imm_e_diff_puleo,base.group_user,1,1,1,1

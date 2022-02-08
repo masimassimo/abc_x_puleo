@@ -1,0 +1,176 @@
+<odoo>
+    
+    <!-- Temmplate del report PDF della fattura immediata/differita di Puleo. -->
+    
+    <template id="fattura_imm_e_diff_template_puleo">
+        <t t-call="web.basic_layout">
+            <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+            
+              <style type="text/css">
+       
+                    .small-font {
+                                    font-size:80%;
+                                }
+                    .smaller-font {
+                                    font-size:50%;
+                                }
+                    .bold-font {
+                                    font-weight:bold
+                                    }
+                    .rounded-tl {
+                                    border-top-left-radius: 5px
+                                }
+                    .rounded-tr {
+                                    border-top-right-radius: 5px
+                                }
+                    .rounded-bl {
+                                    border-bottom-left-radius: 5px;
+                                }
+                    .rounded-br {
+                                    border-bottom-right-radius: 5px
+                    
+                    .full-width {   
+                                    width:100%
+                                    margin-left:auto;
+                                    margin-right:auto;
+                                }
+                
+            </style>
+            
+            <span> TEST </span>
+            
+          
+            <div t-attf-class="header o_company_#{o.company_id.id}_layout" t-att-style="report_header_style">
+                <!-- Div che contiene le INFO dell'Azienda e del Cliente -->
+                <div class="row address mb-3 small-font">
+                    <!-- Div che contiene le INFO dell'Azienda -->
+                    <div class="col-6">
+                        <div>
+                            <img class="img-fluid" t-att-src="image_data_uri(o.company_id.logo)" style="max-width:350px"/>
+                        </div>
+                        <div style="font-weight: bold; font-size:80%;" t-field="o.company_id.partner_id"/>
+                        <div>
+                            <span t-field="o.company_id.street" style="font-size:80%;"/>
+                            <span t-field="o.company_id.zip" style="font-size:80%;"/>
+                            <span t-field="o.company_id.state_id" style="font-size:80%;"/>
+                        </div>
+                        <ul class="list-inline">
+                            <li class="list-inline-item d-inline" t-if="o.company_id.phone" style="font-size:60%;"> 
+                                Tel:<span class="o_force_ltr" t-field="o.company_id.phone"/></li>
+                            <li class="list-inline-item d-inline" t-if="o.company_id.partner_id.mobile" style="font-size:60%;">
+                                Cell: <span t-field="o.company_id.partner_id.mobile"/></li>
+                            <li class="list-inline-item d-inline" t-if="o.company_id.partner_id.fax" style="font-size:60%;">
+                                Fax: <span t-field="o.company_id.partner_id.fax"/></li>
+                            <li class="list-inline-item d-inline" t-if="o.company_id.email" style="font-size:60%;">
+                                Email: <span t-field="o.company_id.email"/></li>
+                        </ul>
+                        <ul class="list-inline mb4" style="margin-top:-15px">
+                            <li class="list-inline-item d-inline" t-if="o.company_id.website" style="font-size:60%;">
+                                Site: <span t-field="o.company_id.website" /></li>
+                            <li class="list-inline-item d-inline" t-if="o.company_id.vat" style="font-size:60%;">
+                                <strong>Partita IVA: </strong>
+                                <span t-field="o.company_id.vat"/>
+                            </li>
+                            <li class="list-inline-item d-inline" style="font-size:60%;">
+                                <strong>REA: </strong>
+                                <span>176824-TP</span>
+                            </li>
+                        </ul>
+                        <ul class="list-inline mb4" style="margin-top:-15px">
+                            <li class="list-inline-item d-inline" t-if="o.company_id.partner_id.pec_mail" style="font-size:60%;">
+                                PEC: <u>
+                                <span t-field="o.company_id.partner_id.pec_mail"/>
+                                </u>
+                            </li> 
+                        </ul>
+                    </div>
+                    <!-- Div che contiene le INFO del Cliente -->
+                    <!-- 
+                    <div class="col-6">
+                        <div style="height:20px;"/>
+                        <div style="border-bottom: 1px solid black; border-left: 1px solid black; padding-left:5px; padding-bottom:5px; line-height:100%">
+                            <span style="margin-bottom:0px; font-size:70%;">
+                                SPETT.LE</span>
+                            <div>
+                                <span t-field="o.partner_id" style=" font-weight:bold;font-size:70%;"/>
+                            </div>
+                            <span t-field="o.partner_id.street" style=" font-weight:bold;font-size:70%;"/>
+                            <div style=" font-weight:bold;font-size:70%;">
+                                <span t-field="o.partner_id.zip"/>
+                                <span t-field="o.partner_id.city"/>
+                                <span t-field="o.partner_id.state_id"/> 
+                            </div>
+                        </div>
+                    
+                        <div style="margin-top:10px;  border-bottom: 1px solid black; border-left: 1px solid black; padding-left:5px; padding-bottom:5px; padding-top:1px; line-height:100%">
+                            <strong t-if="o.partner_shipping_id == o.partner_id" style="font-size:70%;">Indirizzo di Fatturazione e Spedizione:</strong>
+                            <strong t-if="o.partner_shipping_id != o.partner_id" style="font-size:70%;">Indirizzo di Fatturazione:</strong>
+                            <div style="font-size:70%;" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                            <t t-if="o.partner_shipping_id != o.partner_id">
+                                <strong style="font-size:70%;">Indirizzo di Spedizione:</strong>
+                                <div style="font-size:70%;" t-field="o.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;name&quot;,&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                            </t>
+
+                        </div>
+
+                    </div>
+-->
+                </div>
+            
+                
+            </div>
+            
+                           
+                <!-- FOOTER -->
+            <!--
+                <div t-attf-class="footer o_standard_footer o_company_#{o.company_id.id}_layout">
+                    <div class="text-center">
+                   
+        
+                       
+        
+                        <div t-if="report_type == 'pdf'" class="text-muted" style="font-size:80%;">
+                            Pagina: <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+                </div> 
+            -->
+            
+        </t>
+    </template>
+    
+    <template id="report_original_vendor_bill">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="article"  t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')"></div>
+            </t>
+        </t>
+    </template>
+
+    
+    <template id="fattura_imm_e_diff_main_template_puleo">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="abc_fattura_imm_e_diff_puleo.fattura_imm_e_diff_template_puleo" t-lang="o.partner_id.lang"/>
+                <t t-set="print_with_payments" t-value="True"/>
+            </t>
+        </t>
+    </template>
+    
+    <!-- Creo il record fattura_imm_e_diff_print_report_puleo, il quale sarebbe il tasto che stampa la fattura da Stampa 
+         dalla vista della Fattura Cliente. -->
+    
+    <record id="fattura_imm_e_diff_print_report_puleo" model="ir.actions.report">
+        <field name="name">Fattura immediata/differita Puleo</field>
+        <field name="model">account.move</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">abc_fattura_imm_e_diff_puleo.fattura_imm_e_diff_main_template_puleo</field>
+        <field name="report_file">abc_fattura_imm_e_diff_puleo.fattura_imm_e_diff_main_template_puleo</field>
+        <field name="print_report_name">'Fattura immediata/differita Puleo - %s' % object.display_name</field>
+        <!--field name="binding_model_id" ref="account.report_invoice_with_payments" /-->
+        <field name="binding_model_id" ref="account.model_account_move" />
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" ref="abc_fattura_imm_e_diff_puleo.fattura_imm_e_diff_formato_carta_puleo"/>
+    </record>
+    
+</odoo>

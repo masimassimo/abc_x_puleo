@@ -1,12 +1,12 @@
 <odoo>
     
-    <!-- Temmplate del report PDF della fattura immediata/differita di Puleo. -->
+    <!-- Template del report PDF della fattura immediata/differita di Puleo. -->
     
     <template id="fattura_imm_e_diff_template_puleo">
         <t t-call="web.basic_layout">
             <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
 
-             <style type="text/css">
+       <style type="text/css">
        
                     .small-font {
                                     font-size:80%;
@@ -34,13 +34,13 @@
                                     margin-left:auto;
                                     margin-right:auto;
                                 }
-                
+
             </style>
                 <!-- Div che contiene le INFO dell'Azienda e del Cliente -->
          
-                <div t-attf-class="header o_company_#{o.company_id.id}_layout" t-att-style="report_header_style" >
+                <div t-attf-class="header o_company_#{o.company_id.id}_layout" t-att-style="report_header_style">
                 <div class="row address mb-1 small-font">
-                  
+                
                     <div class="col-5">
                         <div>
                             <img class="img-fluid" t-att-src="image_data_uri(o.company_id.logo)" style="max-width:250px"/>
@@ -51,7 +51,7 @@
                     <div class="col-3" style="text-align:right;">
                         <div style="font-weight: bold; font-size:100%;" t-field="o.company_id.partner_id"/>
                         <div>
-                            <ul class="list-inline" style="font-size:80%;" >
+                            <ul class="list-inline" style="font-size:80%;">
                                 <li t-if="o.company_id.street"> <span t-field="o.company_id.street"/> </li>
                                 <li t-if="o.company_id.phone"> Tel <span t-field="o.company_id.phone"/> </li>
                                 <li> Fax <span> +39 0923968920 </span> </li>
@@ -111,31 +111,33 @@
                                 <span>Fattura Pro-forma</span>
                             </t>
                         </td>
-                        <td class="p-1 align-middle text-center smaller-font col-2" style="width:16.66%">
+                        <td class="p-1 align-middle text-center small-font col-2" style="width:16.66%">
                             <span t-field="o.name"/>
                         </td>
-                        <td class="p-1 align-middle text-center smaller-font col-2" style="width:16.66%">
+                        <td class="p-1 align-middle text-center small-font col-2" style="width:16.66%">
                             <span t-field="o.invoice_date"/>
                         </td>
-                        <td class="p-1 align-middle text-center smaller-font col-2" style="width:16.66%">
-                            <div t-if="report_type == 'pdf'" class="text-muted">
-                                <span class="page"/> / <span class="topage"/>
-                            </div>
+                        <td class="p-1 align-middle text-center small-font col-2" style="width:16.66%">
+                           <!-- Page -->
+                           
+                           
+
+
                         </td>
                     </tr>
                 </tbody>
                 <thead>
                     <tr scope="row">
-                        <th scope="col"  colspan="2" class="p-1 align-top text-left small-font col-6" style="width:50%">
+                        <th scope="col" colspan="2" class="p-1 align-top text-left small-font col-6" style="width:50%">
                             <span>Partita IVA</span>
                         </th>
-                        <th scope="col"  colspan="2" class="p-1 align-top text-left small-font col-6" style="width:50%">
+                        <th scope="col" colspan="2" class="p-1 align-top text-left small-font col-6" style="width:50%">
                             <span>Codice Fiscale</span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <td colspan="2" class="p-1 align-middle text-left small-font col-6"  style="width:50%">
+                    <td colspan="2" class="p-1 align-middle text-left small-font col-6" style="width:50%">
                         <span t-field="o.partner_id.vat"/>
                     </td>
                       <td colspan="2" class="p-1 align-middle text-left small-font col-6" style="width:50%">
@@ -147,25 +149,25 @@
                         <th scope="col" class="p-1 align-top text-left small-font col-1" style="width:10%">
                             <span>Agente</span>
                         </th>
-                        <th scope="col"  class="p-1 align-top text-left small-font col-3" style="width:30%">
+                        <th scope="col" class="p-1 align-top text-left small-font col-3" style="width:30%">
                             <span>Tipo Container</span>
                         </th>
-                         <th scope="col"   class="p-1 align-top text-left small-font col3" style="width:30%">
+                         <th scope="col" class="p-1 align-top text-left small-font col3" style="width:30%">
                             <span>N° Container</span>
                         </th>
-                        <th scope="col"   class="p-1 align-top text-left smaller-font col-3" style="width:30%">
+                        <th scope="col" class="p-1 align-top text-left smaller-font col-3" style="width:30%">
                             <span>N° Sigilillo</span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <td colspan="1" class="p-1 align-middle text-left small-font col-6"  style="width:10%">
-                        <span  t-field="o.invoice_user_id"/>
+                    <td colspan="1" class="p-1 align-middle text-left small-font col-6" style="width:10%">
+                        <span t-field="o.invoice_user_id"/>
                     </td>
                      <td colspan="1" class="p-1 align-middle text-left small-font col-6" style="width:30%">
                         <span t-field="o.tipo_container"/>
                     </td>
-                       <td colspan="1" class="p-1 align-middle text-left small-font col-6"  style="width:30%">
+                       <td colspan="1" class="p-1 align-middle text-left small-font col-6" style="width:30%">
                         <span t-field="o.n_container"/>
                     </td>
                       <td colspan="1" class="p-1 align-middle text-left small-font col-6" style="width:30%">
@@ -179,7 +181,7 @@
                         <th scope="col" colspan="2" class="p-1 align-top text-left small-font col-9" style="width:66.66%">
                             <span>Pagamento</span>
                         </th>
-                        <th scope="col" colspan="2"  class="p-1 align-top text-left small-font col-3" style="width:33.33%">
+                        <th scope="col" colspan="2" class="p-1 align-top text-left small-font col-3" style="width:33.33%">
                             <span>Rif. Ordine Cliente</span>
                         </th>
       
@@ -187,8 +189,13 @@
                 </thead>
                 
                 <tbody>
-                    <td colspan="2" class="p-1 align-middle text-left small-font col-9"  style="width:66.66%">
-                                 <t t-if="o.invoice_payment_term_id"><t t-esc="o.invoice_payment_term_id.name"/></t><t t-else=""><t t-esc="o.invoice_date_due" options='{"widget": "date"}'/></t>
+                    <td colspan="2" class="p-1 align-middle text-left small-font col-9" style="width:66.66%">
+                                <t t-if="o.invoice_payment_term_id">
+                                     <span t-field="o.invoice_payment_term_id.name"/>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="o.invoice_date_due" options="{&quot;widget&quot;: &quot;date&quot;}"/>
+                                </t>
                                                 
                     </td>
                      <td colspan="2" class="p-1 align-middle text-left small-font col-3" style="width:33.33%">
@@ -209,7 +216,7 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%">
-                        <span t-field="o.partner_bank_id"/>
+                       <!-- Banca d'APpoggio -->
                     </td>
                 
                 </tbody>
@@ -226,7 +233,7 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%">
-                        <span t-field="o.partner_bank_id.bank_id"></span>  <span t-field="o.partner_bank_id"/>
+                        <span t-field="o.partner_bank_id.bank_id"/>  <span t-field="o.partner_bank_id"/>
                     </td>
                 
                 </tbody>
@@ -236,9 +243,26 @@
     </div>
     
      <div class="col-6">
-         <span>Spett.le</span>
+         <table class="table table-bordered">
+             <thead>
+                 
+             
+       
+        </thead>
+        <tbody>
+            
+       <td>
+        <span>Spett.le</span>
+        <t t-set="address">
+                    
+          
+        
+       </t>
+           
+        
                          
-            <t t-if="o.partner_shipping_id and (o.partner_shipping_id != o.partner_id)">
+            <t t-if="o.partner_shipping_id and (o.partner_shipping_id.id != o.partner_id.id)">
+                
                 <t t-set="information_block">
                     <div groups="sale.group_delivery_invoice_address" name="shipping_address_block">
                         <strong>Shipping Address:</strong>
@@ -247,8 +271,11 @@
                 </t>
             </t>
             <div t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}" groups="sale.group_delivery_invoice_address"/>
-        <span t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}" groups="!sale.group_delivery_invoice_address"/>
-
+        <address t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}" groups="!sale.group_delivery_invoice_address"/>
+         
+        </td>
+         </tbody>
+    </table>
   
         
     
@@ -257,6 +284,9 @@
      
     </div>  
     
+<div class="page">
+    
+
     <!-- Tabella Prodotti -->
     
     <table class="table table-bordered mt-1">
@@ -308,7 +338,19 @@
 
 
                                     <td class="p-1 align-middle text-center smaller-font col-4" style="width:51.65%">
-                                        <span t-field="line.name"/>
+                                        
+                                        <t t-if="'Acconto' == line.product_id.name">
+                                            <span t-field="line.name"/> -
+                                                  <span> riferito all'ordine </span>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.name"/>
+                                            <span> del </span>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                                            <span t-field="o.invoice_line_ids.sale_line_ids.order_id.payment_term_id"/>
+
+                                        </t>
+                                        <t t-else="">
+                                            <span t-field="line.product_id.name"/>
+                                        </t>
                                     </td>
 
                                     <td class="p-1 align-middle text-center smaller-font col-1" style="width:4%">
@@ -373,15 +415,15 @@
         <tbody>
             <tr scope="row">
                   <td rowspan="3" class="p-1 align-middle text-left small-font col-6" style="width:50%">
-                        <span t-field="o.invoice_origin"/>
+                        <span t-field="o.narration"></span>
                     </td>
-                      <td  class="p-1 align-middle text-right smaller-font col-2" style="width:12.5%">
+                      <td class="p-1 align-middle text-right smaller-font col-2" style="width:12.5%">
                         <span t-esc="totale_merce" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                     </td>
-                         <td  class="p-1 align-middle text-right smaller-font col-2" style="width:12.5%">
+                         <td class="p-1 align-middle text-right smaller-font col-2" style="width:12.5%">
                       
                       <!-- SOlo Iva -->
-                     <t t-if="o.amount_sp>0">
+                     <t t-if="o.amount_sp&gt;0">
                           <span t-field="o.amount_tax"/>
                         
                          <span t-field="o.amount_sp" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
@@ -395,40 +437,40 @@
                     
                     
                     </td>
-                         <td  class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                         <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
+                        <!-- Totale Omaggi -->
                     </td>
-                         <td  class="p-1 align-middle text-right smaller-font col-2" style="width:12.5%">
+                         <td class="p-1 align-middle text-right smaller-font col-2" style="width:12.5%">
                         <span t-esc="totale_sconto" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                     </td>
                 </tr>
                 <tr scope="row">
-                      <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                      <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Totale Sc. Incondizionato</span>
                     </th>
-                         <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                         <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Spese Bolli</span>
                     </th>
-                         <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                         <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Spese Bancarie</span>
                     </th>
-                             <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                             <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Spese Assicurazione</span>
                     </th>
                 </tr>
                       <tr scope="row">
            
-                      <td  class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                      <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
+                        <!-- Totale Sc. Incondizionato -->
                     </td>
-                         <td  class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                         <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
+                        <!-- Spese Bolli -->
                     </td>
-                         <td  class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                         <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
+                        <!-- Spese Bancarie -->
                     </td>
-                         <td  class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                         <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
+                        <!-- Spese Assicurazione -->
                     </td>
                 </tr>
             
@@ -467,7 +509,7 @@
                       <t t-set="importo_pagamento" t-value="o.amount_total"/>
                      
                       
-                      <td  rowspan="5" class="p-1  text-left small-font col-2" style="width:16.66%">
+                      <td rowspan="5" class="p-1  text-left smaller-font col-2" style="width:16.66%">
                           
                            <t t-foreach="termini.line_ids" t-as="scadenza">
                                        
@@ -480,7 +522,7 @@
                             <t t-else="">
                                    <!-- <span t-field="scadenza.days"/> -->
                                     <t t-set="giorni" t-value="scadenza.days"/>
-                                    <span t-esc="(datetime.datetime.strptime(str(o.invoice_date), '%Y-%m-%d') + datetime.timedelta(days=giorni) ).strftime('%d/%m/%Y')" ></span>
+                                    <span t-esc="(datetime.datetime.strptime(str(o.invoice_date), '%Y-%m-%d') + datetime.timedelta(days=giorni) ).strftime('%d/%m/%Y')"/>
                                   <!--  <span t-field="scadenza.option"/> -->
                             </t>
                     
@@ -492,17 +534,17 @@
                              
                         
                     </td>
-                         <td  rowspan="5" class="p-1 text-center small-font col-2" style="width:16.66%">
+                         <td rowspan="5" class="p-1 text-center smaller-font col-2" style="width:16.66%">
                             <t t-foreach="termini.line_ids" t-as="scadenza">
                           
                             <t t-if="scadenza.value=='percent'">
-                                <span t-esc="scadenza.value_amount*o.amount_total/100"  t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                <span t-esc="scadenza.value_amount*o.amount_total/100" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                             </t>
                             <t t-elif="scadenza.value=='fixed'"> 
-                                <span t-esc="scadenza.value_amount"  t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                <span t-esc="scadenza.value_amount" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                             </t>
                             <t t-else="">
-                                <t t-esc="importo_pagamento"  t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                <t t-esc="importo_pagamento" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                                 
                             </t>
                             
@@ -526,44 +568,44 @@
                         
                         
                     </td>
-                         <td  rowspan="5" class="p-1  text-center small-font " style="width:16.66%">
+                         <td rowspan="5" class="p-1  text-center smaller-font " style="width:16.66%">
                          <t t-foreach="termini.line_ids" t-as="scadenza">
-                             <span t-esc="o.invoice_payment_term_id.name"></span>
+                             <span t-esc="o.invoice_payment_term_id.name"/>
                                 <br/>
                              </t>
                           
                     </td>
-                         <td  class="p-1 align-middle text-right small-font " style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                         <td class="p-1 align-middle text-right small-font " style="width:12.5%">
+                        <!-- Spese Trasporto -->
                     </td>
-                            <td  class="p-1 align-middle text-right small-font " style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                            <td class="p-1 align-middle text-right small-font " style="width:12.5%">
+                         <!-- Spese Imballo -->
                     </td>
-                         <td  class="p-1 align-middle text-right small-font " style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                         <td class="p-1 align-middle text-right small-font " style="width:12.5%">
+                        <!-- Spese Varie -->
                     </td>
-                         <td  class="p-1 align-middle text-right small-font " style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                         <td class="p-1 align-middle text-right small-font " style="width:12.5%">
+                        <!-- Sconto -->
                     </td>
                     
                 </tr>
                         <tr scope="row">
-                      <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                      <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Cod. IVA</span>
                     </th>
-                         <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                         <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Imponibile</span>
                     </th>
-                         <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                         <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Aliquota</span>
                     </th>
-                             <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                             <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Imposte</span>
                     </th>
                 </tr>
                 <tr scope="row">
            
-                      <td   class="p-1 align-middle text-right smaller-font" style="width:12.5%">
+                      <td class="p-1  text-right smaller-font" style="width:12.5%">
                           <t t-value="[]" t-set="codiciIva"/>
                                 <t t-value="[]" t-set="aliquoteIva"/>
                                 <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
@@ -577,7 +619,7 @@
                                 </t> 
                         
                     </td>
-                         <td class="p-1 align-middle text-right smaller-font" style="width:12.5%">
+                         <td class="p-1  text-right smaller-font" style="width:12.5%">
                         
                         <!-- Imponibile -->
                         
@@ -605,13 +647,13 @@
                         
                         
                     </td>
-                         <td  class="p-1 align-middle text-right smaller-font " style="width:12.5%">
+                         <td class="p-1  text-right smaller-font " style="width:12.5%">
                              <!-- Aliquota -->
                                    <t t-value="[]" t-set="codiciIva"/>
                                 <t t-value="[]" t-set="aliquoteIva"/>
                                 <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
                                 <t t-as="line" t-foreach="lines">
-                                    <t t-if="line.tax_ids.description and (line.tax_ids.description not in codiciIva)">
+                                    <t t-if="line.tax_ids.amount and (line.tax_ids.amount not in codiciIva)">
                                         <t t-value="codiciIva.append(line.tax_ids.amount)" t-set="codiciIvaDummy"/>
                                     </t>
                                 </t>
@@ -619,7 +661,7 @@
                                     <t t-esc="cIva"/>%<br/>
                                 </t> 
                     </td>
-                         <td  class="p-1 align-middle text-right smaller-font " style="width:12.5%">
+                         <td class="p-1 text-right smaller-font " style="width:12.5%">
                             
                             <!-- Imposte -->
                              <t t-as="impostaFor" t-foreach="imposta">
@@ -630,29 +672,29 @@
                     
                 </tr>
                             <tr scope="row">
-                      <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                      <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Totale Imponibile</span>
                     </th>
-                         <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                         <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Totale IVA</span>
                     </th>
-                         <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                         <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Abbuoni IVA Omaggi</span>
                     </th>
-                             <th  class="p-1 align-middle text-center smaller-font" style="width:12.5%">
+                             <th class="p-1 align-middle text-center smaller-font" style="width:12.5%">
                         <span>Totale Documento</span>
                     </th>
                 </tr>
                 
                 <tr scope="row">
            
-                      <td   class="p-1 align-middle text-right smaller-font" style="width:12.5%">
+                      <td class="p-1 align-middle text-right smaller-font" style="width:12.5%">
                         <span t-field="o.amount_untaxed"/>
                         
                     </td>
                          <td class="p-1 align-middle text-right smaller-font" style="width:12.5%">
                        
-                              <t t-if="o.amount_sp>0">
+                              <t t-if="o.amount_sp&gt;0">
                           <span t-field="o.amount_tax"/>
                         
                          <span t-field="o.amount_sp" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
@@ -665,12 +707,12 @@
                     
                        
                     </td>
-                         <td  class="p-1 align-middle text-right small-font " style="width:12.5%">
-                        <span t-field="o.invoice_origin"/>
+                         <td class="p-1 align-middle text-right small-font " style="width:12.5%">
+                         <!-- Abbuoni IVA Omaggi -->
                     </td>
-                         <td  class="p-1 align-middle text-right smaller-font " style="width:12.5%">
+                         <td class="p-1 align-middle text-right smaller-font " style="width:12.5%">
                          <t t-set="totale_documento" t-value="o.amount_total+o.amount_sp"/>
-                                <strong t-esc="totale_documento"  t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                <strong t-esc="totale_documento" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                     </td>
                    
                     
@@ -678,17 +720,17 @@
                 
                 
                 <tr scope="row">
-                    <th rowspan="2" colspan ="3" class="p-1 align-middle text-center smaller-font" style="width:50%">
+                    <th rowspan="2" colspan="3" class="p-1 align-middle text-center smaller-font" style="width:50%">
             <span>AVVISO IMPORTANTE: i Vs. dati anagrafici e la partita iva che appaiono sul presente documento saranno quelli che verranno utilizzati, salvo Vs. diversa precisazione, agli effetti dell' Art. 2 DPR 633/72.
 Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità prevista dall' Art.41 DPR 633/72.</span>
                     </th>
-                         <th  class="p-1 align-middle text-center smaller-font" style="width:16.6%">
+                         <th class="p-1 align-middle text-center smaller-font" style="width:16.6%">
                         <span>Acconto</span>
                     </th>
-                         <th rowspan="2"  class="p-1 align-middle text-center smaller-font" style="width:16.6%">
+                         <th rowspan="2" class="p-1 align-middle text-center smaller-font" style="width:16.6%">
                         <span>CONTRIBUTO CONAI ASSOLTO</span>
                     </th>
-                             <th colspan ="2" class="p-1 align-middle text-center smaller-font" style="width:16.6%">
+                             <th colspan="2" class="p-1 align-middle text-center smaller-font" style="width:16.6%">
                         <span>Importo da Pagare</span>
                     </th>
                 </tr>
@@ -698,12 +740,12 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
            
                  
                          <td class="p-1 align-middle text-right small-font" style="width:16.6%">
-                        <span t-field="o.invoice_origin"/>
+                        <!-- Acconto  -->
                     </td>
                       
-                         <td colspan ="2" class="p-1 align-middle text-right small-font " style="width:16.6%">
+                         <td colspan="2" class="p-1 align-middle text-right small-font " style="width:16.6%">
                                                 <t t-set="totale_documento" t-value="o.amount_total+o.amount_sp"/>
-                                <strong t-esc="totale_documento"  t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                                <strong t-esc="totale_documento" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                     </td>
                    
                     
@@ -715,7 +757,18 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
         </table>
 
 
-    </table>          
+    </table>   
+   
+   </div>
+   
+
+<div class="footer text-center" style="font-size:12px;">
+    Pagina
+    <span class="page"/>
+    di
+    <span class="topage"/>
+</div>
+       
         </t>
     </template>
     

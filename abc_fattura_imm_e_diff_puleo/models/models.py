@@ -15,7 +15,7 @@ class accountMove(models.Model):
     tipo_container = fields.Char(string = "Tipo Container")
     n_container = fields.Char(string = "N° Container")
     n_sigillo = fields.Char(string = "N° sigillo")
-    agente = fields.Many2one('res.partner', string= "Addetto vendite", related="invoice_line_ids.sale_line_ids.order_id.user_id", store = True, readonly = False)
+    #agente = fields.Many2one('res.partner', string= "Addetto vendite", related="invoice_line_ids.sale_line_ids.order_id.user_id", store = True, readonly = False)
     
 #Eredito il modulo sale.order per accedervi.
 class SaleOrder(models.Model):

@@ -21,13 +21,13 @@ class SaleOrder(models.Model):
             #_logger.info(puleo_id['bank_ids'][x].bank_id.id)
             banca_name = banche_puleo_ids[x].bank_id.name
             banca_nConto = banche_puleo_ids[x].acc_number
+            banca_bic = str(banche_puleo_ids[x].bank_id.bic)
             
             if(not banca_name):
                 banca_name = "NULL"
             if(not banca_nConto):
                 banca_nConto = "NULL"
-            listaBanche.append((banca_name, banca_name + " - " + banca_nConto))
+            listaBanche.append((banca_name, banca_name + " - " + banca_nConto + " - " + banca_bic))
         return listaBanche
 
-    banca = fields.Selection(selection=lambda self: self._compute_bank(), string='Banca', store=True)
-    
+    banca = fields.Selection(selection=lambda self: self._compute_bank(), string='Banca di riferimento', store=True)

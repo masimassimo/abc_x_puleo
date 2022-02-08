@@ -13,20 +13,18 @@
     'author': "A.B.C. srl",
     'website': "https://www.abcstrategie.it/",
 
-    # Categories can be used to filter modules in modules listing
-    # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
-    # for the full list
     'category': 'Product',
-    'version': '0.1',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['product','sale', 'sale_management', 'purchase'],
+    'depends': ['product','sale', 'sale_management', 'purchase', 'account'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/view_product.xml',
         'views/view_sale.xml',
+        'views/view_account.xml',
         'report/quotation_report.xml',
     ],
     # only loaded in demonstration mode
@@ -34,4 +32,3 @@
     'installable': True,
     'application': True,
 }
-

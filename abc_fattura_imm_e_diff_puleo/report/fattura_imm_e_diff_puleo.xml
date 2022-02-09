@@ -352,6 +352,10 @@
                                         </t>
                                         <t t-else="">
                                             <span t-field="line.product_id.name"/>
+                                            <t t-if="o.partner_id.country_id.id != 109 and line.product_id.codice_merce">
+                                            
+                                                <span>Nomenclatura combinata: <t t-esc="line.product_id.codice_merce"></t> </span>
+                                            </t>
                                         </t>
                                     </td>
 
@@ -771,6 +775,7 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
     di
     <span class="topage"/>
 </div>
+       
        
         </t>
     </template>

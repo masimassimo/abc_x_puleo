@@ -35,8 +35,8 @@
                 <field name="descrizione_categoria_contatto"/>
                 <field name="codice_settore"  invisible="1"/>
                 <field name="descrizione_settore"/>
-                <field name="funzione"/>
-                <field name="tipologia"/>
+                <field name="funzione" attrs="{'invisible':[('company_type','!=', 'person')]}"/>
+                <field name="tipologia" attrs="{'invisible':[('company_type','!=', 'person')]}"/>
             </xpath>
         </field>
       </record>

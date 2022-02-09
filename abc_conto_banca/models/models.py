@@ -27,7 +27,7 @@ class SaleOrder(models.Model):
                 banca_name = "NULL"
             if(not banca_nConto):
                 banca_nConto = "NULL"
-            listaBanche.append((banca_name, banca_name + " - " + banca_nConto + " - " + banca_bic))
+            listaBanche.append((banca_name, banca_name + " - " + banca_nConto + " - BIC: " + banca_bic))
         return listaBanche
 
     banca = fields.Selection(selection=lambda self: self._compute_bank(), string='Banca di riferimento', store=True)

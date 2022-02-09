@@ -30,7 +30,6 @@
                 <field name="codice_sam_contatti"  invisible="1"/>
                 <field name="id_lead"  invisible="1"/>
                 <field name="IDNOMIRIFMRK"  invisible="1"/>
-                <field name="fax"/>
                 <field name="codice_categoria_contatto"  invisible="1"/>
                 <field name="descrizione_categoria_contatto"/>
                 <field name="codice_settore"  invisible="1"/>
@@ -40,6 +39,20 @@
             </xpath>
         </field>
       </record>
+    
+    
+          <record model="ir.ui.view" id="res_partner_form_inherit_02">
+        <field name="name">res_partner_form_inherit_02</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='function']" position="after">
+                <field name="fax"/>
+            </xpath>
+        </field>
+      </record> 
+    
+    
       
     <record model="ir.ui.view" id="res_partner_form_inherit_3">
         <field name="name">res_partner_form_inherit_3</field>

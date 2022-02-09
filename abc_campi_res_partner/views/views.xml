@@ -26,14 +26,14 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
                 <field name="cliente_o_fornitore_id_sam"/>
-                <field name="persona_id_sam"/>
-                <field name="codice_sam_contatti"/>
-                <field name="id_lead"/>
-                <field name="IDNOMIRIFMRK"/>
+                <field name="persona_id_sam"  invisible="1"/>
+                <field name="codice_sam_contatti"  invisible="1"/>
+                <field name="id_lead"  invisible="1"/>
+                <field name="IDNOMIRIFMRK"  invisible="1"/>
                 <field name="fax"/>
-                <field name="codice_categoria_contatto"/>
+                <field name="codice_categoria_contatto"  invisible="1"/>
                 <field name="descrizione_categoria_contatto"/>
-                <field name="codice_settore"/>
+                <field name="codice_settore"  invisible="1"/>
                 <field name="descrizione_settore"/>
                 <field name="funzione"/>
                 <field name="tipologia"/>
@@ -59,9 +59,9 @@
       <field name="inherit_id" ref="base.view_partner_form"/>
       <field name="arch" type="xml">
         <xpath expr="//form[1]/sheet[1]/notebook[1]/page[@name='sales_purchases']/group[@name='container_row_2']/group[@name='sale']/field[@name='user_id']" position="after">
-          <field name="codice_zona"/>
+          <field name="codice_zona"  invisible="1"/>
           <field name="descrizione_zona"/>
-          <field name="codice_area"/>
+          <field name="codice_area"  invisible="1"/>
           <field name="descrizione_area"/>
           <field name="agente_id"/>
           <field name="segnalatore_id"/>

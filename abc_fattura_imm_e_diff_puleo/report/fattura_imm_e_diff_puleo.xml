@@ -351,10 +351,17 @@
 
                                         </t>
                                         <t t-else="">
-                                            <span t-field="line.product_id.name"/>
+                                            
+                                                <span t-field="line.product_id"/>
+                                                <t t-if="not line.product_id">
+                                                    <span t-raw="line.name"></span>
+                                                </t>
+                                           
+                                         
+                                            
                                             <t t-if="o.partner_id.country_id.id != 109 and line.product_id.codice_merce">
                                             
-                                                <span>Nomenclatura combinata: <t t-esc="line.product_id.codice_merce"></t> </span>
+                                                <span>Nomenclatura combinata: <t t-esc="line.product_id.codice_merce"/> </span>
                                             </t>
                                         </t>
                                     </td>
@@ -389,7 +396,7 @@
                             <t t-else="">
                                 <tr scope="row">
                                     <td colspan="10" class="p-1 align-middle text-left smaller-font col-12">
-                                        <strong t-esc="line.name"/>
+                                        <strong t-raw="line.name"/>
                                         
                                     </td>
                                 </tr>
@@ -775,7 +782,6 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
     di
     <span class="topage"/>
 </div>
-       
        
         </t>
     </template>

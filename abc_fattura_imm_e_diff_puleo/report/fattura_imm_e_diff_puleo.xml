@@ -42,9 +42,16 @@
                 <div class="row address mb-1 small-font">
                 
                     <div class="col-5">
+                        <t t-if="image_data_uri(o.team_id.x_avatar_image)">
                         <div>
-                            <img class="img-fluid" t-att-src="image_data_uri(o.company_id.logo)" style="max-width:250px"/>
+                            <img class="img-fluid" t-att-src="image_data_uri(o.team_id.x_avatar_image)" style="max-width:250px"/>
                         </div>
+                        </t>
+                        <t t-else="">
+                            <div>
+                                <img class="img-fluid" t-att-src="image_data_uri(o.company_id.logo)" style="max-width:250px"/>
+                            </div>
+                        </t>
                     </div>
                     
 

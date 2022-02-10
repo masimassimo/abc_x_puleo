@@ -24,15 +24,24 @@ class productTemplate(models.Model):
     
     stato_articolo = fields.Selection([("gestito", "Gestito"), ("installabile", "Installabile"), ("superato", "Superato"),], string = "Stato articolo", store = True)
     
+    matricola = fields.Char(string = "Matricola", store = True, copy = True)
     
     
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+class productProduct(models.Model):
+    _name ="product.product"
+    _inherit = "product.product"
+    
+    codice_prodotto_sam = fields.Char(string = "Codice prodotto SAM", related="product_tmpl_id.codice_prodotto_sam", store = True)
+    
+    tipo_articolo = fields.Selection([("componente", "Componente"), ("insieme", "Insieme"), ("servizio", "Servizio"), 
+                                      ("sottoinsieme", "Sottoinsieme"), ("commento", "Commento"), ("intervento", "Intervento")], string = "Tipo Articolo",  related="product_tmpl_id.tipo_articolo", store = True)
+    
+    codice_merce = fields.Char(string = "Codice Merce", related="product_tmpl_id.codice_merce", store = True)
+    descrizione_nomenclatura_combinata = fields.Char(string = "Descrizione nomenclatura combinata", related="product_tmpl_id.descrizione_nomenclatura_combinata", store = True)
+    
+    tipo_produzione_articolo = fields.Selection([("commerciale", "Commerciale"), ("fantasma", "Fantasma"), 
+                                                 ("interno", "Interno"), ("esterno", "Esterno")], string = "Tipo produzione articolo", related="product_tmpl_id.tipo_produzione_articolo", store = True)
+    
+    stato_articolo = fields.Selection([("gestito", "Gestito"), ("installabile", "Installabile"), ("superato", "Superato"),], string = "Stato articolo", related="product_tmpl_id.stato_articolo", store = True)
+    
+    matricola = fields.Char(string = "Matricola", store = True, related="product_tmpl_id.matricola", copy = True)

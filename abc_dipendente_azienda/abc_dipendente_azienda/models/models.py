@@ -12,7 +12,7 @@ class SaleOrder(models.Model):
     _inherit = 'sale.order'
 
     nominativo_di_riferimento = fields.Many2one(
-        'res.partner', string='Nominativo di riferimento', readonly=True,
-        states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
+        'res.partner', string='Nominativo di riferimento', readonly=False,
+        #states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
         change_default=True, index=True, tracking=1,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id), ('parent_id', '=', partner_id)]",)

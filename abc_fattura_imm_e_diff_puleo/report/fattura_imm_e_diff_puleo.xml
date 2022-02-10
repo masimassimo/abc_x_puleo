@@ -265,30 +265,56 @@
         </thead>
         <tbody>
             
+               
        <td>
-        <span>Spett.le</span>
-        <t t-set="address">
-                    
-          
+   
         
-       </t>
-           
-        
-                         
-            <t t-if="o.partner_shipping_id and (o.partner_shipping_id.id != o.partner_id.id)">
-                
-                <t t-set="information_block">
-                    <div groups="sale.group_delivery_invoice_address" name="shipping_address_block">
-                        <strong>Shipping Address:</strong>
-                        <div t-field="o.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                    <span style="margin-bottom:0px;">Spett.le</span>
+                    <div>
+                        <span t-field="o.partner_id"/>
                     </div>
-                </t>
-            </t>
-            <div t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}" groups="sale.group_delivery_invoice_address"/>
-        <address t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}" groups="!sale.group_delivery_invoice_address"/>
-         
-        </td>
+                    <span t-field="o.partner_id.street" style=""/>
+                    <div style="">
+                        <span t-field="o.partner_id.zip"/>
+                        <span t-field="o.partner_id.city"/>
+                        <span t-field="o.partner_id.state_id"/> 
+                    </div>
+
+                <div style="margin-top:10px;  line-height:100%">
+                    <strong t-if="o.partner_shipping_id == o.partner_id" style="">Indirizzo di Fatturazione e Spedizione:</strong>
+                    <strong t-if="o.partner_shipping_id != o.partner_id" style="">Indirizzo di Fatturazione:</strong>
+                    <div style="" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                    <br></br>
+                    <t t-if="o.partner_shipping_id != o.partner_id">
+                        <strong style="">Indirizzo di Spedizione:</strong>
+                        <div style="" t-field="o.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                    </t>
+               </div>
+            </td>
          </tbody>
+             
+             
+                      <thead>
+             <tr scope="row">
+            <th scope="col" class="p-1 align-top text-left small-font col-12" style="width:100%">
+             Nominativo di riferimento 
+             </th>
+             </tr>
+         </thead>
+          <tbody>
+            <tr scope="row">
+             <td class="p-1 align-middle text-left small-font col-12" style="width:100%">
+                 <t t-if="o.invoice_line_ids.sale_line_ids.order_id.nominativo_di_riferimento">
+                 <span t-field="o.invoice_line_ids.sale_line_ids.order_id.nominativo_di_riferimento.name"/>
+                 </t>
+                 <t t-else="">
+                     <br></br>
+                 </t>
+                </td>
+            </tr>
+        </tbody>
+             
+             
     </table>
   
         

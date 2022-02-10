@@ -6,7 +6,7 @@
         <t t-call="web.basic_layout">
             <t t-set="doc" t-value="doc.with_context(lang=doc.partner_id.lang)"/>
 
-        <style type="text/css">
+             <style type="text/css">
        
                     .small-font {
                                     font-size:80%;
@@ -42,28 +42,16 @@
                 <div class="row address mb-1 small-font">
                 
                     <div class="col-5">
+                         <t t-if="image_data_uri(doc.team_id.x_avatar_image)">
                         <div>
-                            <!-- Vecchio codice 
-                            <img class="img-fluid" t-att-src="image_data_uri(doc.company_id.logo)" style="max-width:250px"/>
-                            -->
-                            
-                            <!-- Nuovo codice per immagine dinamica -->
-                            <t t-if="docs._name == 'purchase.order'">
-                                <img t-att-src="image_data_uri(doc.company.logo)" style="max-height: 45px; max-width:250px;" alt="Logo"/>
-                            </t>
-                            <t t-elif="docs._name == 'stock.delivery.note'">
-                                <img  t-att-src="image_data_uri(docs[0].sale_ids[0].team_id.x_avatar_image)" style="max-height: 45px; max-width:250px;" alt="Logo"/>
-                            </t>
-                            <t t-elif="'team_id' in docs">
-                                <img  t-att-src="image_data_uri(docs[0].team_id.x_avatar_image)" style="max-height: 45px; max-width:250px;" alt="Logo"/>
-                            </t>
-                            <t t-else="">
-                                <img t-att-src="image_data_uri(doc.company.logo)" style="max-height: 45px; max-width:250px;" alt="Logo"/>
-          
-                                </t>
-                            
-                            <!-- Fine Nuovo codice per immagine dinamica -->
+                            <img class="img-fluid" t-att-src="image_data_uri(doc.team_id.x_avatar_image)" style="max-width:250px"/>
                         </div>
+                        </t>
+                        <t t-else="">
+                            <div>
+                                <img class="img-fluid" t-att-src="image_data_uri(doc.company_id.logo)" style="max-width:250px"/>
+                            </div>
+                        </t>
                     </div>
                     
 
@@ -130,7 +118,8 @@
                             <span t-field="doc.name"/>
                         </td>
                         <td class="p-1 align-middle text-center small-font col-2" style="width:16.66%">
-                            <span t-if="doc.date_order" t-field="doc.date_order"/> 
+                            <span t-if="doc.date_order" t-esc="doc.date_order.strftime('%d/%m/%Y')"/> 
+                 
                         </td>
                         <td class="p-1 align-middle text-center small-font col-2" style="width:16.66%">
                            <!-- Page -->
@@ -181,6 +170,7 @@
                     </td>
                      <td colspan="1" class="p-1 align-middle text-left small-font col-6" style="width:30%">
                         <!-- -->
+                        
                     </td>
                        <td colspan="1" class="p-1 align-middle text-left small-font col-6" style="width:30%">
                         <!-- -->
@@ -208,6 +198,7 @@
                                 <t t-if="doc.payment_term_id">
                                      <span t-field="doc.payment_term_id.name"/>
                                 </t>
+                             
                                 <!--
                                 <t t-else="">
                                     <span t-field="o.invoice_date_due" options="{&quot;widget&quot;: &quot;date&quot;}"/>
@@ -219,6 +210,7 @@
                         <!--
                         <span t-field="o.invoice_origin"/> - <t t-if="o.invoice_line_ids.sale_line_ids.order_id.date_order" t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/> 
                         -->
+                        <br></br>
                     </td>
                 
                     
@@ -236,6 +228,7 @@
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%">
                        <!-- Banca d'APpoggio -->
+                       <br></br>
                     </td>
                 
                 </tbody>
@@ -252,7 +245,12 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%">
-                        <span t-field="doc.banca"/>  <span t-field="doc.banca"/>
+                          <t t-if="doc.banca">
+                       <span  t-field="doc.banca"/>
+                          </t>
+                          <t t-else="">
+                              <br></br>
+                          </t>
                     </td>
                 
                 </tbody>
@@ -295,30 +293,51 @@
            
             Fine codice vecchio -->
            
-            <span style="margin-bottom:0px; font-size:70%;">Spett.le</span>
+            <span style="margin-bottom:0px;">Spett.le</span>
                     <div>
-                        <span t-field="doc.partner_id" style=" font-weight:bold;font-size:70%;"/>
+                        <span t-field="doc.partner_id"/>
                     </div>
-                    <span t-field="doc.partner_id.street" style=" font-weight:bold;font-size:70%;"/>
-                    <div style=" font-weight:bold;font-size:70%;">
+                    <span t-field="doc.partner_id.street" style=""/>
+                    <div style="">
                         <span t-field="doc.partner_id.zip"/>
                         <span t-field="doc.partner_id.city"/>
                         <span t-field="doc.partner_id.state_id"/> 
                     </div>
 
-                <div style="margin-top:10px;  border-bottom: 1px solid black; border-left: 1px solid black; padding-left:5px; padding-bottom:5px; padding-top:1px; line-height:100%">
-                    <strong t-if="doc.partner_shipping_id == doc.partner_id" style="font-size:70%;">Indirizzo di Fatturazione e Spedizione:</strong>
-                    <strong t-if="doc.partner_shipping_id != doc.partner_id" style="font-size:70%;">Indirizzo di Fatturazione:</strong>
-                    <div style="font-size:70%;" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                <div style="margin-top:10px;  line-height:100%">
+                    <strong t-if="doc.partner_shipping_id == doc.partner_id" style="">Indirizzo di Fatturazione e Spedizione:</strong>
+                    <strong t-if="doc.partner_shipping_id != doc.partner_id" style="">Indirizzo di Fatturazione:</strong>
+                    <div style="" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                    <br></br>
                     <t t-if="doc.partner_shipping_id != doc.partner_id">
-                        <strong style="font-size:70%;">Indirizzo di Spedizione:</strong>
-                        <div style="font-size:70%;" t-field="doc.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
+                        <strong style="">Indirizzo di Spedizione:</strong>
+                        <div style="" t-field="doc.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
                     </t>
                </div>
            
          
         </td>
          </tbody>
+         <thead>
+             <tr scope="row">
+            <th scope="col" class="p-1 align-top text-left small-font col-12" style="width:100%">
+             Nominativo di riferimento 
+             </th>
+             </tr>
+         </thead>
+          <tbody>
+            <tr scope="row">
+             <td class="p-1 align-middle text-left small-font col-12" style="width:100%">
+                 <t t-if="doc.nominativo_di_riferimento">
+                 <span t-field="doc.nominativo_di_riferimento.name"/>
+                 </t>
+                 <t t-else="">
+                     <br></br>
+                 </t>
+                </td>
+            </tr>
+        </tbody>
+         
     </table>
   
         
@@ -386,7 +405,7 @@
                                         
                                 
                                     
-                                                <span t-field="line.product_id"/>
+                                                <span t-raw="line.name"/>
                                                 <t t-if="not line.product_id">
                                                     <span t-raw="line.name"/>
                                                 </t>
@@ -503,15 +522,19 @@
            
                       <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
                         <!-- Totale Sc. Incondizionato -->
+                        <br> </br>
                     </td>
                          <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
                         <!-- Spese Bolli -->
+                        <br> </br>
                     </td>
                          <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
                         <!-- Spese Bancarie -->
+                        <br></br>
                     </td>
                          <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
                         <!-- Spese Assicurazione -->
+                        <br></br>
                     </td>
                 </tr>
             
@@ -555,16 +578,21 @@
                            <t t-foreach="termini.line_ids" t-as="scadenza">
                                        
                             <t t-if="scadenza.day_of_the_month!=0">
-                               <!-- <span t-field="scadenza.day_of_the_month"/> p.v. -->
+                        
                             </t>
                             <t t-if="scadenza.day_of_the_month==0 and scadenza.days==0">
                                     <span>Pagamento immediato</span>
                             </t>
                             <t t-else="">
-                                   <!-- <span t-field="scadenza.days"/> -->
+                                  
                                     <t t-set="giorni" t-value="scadenza.days"/>
-                                    <span t-if="doc.order_date" t-esc="(datetime.datetime.strptime(str(doc.order_date), '%Y-%m-%d') + datetime.timedelta(days=giorni) ).strftime('%d/%m/%Y')"/>
-                                  <!--  <span t-field="scadenza.option"/> -->
+                                    <t t-if="doc.date_order">
+                                        <t t-set="data" t-value="doc.date_order.strftime('%d/%m/%Y')"></t>
+                         <span t-esc="(datetime.datetime.strptime(data, '%d/%m/%Y') + datetime.timedelta(days=giorni)).strftime('%d/%m/%Y')"/> 
+                                    </t>
+                             
+                 
+                               
                             </t>
                     
                   
@@ -618,6 +646,7 @@
                     </td>
                          <td class="p-1 align-middle text-right small-font " style="width:12.5%">
                         <!-- Spese Trasporto -->
+                        <br></br>
                     </td>
                             <td class="p-1 align-middle text-right small-font " style="width:12.5%">
                          <!-- Spese Imballo -->

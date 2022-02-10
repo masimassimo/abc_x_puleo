@@ -413,6 +413,11 @@
                                             -
                                                 <span>Nomenclatura combinata: <t t-esc="line.product_id.codice_merce"/> </span>
                                             </t>
+                                             <div>
+                                                <t t-if="line.product_id.matricola">
+                                                    Matricola: <span t-esc="line.product_id.matricola"></span>
+                                                </t>
+                                            </div>
                                         </t>
                                     </td>
 

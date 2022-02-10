@@ -6,7 +6,7 @@
         <t t-call="web.basic_layout">
             <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
 
-  <style type="text/css">
+   <style type="text/css">
        
                     .small-font {
                                     font-size:80%;
@@ -224,7 +224,7 @@
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%;">
                        <!-- Banca d'APpoggio -->
-                       <br></br>
+                       <br/>
                        
                     </td>
                 
@@ -284,7 +284,6 @@
                     <strong t-if="o.partner_shipping_id == o.partner_id" style="">Indirizzo di Fatturazione e Spedizione:</strong>
                     <strong t-if="o.partner_shipping_id != o.partner_id" style="">Indirizzo di Fatturazione:</strong>
                     <div style="" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
-                    <br></br>
                     <t t-if="o.partner_shipping_id != o.partner_id">
                         <strong style="">Indirizzo di Spedizione:</strong>
                         <div style="" t-field="o.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
@@ -308,7 +307,7 @@
                  <span t-field="o.invoice_line_ids.sale_line_ids.order_id.nominativo_di_riferimento.name"/>
                  </t>
                  <t t-else="">
-                     <br></br>
+                     <br/>
                  </t>
                 </td>
             </tr>
@@ -403,7 +402,13 @@
                                                 <span> del </span>
                                                 <t t-esc="o.delivery_note_ids.date.strftime('%d/%m/%Y')"/> 
                                             </div>
+                                            <t t-if="line.product_id">
                                             <strong t-field="line.product_id.name"/> 
+                                            </t>
+                                            <t t-else="">
+                                                <strong t-raw="line.name"/> 
+                                            </t>
+                                            
                                             <t t-if="o.partner_id.country_id.id != 109 and line.product_id.codice_merce">
                                             -
                                                 <span>Nomenclatura combinata: <t t-esc="line.product_id.codice_merce"/> </span>
@@ -521,19 +526,19 @@
            
                       <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
                         <!-- Totale Sc. Incondizionato -->
-                        <br></br>
+                        <br/>
                     </td>
                          <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
                         <!-- Spese Bolli -->
-                         <br></br>
+                         <br/>
                     </td>
                          <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
                         <!-- Spese Bancarie -->
-                         <br></br>
+                         <br/>
                     </td>
                          <td class="p-1 align-middle text-right small-font col-2" style="width:12.5%">
                         <!-- Spese Assicurazione -->
-                         <br></br>
+                         <br/>
                     </td>
                 </tr>
             
@@ -640,19 +645,19 @@
                     </td>
                          <td class="p-1 align-middle text-right small-font " style="width:12.5%">
                         <!-- Spese Trasporto -->
-                         <br></br>
+                         <br/>
                     </td>
                             <td class="p-1 align-middle text-right small-font " style="width:12.5%">
                          <!-- Spese Imballo -->
-                          <br></br>
+                          <br/>
                     </td>
                          <td class="p-1 align-middle text-right small-font " style="width:12.5%">
                         <!-- Spese Varie -->
-                         <br></br>
+                         <br/>
                     </td>
                          <td class="p-1 align-middle text-right small-font " style="width:12.5%">
                         <!-- Sconto -->
-                         <br></br>
+                         <br/>
                     </td>
                     
                 </tr>

@@ -1,6 +1,6 @@
 <odoo>
   <data>
-      
+    
       <record model="ir.ui.view" id="product_template_product_form_inherit_1">
           <field name="name">product_template_product_form_inherit_1</field>
           <field name="model">product.template</field>
@@ -13,14 +13,29 @@
                   <field name="stato_articolo"/>  
                   <field name="codice_merce"/>
                   <field name="descrizione_nomenclatura_combinata"/>
-                  
-                  
-                  
-                  
-                  
+                  <field name="matricola"/>
               </xpath>
           </field>
       </record>
       
+        <record model="ir.ui.view" id="product_product_product_form_inherit_1">
+          <field name="name">product_product_product_form_inherit_1</field>
+          <field name="model">product.product</field>
+          <field name="inherit_id" ref="product.product_normal_form_view"/>
+          <field name="arch" type="xml">
+              <xpath expr="//field[@name='uom_po_id']" position="after">
+                  <field name="codice_prodotto_sam"/>
+                  <field name="tipo_articolo"/>
+                  <field name="tipo_produzione_articolo"/>
+                  <field name="stato_articolo"/>  
+                  <field name="codice_merce"/>
+                  <field name="descrizione_nomenclatura_combinata"/>
+                  <field name="matricola"/>
+              </xpath>
+          </field>
+      </record>
+    
+    
+    
   </data>
 </odoo>

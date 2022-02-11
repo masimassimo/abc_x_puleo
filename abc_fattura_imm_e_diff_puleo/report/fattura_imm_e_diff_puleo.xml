@@ -404,7 +404,7 @@
                                                 <span> del </span>
                                                 <t t-esc="o.delivery_note_ids.date.strftime('%d/%m/%Y')"/> 
                                             </div>
-                                            <t t-if="line.product_id">
+                                           <t t-if="line.product_id and line.product_id.type != 'service' ">
                                             <strong t-field="line.product_id.name"/> 
                                             </t>
                                             <t t-else="">

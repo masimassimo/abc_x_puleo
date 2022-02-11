@@ -586,13 +586,18 @@
                           
                            <t t-foreach="termini.line_ids" t-as="scadenza">
                                        
-                            <t t-if="scadenza.day_of_the_month!=0">
-                               <!-- <span t-field="scadenza.day_of_the_month"/> p.v. -->
+                              <t t-if="scadenza.day_of_the_month == 31">
+                                <t t-set="mesi" t-value="int(scadenza.days/30)"/>
+                               F.M
+                                 <span t-if="o.invoice_date" t-esc="(datetime.datetime.strptime(str(o.invoice_date), '%Y-%m-%d') + relativedelta(months=mesi)).strftime('%m/%Y')"/>
+                            
                             </t>
+                               
                             <t t-if="scadenza.day_of_the_month==0 and scadenza.days==0">
                                     <span>Pagamento immediato</span>
                             </t>
-                            <t t-else="">
+                              <t t-if="scadenza.day_of_the_month != 31">
+                             
                                    <!-- <span t-field="scadenza.days"/> -->
                                     <t t-set="giorni" t-value="scadenza.days"/>
                                     <span t-if="o.invoice_date" t-esc="(datetime.datetime.strptime(str(o.invoice_date), '%Y-%m-%d') + datetime.timedelta(days=giorni) ).strftime('%d/%m/%Y')"/>

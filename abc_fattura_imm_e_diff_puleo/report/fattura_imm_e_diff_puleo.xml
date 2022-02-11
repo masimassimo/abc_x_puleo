@@ -59,7 +59,9 @@
                         <div style="font-weight: bold; font-size:100%;" t-field="o.company_id.partner_id"/>
                         <div>
                             <ul class="list-inline" style="font-size:80%;">
+                                <li t-if="o.company_id.city and o.company_id.zip and o.company_id.state_id and o.company_id.country_id"> <span t-field="o.company_id.zip"/> <span t-field="o.company_id.city"/> <span t-field="o.company_id.state_id.code"/> / <span style="color:red; text-transform: uppercase;" t-field="o.company_id.country_id"/>  </li>
                                 <li t-if="o.company_id.street"> <span t-field="o.company_id.street"/> </li>
+                                <li t-if="o.company_id.street2"> <span t-field="o.company_id.street2"/> </li>
                                 <li t-if="o.company_id.phone"> Tel <span t-field="o.company_id.phone"/> </li>
                                 <li> Fax <span> +39 0923968920 </span> </li>
 

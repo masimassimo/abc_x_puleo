@@ -536,27 +536,36 @@
                       <td rowspan="5" class="p-1  text-left smaller-font col-2" style="width:16.66%">
                           
                            <t t-foreach="termini.line_ids" t-as="scadenza">
+                               
+                               
+                               
                                        
-                            <t t-if="scadenza.day_of_the_month!=0">
-                        
+                             <t t-if="scadenza.day_of_the_month == 31">
+                                    
+                                        <t t-set="data" t-value="doc.date_order.strftime('%d/%m/%Y')"/>
+                                 
+                                <t t-set="mesi" t-value="int(scadenza.days/30)"/>
+                               F.M
+                                 <span t-if="doc.date_order" t-esc="(datetime.datetime.strptime(data, '%d/%m/%Y') + relativedelta(months=mesi)).strftime('%m/%Y')"/>
+                            
                             </t>
                             <t t-if="scadenza.day_of_the_month==0 and scadenza.days==0">
                                     <span>Pagamento immediato</span>
                             </t>
-                            <t t-else="">
-                                  
+                   <t t-if="scadenza.day_of_the_month != 31">
+                                    
+                                   <!-- <span t-field="scadenza.days"/> -->
                                     <t t-set="giorni" t-value="scadenza.days"/>
+                       
                                     <t t-if="doc.date_order">
                                         <t t-set="data" t-value="doc.date_order.strftime('%d/%m/%Y')"/>
-                         <span t-esc="(datetime.datetime.strptime(data, '%d/%m/%Y') + datetime.timedelta(days=giorni)).strftime('%d/%m/%Y')"/> 
-                                    </t>
-                             
-                 
-                               
+                       
+                                    <span t-esc="(datetime.datetime.strptime(data, '%d/%m/%Y') + datetime.timedelta(days=giorni) ).strftime('%d/%m/%Y')"/>
+                                  <!--  <span t-field="scadenza.option"/> -->
                             </t>
                     
                   
-                            
+                               </t>
                         <br/>          
                         
                         </t>

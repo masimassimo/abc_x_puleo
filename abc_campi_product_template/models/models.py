@@ -24,8 +24,10 @@ class productTemplate(models.Model):
     
     stato_articolo = fields.Selection([("gestito", "Gestito"), ("installabile", "Installabile"), ("superato", "Superato"),], string = "Stato articolo", store = True)
     
-    matricola = fields.Char(string = "Matricola", store = True, copy = True)
+    #matricola = fields.Many2one(related="product_variant_id.matricola", string = "Matricola", store = True, copy = True, readonly = False)
     
+    
+
     
 class productProduct(models.Model):
     _name ="product.product"
@@ -44,4 +46,13 @@ class productProduct(models.Model):
     
     stato_articolo = fields.Selection([("gestito", "Gestito"), ("installabile", "Installabile"), ("superato", "Superato"),], string = "Stato articolo", related="product_tmpl_id.stato_articolo", store = True, readonly = False)
     
-    matricola = fields.Char(string = "Matricola", store = True, related="product_tmpl_id.matricola", copy = True, readonly = False)
+    matricola = fields.Many2one('stock.production.lot', string = "Matricola", store = True, domain= " [('product_id', '=', id)] ", copy = True, readonly = False)
+    
+    #matricola2= fields.Many2one('stock.production.lot', string = "matricola_2", domain= " [('product_id', '=', id)] ", readonly=False)
+    
+
+#class stockProductionLot(models.Model):
+#    _name = "stock.production.lot"
+#    _inherit = "stock.production.lot"
+    
+#    matricola = fields.One2many('stock.production.lot', 'product_id')

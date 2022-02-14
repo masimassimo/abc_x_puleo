@@ -13,7 +13,7 @@
                   <field name="stato_articolo"/>  
                   <field name="codice_merce"/>
                   <field name="descrizione_nomenclatura_combinata"/>
-                  <field name="matricola"/>
+                  <!--field name="matricola"/-->
               </xpath>
           </field>
       </record>
@@ -30,7 +30,8 @@
                   <field name="stato_articolo"/>  
                   <field name="codice_merce"/>
                   <field name="descrizione_nomenclatura_combinata"/>
-                  <field name="matricola"/>
+                  <field name="matricola" options="{'no_quick_create': True, 'no_create_edit': True, 'no_open': True}"/>
+
               </xpath>
           </field>
       </record>

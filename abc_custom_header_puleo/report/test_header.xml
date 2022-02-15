@@ -4,7 +4,7 @@
             
             <t t-if="docs._name == 'stock.delivery.note'">
                  <div class="col-5">
-                     <img class="img-fluid" t-att-src="image_data_uri(doc.sale_ids[0].team_id.x_avatar_image)" style="max-width:250px"/>
+                     <img class="img-fluid" t-att-src="image_data_uri(docs[0].sale_ids[0].team_id.x_avatar_image)" style="max-width:250px"/>
                    </div>
             </t>
 

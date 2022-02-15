@@ -1,40 +1,18 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-    <template id="iban_print_external_layout_clean_inherit" inherit_id="web.external_layout_clean">
+       <template id="ddt_puleo_inherit" inherit_id="web.external_layout_clean">
         <xpath expr="//img[1]" position="replace">
-           
-            <t t-if="docs._name == 'purchase.order'">
- 
-                <img t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
-            </t>
             
-            <t t-elif="docs._name == 'stock.delivery.note'">
- 
-                  <img  t-att-src="image_data_uri(docs[0].sale_ids[0].team_id.x_avatar_image)" style="max-height: 45px;" alt="Logo"/>
+            <t t-if="docs._name == 'stock.delivery.note'">
+                 <div class="col-5">
+                     <img class="img-fluid" t-att-src="image_data_uri(doc.sale_ids[0].team_id.x_avatar_image)" style="max-width:250px"/>
+                   </div>
             </t>
-            
-            <t t-elif="'team_id' in docs">
-               
-                <img  t-att-src="image_data_uri(docs[0].team_id.x_avatar_image)" style="max-height: 45px;" alt="Logo"/>
-            </t>
-         
-      
-            
-            
-               <t t-else="">
-                <img t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
-          
-            </t>
-           
-        
-          
-          
-        </xpath>
-    </template>
-    
 
-    
-        
+        </xpath>
+    </template>        
 </odoo>
+
+  
+
 
   

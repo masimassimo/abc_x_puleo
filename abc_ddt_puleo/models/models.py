@@ -17,6 +17,10 @@ class StockDeliveryNote(models.Model):
         return self.env.ref(
             "abc_ddt_puleo.ddt_print_report_puleo"
         ).report_action(self)
+    
+    tipo_container = fields.Char(string = "Tipo Container")
+    n_container = fields.Char(string = "N° Container")
+    n_sigillo = fields.Char(string = "N° sigillo")
 
 #     name = fields.Char()
 #     value = fields.Integer()

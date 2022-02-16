@@ -225,8 +225,16 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%;">
-                       <!-- Banca d'APpoggio -->
-                       <br/>
+                        <t t-if="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente">
+                       <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.bank_id.name"/>
+                       <div>
+                       IBAN: <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.acc_number"></span>
+                       BIC: <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.bank_id.bic"></span>
+                       </div>
+                          </t>
+                          <t t-else="">
+                              <br/>
+                          </t>
                        
                     </td>
                 
@@ -244,11 +252,17 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%">
-                        <div t-field="o.partner_bank_id.bank_id"/> 
-                     
-                        <div> IBAN: <span t-field="o.partner_bank_id.acc_number"/> 
-                        <span class="text-right" t-field="o.partner_bank_id.bank_id.bic"/>
+                         <t t-if="o.partner_bank_id.bank_id">
+                        <div t-field="o.partner_bank_id.bank_id.name"/> 
+                       
+                        <div> 
+                        IBAN: <span t-field="o.partner_bank_id.acc_number"/> 
+                        BIC: <span class="text-right" t-field="o.partner_bank_id.bank_id.bic"/>
                         </div> 
+                       </t>
+                         <t t-else="">
+                              <br/>
+                          </t>
                        
                     </td>
                 

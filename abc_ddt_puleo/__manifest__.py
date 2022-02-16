@@ -20,6 +20,7 @@
         'data/ddt_formato_carta.xml',
         'security/ir.model.access.csv',
         'report/ddt_puleo.xml',
+        'views/views.xml',
     ],
     "installable":True,
     "application": True,

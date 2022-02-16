@@ -396,7 +396,7 @@
                                 <tr scope="row">
 
                                     <td class="p-1 align-middle text-center smaller-font col-1" style="width:8.33%">
-                                        <span t-field="line.product_id.id"/>
+                                        <span t-field="line.product_id.default_code"/>
                                        
                                       
                                     </td>

@@ -31,3 +31,8 @@ class SaleOrder(models.Model):
         return listaBanche
 
     banca = fields.Selection(selection=lambda self: self._compute_bank(), string='Banca di riferimento', store=True)
+    
+   
+ 
+        
+    banca_cliente = fields.Many2one("res.partner.bank", string = "Banca cliente", store = True, domain = "[('partner_id', '=', partner_id)]", copy = True)

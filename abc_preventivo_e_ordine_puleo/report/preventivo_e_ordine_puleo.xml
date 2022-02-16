@@ -214,8 +214,16 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%">
-                       <!-- Banca d'APpoggio -->
-                       <br/>
+                            <t t-if="doc.banca_cliente">
+                       <span t-esc="doc.banca_cliente.bank_id.name"/>
+                       <div>
+                       IBAN: <span t-esc="doc.banca_cliente.acc_number"></span>
+                       BIC: <span t-esc="doc.banca_cliente.bank_id.bic"></span>
+                       </div>
+                          </t>
+                          <t t-else="">
+                              <br/>
+                          </t>
                     </td>
                 
                 </tbody>

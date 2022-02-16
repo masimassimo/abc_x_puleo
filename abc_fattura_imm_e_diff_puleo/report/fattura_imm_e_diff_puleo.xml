@@ -456,7 +456,7 @@
                                             </t>
                                              <div>
                                                 <t t-if="line.product_id.matricola">
-                                                    Matricola: <span t-esc="line.product_id.matricola"/>
+                                                    Matricola: <span t-esc="line.product_id.matricola.name"/>
                                                 </t>
                                             </div>
                                         </t>

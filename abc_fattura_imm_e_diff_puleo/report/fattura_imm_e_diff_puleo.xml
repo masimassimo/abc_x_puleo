@@ -427,7 +427,12 @@
                                           
                                            
                                             <div>
+                                                <t t-if="idDDT.sale_ids.warehouse_id.name == 'Magazzino Healthcare'">
+                                                <span>Rif. ns. DdT div. Healthcare N. </span>
+                                                </t>
+                                                <t t-else="">
                                                 <span>Rif. ns. DdT div. Puleo N. </span>
+                                                </t>
                                                 <t t-esc="numeroDDT"/> 
                                                 
                                                 <span> del </span>
@@ -490,6 +495,7 @@
                                         <t t-set="numeroProdottiDDT" t-value="0"></t>
                                         <strong t-raw="line.name"/>
                                         <t t-if="line.delivery_note_id.id">
+                                            <t t-set="idDDT" t-value= "line.delivery_note_id"></t>
                                             <t t-set="numeroDDT" t-value="line.delivery_note_id.name[4:]"></t>
                                             <t t-set="dataDDT" t-value="line.delivery_note_id.date.strftime('%d/%m/%Y')"></t>
                                         </t>

@@ -13,12 +13,11 @@
     'category': 'Sale',
     'version': '0.2',
 
-    'depends': ['base', 'sale', 'account'],
+    'depends': ['base', 'sale', 'account', 'account_bank_statement_import', 'base_iban', 'account_qr_code_sepa'],
 
     'data': [
         'security/ir.model.access.csv',
         'views/views.xml',
-        'report/template.xml',
     ],
     "installable": True,
     "application": True,

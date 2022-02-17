@@ -172,7 +172,7 @@ msgstr "<span>N° Container</span>"
 
 #. module: abc_fattura_imm_e_diff_puleo
 #: model_terms:ir.ui.view,arch_db:abc_fattura_imm_e_diff_puleo.fattura_imm_e_diff_template_puleo
-msgid "<span>N° Sigilillo</span>"
+msgid "<span>N° Sigillo</span>"
 msgstr "<span> Seal No. </span>"
 
 #. module: abc_fattura_imm_e_diff_puleo

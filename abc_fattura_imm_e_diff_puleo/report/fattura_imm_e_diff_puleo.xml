@@ -165,7 +165,7 @@
                             <span>N° Container</span>
                         </th>
                         <th scope="col" class="p-1 align-top text-left smaller-font col-3" style="width:30%">
-                            <span>N° Sigilillo</span>
+                            <span>N° Sigillo</span>
                         </th>
                     </tr>
                 </thead>
@@ -444,7 +444,8 @@
                                             </t>
                                             
                                            <t t-if="line.product_id and line.product_id.type != 'service' ">
-                                            <strong t-field="line.product_id.name"/> 
+                                            <!--strong t-field="line.product_id.name"/-->
+                                            <strong t-raw="line.name"/>
                                             </t>
                                             <t t-else="">
                                                 <strong t-raw="line.name"/> 

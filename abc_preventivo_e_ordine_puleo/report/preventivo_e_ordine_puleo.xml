@@ -12,7 +12,7 @@
                                     font-size:80%;
                                 }
                     .smaller-font {
-                                    font-size:50%;
+                                    font-size:65%;
                                 }
                     .bold-font {
                                     font-weight:bold

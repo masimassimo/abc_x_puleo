@@ -246,11 +246,16 @@
             
        <td>
           
-                      <span style="margin-bottom:0px;">Spett.le</span>
+                         <span style="margin-bottom:0px;">Spett.le</span>
                     <div>
-                        <span t-field="doc.partner_id"/>
+                        <t t-if="doc.partner_id.parent_id">
+                            <span t-field="doc.partner_id.parent_id"/>
+                        </t>
+                        <t t-else="">
+                            <span t-field="doc.partner_id"/>
+                        </t>
+                        
                     </div>
-                    
                    
                 <t t-if="doc.sale_ids">
                     

@@ -415,7 +415,7 @@
                                     
                                     </table>
                                     
-                 <table class="table table-bordered mt-1">
+                 <table class="table table-bordered mt-1" style="page-break-inside: avoid;">
                     <thead>
                         <tr scope="row">
                             <th colspan="12" scope="col" class="p-1 align-middle text-left smaller-font col-12" style="width:100%">

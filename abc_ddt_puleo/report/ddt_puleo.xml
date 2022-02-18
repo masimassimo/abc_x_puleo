@@ -46,7 +46,7 @@
                 <div class="row address mb-1 small-font">
                 
                     <div class="col-5">
-                         <t t-if="image_data_uri(doc.sale_ids.team_id.x_avatar_image)">
+                         <t t-if="doc.sale_ids.team_id">
                         <div>
                             <img class="img-fluid" t-att-src="image_data_uri(doc.sale_ids.team_id.x_avatar_image)" style="max-width:250px"/>
                         </div>
@@ -358,7 +358,8 @@
                                    
                                             
                                            <t t-if="line.product_id and line.product_id.type != 'service' ">
-                                            <strong t-field="line.product_id.name"/> 
+                                            <!--strong t-field="line.product_id.name"/--> 
+                                            <strong t-field="line.name"/> 
                                             </t>
                                             <t t-else="">
                                                 <strong t-raw="line.name"/> 

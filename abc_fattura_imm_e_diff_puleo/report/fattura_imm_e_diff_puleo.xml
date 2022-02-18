@@ -520,7 +520,7 @@
                     </thead>
     </table>
     
-     <table class="table table-bordered mt-1">
+     <table class="table table-bordered mt-1" style="page-break-inside: avoid;">
          <thead>
              <tr scope="row">
                  <th scope="col" class="p-1 align-middle text-center smaller-font col-6" style="width:50%">
@@ -607,7 +607,7 @@
                 </tr>
             
         </tbody>
-            <table class="table table-bordered mt-1">
+            <table class="table table-bordered mt-1" style="page-break-inside: avoid;">
             <thead>
              <tr scope="row">
                  <th scope="col" class="p-1 align-middle text-center smaller-font col-2 " style="width:16.66%">

@@ -13,7 +13,7 @@
                                     font-size:80%;
                                 }
                     .smaller-font {
-                                    font-size:50%;
+                                    font-size:65%;
                                 }
                     .bold-font {
                                     font-weight:bold
@@ -447,7 +447,7 @@
                                 <span>Vettore</span>
                                
                             </th>
-                              <td colspan="6" rowspan="2" class="p-1 align-middle text-left small-font col-6" style="width:50%">
+                              <td colspan="6" rowspan="2" class="p-1 align-middle text-left smaller-font col-6" style="width:50%">
                             <span t-if="doc.note" t-raw="doc.note"></span>
                              
                             </td>

@@ -5,12 +5,12 @@
     'summary': """
         Modulo che estende la vista del sale.view_order_form e permette l'aggiunta di un
         campo relazionale il quale in base al Cliente selezionato ti permette di scegliere
-        un dipendente della stessa Azienda.""",
+        un dipendente della stessa Azienda. Fa lo stesso nella vista del DDT""",
 
     'description': """
         Modulo che estende la vista del sale.view_order_form e permette l'aggiunta di un
         campo relazionale il quale in base al Cliente selezionato ti permette di scegliere
-        un dipendente della stessa Azienda.
+        un dipendente della stessa Azienda. Fa lo stesso nella vista del DDT
     """,
 
     'author': "A.B.C. Strategie",
@@ -20,7 +20,7 @@
     'version': '0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'sale'],
+    'depends': ['base', 'sale', 'stock', 'l10n_it_delivery_note', 'l10n_it_delivery_note_batch', 'l10n_it_delivery_note_base', 'l10n_it_delivery_note_order_link'],
 
     # always loaded
     'data': [

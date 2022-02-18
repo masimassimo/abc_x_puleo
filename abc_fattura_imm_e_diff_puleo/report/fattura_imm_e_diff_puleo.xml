@@ -12,7 +12,7 @@
                                     font-size:80%;
                                 }
                     .smaller-font {
-                                    font-size:50%;
+                                    font-size:65%;
                                 }
                     .bold-font {
                                     font-weight:bold
@@ -542,7 +542,7 @@
          </thead>
         <tbody>
             <tr scope="row">
-                  <td rowspan="3" class="p-1 align-middle text-left small-font col-6" style="width:50%">
+                  <td rowspan="3" class="p-1 align-middle text-left smaller-font col-6" style="width:50%">
                         <span t-field="o.narration"/>
                     </td>
                       <td class="p-1 align-middle text-right smaller-font col-2" style="width:12.5%">

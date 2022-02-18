@@ -358,8 +358,9 @@
                                    
                                             
                                            <t t-if="line.product_id and line.product_id.type != 'service' ">
-                                            <!--strong t-field="line.product_id.name"/--> 
-                                            <strong t-raw="line.name"/> 
+                                          <strong t-field="line.product_id"/> 
+                                           
+                                            <strong t-raw="line.product_description"/> 
                                             </t>
                                             <t t-else="">
                                                 <strong t-raw="line.name"/> 

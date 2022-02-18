@@ -360,13 +360,13 @@
                                 <span>UM</span>
                             </th>
                             <th scope="col" class="p-1 align-middle text-center smaller-font col-1" style="width:8%">
-                                <span>Quantitò</span>
+                                <span>Quantità</span>
                             </th>
                             <th scope="col" class="p-1 align-middle text-center smaller-font col-1" style="width:8%">
-                                <span>Prezzo Un,</span>
+                                <span>Prezzo Un</span>
                             </th>
                             <th scope="col" class="p-1 align-middle text-center smaller-font col-1" style="width:6%">
-                                <span>Sconto %</span>
+                                <span>Sconto%</span>
                             </th>
                             <th scope="col" class="p-1 align-middle text-center smaller-font col-1" style="width:8.33%">
                                 <span>Importo</span>
@@ -763,13 +763,11 @@
                 
                 
                 <tr scope="row">
-                    <th rowspan="2" colspan="3" class="p-1 align-middle text-center smaller-font" style="width:50%">
+                    <th rowspan="2" colspan="4" class="p-1 align-middle text-center smaller-font" style="width:66.6%">
             <span>AVVISO IMPORTANTE: i Vs. dati anagrafici e la partita iva che appaiono sul presente documento saranno quelli che verranno utilizzati, salvo Vs. diversa precisazione, agli effetti dell' Art. 2 DPR 633/72.
 Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità prevista dall' Art.41 DPR 633/72.</span>
                     </th>
-                         <th class="p-1 align-middle text-center smaller-font" style="width:16.6%">
-                        <span>Acconto</span>
-                    </th>
+                      
                          <th rowspan="2" class="p-1 align-middle text-center smaller-font" style="width:16.6%">
                         <span>CONTRIBUTO CONAI ASSOLTO</span>
                     </th>
@@ -782,9 +780,7 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
                                 <tr scope="row">
            
                  
-                         <td class="p-1 align-middle text-right small-font" style="width:16.6%">
-                        <!-- Acconto  -->
-                    </td>
+         
                       
                          <td colspan="2" class="p-1 align-middle text-right small-font " style="width:16.6%">
                                                 <t t-set="totale_documento" t-value="doc.amount_total"/>

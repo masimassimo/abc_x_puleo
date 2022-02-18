@@ -250,13 +250,8 @@
                     <div>
                         <span t-field="doc.partner_id"/>
                     </div>
-                    <span t-field="doc.partner_id.street" style=""/>
-                    <div style="">
-                        <span t-field="doc.partner_id.zip"/>
-                        <span t-field="doc.partner_id.city"/>
-                        <span t-field="doc.partner_id.state_id"/> 
-                    </div>
                     
+                   
                 <t t-if="doc.sale_ids">
                     
                     <div style="margin-top:10px;  line-height:100%">

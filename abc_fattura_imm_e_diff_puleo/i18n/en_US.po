@@ -202,12 +202,12 @@ msgstr "<span>VAT</span>"
 
 #. module: abc_fattura_imm_e_diff_puleo
 #: model_terms:ir.ui.view,arch_db:abc_fattura_imm_e_diff_puleo.fattura_imm_e_diff_template_puleo
-msgid "<span>Prezzo Un,</span>"
+msgid "<span>Prezzo Un</span>"
 msgstr "<span> Price One, </span>"
 
 #. module: abc_fattura_imm_e_diff_puleo
 #: model_terms:ir.ui.view,arch_db:abc_fattura_imm_e_diff_puleo.fattura_imm_e_diff_template_puleo
-msgid "<span>Quantitò</span>"
+msgid "<span>Quantità</span>"
 msgstr "<span>Qty</span>"
 
 #. module: abc_fattura_imm_e_diff_puleo
@@ -232,7 +232,7 @@ msgstr "<span> Expiry </span>"
 
 #. module: abc_fattura_imm_e_diff_puleo
 #: model_terms:ir.ui.view,arch_db:abc_fattura_imm_e_diff_puleo.fattura_imm_e_diff_template_puleo
-msgid "<span>Sconto %</span>"
+msgid "<span>Sconto%</span>"
 msgstr "<span> Discount% </span>"
 
 #. module: abc_fattura_imm_e_diff_puleo

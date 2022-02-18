@@ -16,3 +16,9 @@ class SaleOrder(models.Model):
         #states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},
         change_default=True, index=True, tracking=1,
         domain="['|', ('company_id', '=', False), ('company_id', '=', company_id), ('parent_id', '=', partner_id)]",)
+    
+class StockDeliveryNote(models.Model):
+    _name = "stock.delivery.note"
+    _inherit = "stock.delivery.note"
+    
+    nominativo_di_riferimento = fields.Many2one(string = 'Nominativo di riferimento', related = "sale_ids.nominativo_di_riferimento", readonly=False, store=True, copy=True)

@@ -10,5 +10,28 @@
         </xpath>
       </field>
     </record>
+      
+      
+    <record model="ir.ui.view" id="l10n_it_delivery_note_inherit_1">
+      <field name="name">l10n_it_delivery_note_inherit_1</field>
+      <field name="model">stock.delivery.note</field>
+      <field name="inherit_id" ref="l10n_it_delivery_note.stock_delivery_note_form_view"/>
+      <field name="arch" type="xml">
+          
+        <xpath expr="//group/field[@name='partner_shipping_id']" position="after">
+            <field name="nominativo_di_riferimento"/>
+    
+   
+   
+        </xpath>
+      </field>
+      </record>
+      
+      
+      
+      
+      
   </data>
 </odoo>
+
+

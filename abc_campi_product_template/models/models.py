@@ -56,3 +56,4 @@ class productProduct(models.Model):
 #    _inherit = "stock.production.lot"
     
 #    matricola = fields.One2many('stock.production.lot', 'product_id')
+

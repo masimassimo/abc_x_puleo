@@ -16,7 +16,7 @@ class productTemplate(models.Model):
     tipo_articolo = fields.Selection([("componente", "Componente"), ("insieme", "Insieme"), ("servizio", "Servizio"), 
                                       ("sottoinsieme", "Sottoinsieme"), ("commento", "Commento"), ("intervento", "Intervento")], string = "Tipo Articolo", store = True)
     
-    codice_merce = fields.Char(string = "Codice Merce", store = True)
+    codice_merce = fields.Char(string = "Nomenclatura Combinata", store = True)
     descrizione_nomenclatura_combinata = fields.Char(string = "Descrizione nomenclatura combinata", store = True)
     
     tipo_produzione_articolo = fields.Selection([("commerciale", "Commerciale"), ("fantasma", "Fantasma"), 

@@ -38,7 +38,7 @@ class productProduct(models.Model):
     tipo_articolo = fields.Selection([("componente", "Componente"), ("insieme", "Insieme"), ("servizio", "Servizio"), 
                                       ("sottoinsieme", "Sottoinsieme"), ("commento", "Commento"), ("intervento", "Intervento")], string = "Tipo Articolo",  related="product_tmpl_id.tipo_articolo", store = True, readonly = False)
     
-    codice_merce = fields.Char(string = "Codice Merce", related="product_tmpl_id.codice_merce", store = True, readonly = False)
+    codice_merce = fields.Char(string = "Nomenclatura Combinata", related="product_tmpl_id.codice_merce", store = True, readonly = False)
     descrizione_nomenclatura_combinata = fields.Char(string = "Descrizione nomenclatura combinata", related="product_tmpl_id.descrizione_nomenclatura_combinata", store = True, readonly = False)
     
     tipo_produzione_articolo = fields.Selection([("commerciale", "Commerciale"), ("fantasma", "Fantasma"), 

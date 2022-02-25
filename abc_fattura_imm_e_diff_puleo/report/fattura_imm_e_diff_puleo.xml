@@ -6,7 +6,7 @@
         <t t-call="web.basic_layout">
             <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
 
-     <style type="text/css">
+       <style type="text/css">
        
                     .small-font {
                                     font-size:80%;
@@ -208,7 +208,10 @@
                                                 
                     </td>
                      <td colspan="2" class="p-1 align-middle text-left small-font col-3" style="width:33.33%">
-                        <span t-field="o.invoice_origin"/> - <t t-if="o.invoice_line_ids.sale_line_ids.order_id.date_order" t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                        <span t-field="o.invoice_origin"/> 
+                        <!--
+                        - <t t-if="o.invoice_line_ids.sale_line_ids.order_id.date_order" t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                        -->
                     </td>
                 
                     
@@ -228,8 +231,8 @@
                         <t t-if="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente">
                        <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.bank_id.name"/>
                        <div>
-                       IBAN: <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.acc_number"></span>
-                       BIC: <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.bank_id.bic"></span>
+                       IBAN: <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.acc_number"/>
+                       BIC: <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.bank_id.bic"/>
                        </div>
                           </t>
                           <t t-else="">
@@ -379,9 +382,9 @@
                         <t t-set="totale_netto" t-value="0"/>
                         <t t-set="totale_sconto" t-value="0"/>
                         <t t-set="down_payment" t-value="0"/>
-                        <t t-set="numeroProdottiDDT" t-value="0"></t>
+                        <t t-set="numeroProdottiDDT" t-value="0"/>
                      
-                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (l.sale_line_ids.order_id.partner_id.id), reverse=False)"/>
                         <t t-foreach="lines" t-as="line">
                         
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
@@ -408,24 +411,49 @@
                                             <t t-set="down_payment" t-value="1"/>
                                             <span t-field="line.name"/> -
                                                   <span> Rif. ns. Commessa cliente </span>
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.name"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.name"/>
                                             <span> del </span>
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.date_order.strftime('%d/%m/%Y')"/>
                                             <!-- span t-field="o.invoice_line_ids.sale_line_ids.order_id.payment_term_id" /-->
 
                                         </t>
                                         <t t-else="">
-                                            <div t-if="o.invoice_line_ids.sale_line_ids.order_id.name and o.invoice_line_ids.sale_line_ids.order_id.date_order">
+                                            <div t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.name and o.invoice_line_ids.sale_line_ids[current_line-1].order_id.date_order">
                                             <span> Rif. ns. Commessa cliente </span>
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.name"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.name"/>
                                             <span> del </span>
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.date_order.strftime('%d/%m/%Y')"/>
                                             </div>
                                             
                                             <!-- DDT -->
-                                            <t t-if="numeroProdottiDDT != 0">
+                                            <!--t t-if="numeroProdottiDDT != 0"-->
                                           
                                            
+                                           <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids">
+                                               <div>
+                                                   <t t-foreach="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.line_ids" t-as="righeDDT">
+                                                       
+                                                <t t-if="line.product_id.id == righeDDT.product_id.id">
+                                                    
+                                               
+                                                   
+                                                   
+                                                
+                                             <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.warehouse_id.name == 'Magazzino Healthcare'">
+                                                     <span>Rif. ns. DdT div. Healthcare N. </span>
+                                             </t>
+                                            <t t-else="">
+                                            <span>Rif. ns. DdT div. Puleo N. </span>
+                                            </t>
+                                            
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.name[4:]">
+                                                
+                                            </t>
+                                            <span> del </span>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.date.strftime('%d/%m/%Y')"/>
+                                            
+                                               <!--
+                                               
                                             <div>
                                                 <t t-if="idDDT.sale_ids.warehouse_id.name == 'Magazzino Healthcare'">
                                                 <span>Rif. ns. DdT div. Healthcare N. </span>
@@ -439,9 +467,16 @@
                                                 <t t-esc="dataDDT"/> 
                                             </div>
                                             
-                                            <t t-set="numeroProdottiDDT" t-value="numeroProdottiDDT - 1"></t>
-                                          
+                                            <t t-set="numeroProdottiDDT" t-value="numeroProdottiDDT - 1"/>
+                                           -->
+                                           
+                                           </t>
+                                           </t>
+                                           </div>
                                             </t>
+                                           
+                                            
+                                            <!--/t-->
                                             
                                            <t t-if="line.product_id and line.product_id.type != 'service' ">
                                             <!--strong t-field="line.product_id.name"/-->
@@ -491,20 +526,30 @@
                                 </tr>   
                             </t>
                             <t t-else="">
+                                <t t-if="'Delivery' not in line.name">
+                                    <tr scope="row">
+                                        <td colspan="10" class="p-1 align-middle text-left smaller-font col-12">
+                                        <strong t-raw="line.name"/> 
+                                       </td>
+                                    </tr>
+                                 </t>
+                                <!--
+                                
                                 <tr scope="row">
+                                    
                                     <td colspan="10" class="p-1 align-middle text-left smaller-font col-12">
-                                        <t t-set="numeroProdottiDDT" t-value="0"></t>
-                                        <strong t-raw="line.name"/>
+                                        <t t-set="numeroProdottiDDT" t-value="0"/>
+                                        <strong t-raw="line.name"/> 
                                         <t t-if="line.delivery_note_id.id">
-                                            <t t-set="idDDT" t-value= "line.delivery_note_id"></t>
-                                            <t t-set="numeroDDT" t-value="line.delivery_note_id.name[4:]"></t>
-                                            <t t-set="dataDDT" t-value="line.delivery_note_id.date.strftime('%d/%m/%Y')"></t>
+                                            <t t-set="idDDT" t-value="line.delivery_note_id"/>
+                                            <t t-set="numeroDDT" t-value="line.delivery_note_id.name[4:]"/>
+                                            <t t-set="dataDDT" t-value="line.delivery_note_id.date.strftime('%d/%m/%Y')"/>
                                         </t>
                                 
                                         <t t-foreach="line.delivery_note_id.line_ids" t-as="righeDDT">
                                         
                                         <t t-if="righeDDT.product_id">
-                                            <t t-set="numeroProdottiDDT" t-value="numeroProdottiDDT+1"></t>
+                                            <t t-set="numeroProdottiDDT" t-value="numeroProdottiDDT+1"/>
                                         </t>
                                         </t>
                                      
@@ -514,6 +559,8 @@
                                         
                                     </td>
                                 </tr>
+                                -->
+                               
                             </t>
                         </t>
                     </tbody> 

@@ -383,7 +383,7 @@
                         <t t-set="down_payment" t-value="0"/>
                         <t t-set="numeroProdottiDDT" t-value="0"/>
                      
-                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (-l.sequence, l.date, l.move_name, -l.id), reverse=True)"/>
+                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (l.sale_line_ids.order_id.partner_id.id), reverse=False)"/>
                         <t t-foreach="lines" t-as="line">
                         
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>
@@ -410,40 +410,82 @@
                                             <t t-set="down_payment" t-value="1"/>
                                             <span t-field="line.name"/> -
                                                   <span> Rif. ns. Commessa cliente </span>
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.name"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.name"/>
                                             <span> del </span>
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.date_order.strftime('%d/%m/%Y')"/>
                                             <!-- span t-field="o.invoice_line_ids.sale_line_ids.order_id.payment_term_id" /-->
 
                                         </t>
                                         <t t-else="">
-                                            <div t-if="o.invoice_line_ids.sale_line_ids.order_id.name and o.invoice_line_ids.sale_line_ids.order_id.date_order">
+                                            <div t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.name and o.invoice_line_ids.sale_line_ids[current_line-1].order_id.date_order">
                                             <span> Rif. ns. Commessa cliente </span>
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.name"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.name"/>
                                             <span> del </span>
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.date_order.strftime('%d/%m/%Y')"/>
                                             </div>
                                             
                                             <!-- DDT -->
-                                            <t t-if="numeroProdottiDDT != 0">
-                                          
-                                           
-                                            <div>
-                                                <t t-if="idDDT.sale_ids.warehouse_id.name == 'Magazzino Healthcare'">
-                                                <span>Rif. ns. DdT div. Healthcare N. </span>
-                                                </t>
-                                                <t t-else="">
-                                                <span>Rif. ns. DdT div. Puleo N. </span>
-                                                </t>
-                                                <t t-esc="numeroDDT"/> 
-                                                
-                                                <span> del </span>
-                                                <t t-esc="dataDDT"/> 
-                                            </div>
                                             
-                                            <t t-set="numeroProdottiDDT" t-value="numeroProdottiDDT - 1"/>
+                                            <!--t t-if="numeroProdottiDDT != 0"-->
                                           
+                                           <div>
+                                           <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids">
+                                               
+                                              
+
+
+                                                   
+                                            <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_count == 1">
+                                       
+                                                   
+                                    <t t-foreach="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.line_ids" t-as="righeDDT">
+                                                       
+                                    <t t-if="line.product_id.id == righeDDT.product_id.id">
+                                                    
+                                    <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.warehouse_id.name == 'Magazzino Healthcare'">
+                                                     <span>Rif. ns. DdT div. Healthcare N. </span>
+                                             </t>
+                                            <t t-else="">
+                                            <span>Rif. ns. DdT div. Puleo N. </span>
                                             </t>
+                                            
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.name[4:]"> </t>
+                                          
+                                            <span> del </span>
+                                            
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.date.strftime('%d/%m/%Y')"/>
+                                            
+                                   
+                                           </t>
+                                            </t>
+                                              </t>
+                                            
+                                             
+                                             
+                                           <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_count == 2">
+                                           
+                                            
+                                               <t t-if="o.delivery_note_ids.sale_ids.warehouse_id.name == 'Magazzino Healthcare'">
+                                                     <span>Rif. ns. DdT div. Healthcare N. </span>
+                                             </t>
+                                            <t t-else="">
+                                            <span>Rif. ns. DdT div. Puleo N. </span>
+                                            </t>
+                                            
+                                            <t t-esc="o.delivery_note_ids.name[4:]"> </t>
+                                          
+                                            <span> del </span>
+                                            
+                                            <t t-esc="o.delivery_note_ids.date.strftime('%d/%m/%Y')"/>
+                                             
+                                           </t>
+                                           
+                                           </t>
+                                          
+                                          
+                                             </div>
+                                             
+                                             <!-- Fine DDT -->
                                             
                                            <t t-if="line.product_id and line.product_id.type != 'service' ">
                                             <!--strong t-field="line.product_id.name"/-->
@@ -493,10 +535,20 @@
                                 </tr>   
                             </t>
                             <t t-else="">
+                               <t t-if="'Delivery' not in line.name">
+                                    <tr scope="row">
+                                        <td colspan="10" class="p-1 align-middle text-left smaller-font col-12">
+                                        <strong t-raw="line.name"/> 
+                                       </td>
+                                    </tr>
+                                 </t>
+                                <!--
+                                
                                 <tr scope="row">
+                                    
                                     <td colspan="10" class="p-1 align-middle text-left smaller-font col-12">
                                         <t t-set="numeroProdottiDDT" t-value="0"/>
-                                        <strong t-raw="line.name"/>
+                                        <strong t-raw="line.name"/> 
                                         <t t-if="line.delivery_note_id.id">
                                             <t t-set="idDDT" t-value="line.delivery_note_id"/>
                                             <t t-set="numeroDDT" t-value="line.delivery_note_id.name[4:]"/>
@@ -516,6 +568,8 @@
                                         
                                     </td>
                                 </tr>
+                                -->
+                               
                             </t>
                         </t>
                     </tbody> 
@@ -923,16 +977,16 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
            </thead>
            <tbody>
                <tr scope="row">
-                      <td colspan="4"  class="p-1  text-left small-font col-4" style="width:33.33%">
-                          <br></br>
+                      <td colspan="4" class="p-1  text-left small-font col-4" style="width:33.33%">
+                          <br/>
                         <span t-if="o.delivery_note_ids" t-esc="o.delivery_note_ids.tipo_container"/>
                     </td>
                     
-                    <td colspan="4"  class="p-1  text-left small-font col-4" style="width:33.33%">
+                    <td colspan="4" class="p-1  text-left small-font col-4" style="width:33.33%">
                        <span t-if="o.delivery_note_ids" t-esc="o.delivery_note_ids.n_container"/>
                     </td>
                     
-                    <td colspan="4"  class="p-1  text-left small-font col-4" style="width:33.33%">
+                    <td colspan="4" class="p-1  text-left small-font col-4" style="width:33.33%">
               <span t-if="o.delivery_note_ids" t-esc="o.delivery_note_ids.n_sigillo"/>
                     </td>
                </tr>
@@ -948,7 +1002,7 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
                     <th scope="col" colspan="2" class="p-1 align-middle text-center smaller-font col-2 " style="width:16.6%">
                     <span>Peso Netto</span>
                 </th>
-                    <th scope="col" colspan="2"  class="p-1 align-middle text-center smaller-font col-2 " style="width:16.6%">
+                    <th scope="col" colspan="2" class="p-1 align-middle text-center smaller-font col-2 " style="width:16.6%">
                     <span>Peso Lordo</span>
                 </th>
    
@@ -957,7 +1011,7 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
             <tbody>
                <tr scope="row">
                    
-                            <td colspan="8"  class="p-1  text-left small-font col-8" style="width:66.66%">
+                            <td colspan="8" class="p-1  text-left small-font col-8" style="width:66.66%">
                                 <t t-if="o.delivery_note_ids.carrier_id">
                                     <span t-esc="o.delivery_note_ids.carrier_id.name"/>
                                     <div>
@@ -974,14 +1028,14 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
                                 
                         </td>
                         
-                            <td colspan="2"  class="p-1  text-left small-font col-2" style="width:16.66%">
+                            <td colspan="2" class="p-1  text-left small-font col-2" style="width:16.66%">
                             <span t-if="o.delivery_note_ids.net_weight" t-esc="o.delivery_note_ids.net_weight"/>
                                <span t-if="o.delivery_note_ids.net_weight_uom_id.name" t-esc="o.delivery_note_ids.net_weight_uom_id.name"/>
-                              <br></br>
+                              <br/>
                                 
                         </td>
                         
-                            <td colspan="2"  class="p-1  text-left small-font col-2" style="width:16.66%">
+                            <td colspan="2" class="p-1  text-left small-font col-2" style="width:16.66%">
                                 <span t-if="o.delivery_note_ids.gross_weight" t-esc="o.delivery_note_ids.gross_weight"/>
                               <span t-if="o.delivery_note_ids.gross_weight_uom_id.name" t-esc="o.delivery_note_ids.gross_weight_uom_id.name"/>
                               
@@ -999,11 +1053,11 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
                     <th scope="col" colspan="3" class="p-1 align-middle text-center smaller-font col-2 " style="width:25%">
                     <span>Pallets</span>
                 </th>
-                    <th scope="col" colspan="3"  class="p-1 align-middle text-center smaller-font col-2 " style="width:25%">
+                    <th scope="col" colspan="3" class="p-1 align-middle text-center smaller-font col-2 " style="width:25%">
                     <span>Colli</span>
                 </th>
                 
-                   <th scope="col" colspan="3"  class="p-1 align-middle text-center smaller-font col-2 " style="width:25%">
+                   <th scope="col" colspan="3" class="p-1 align-middle text-center smaller-font col-2 " style="width:25%">
                     <span>Peso Imballo</span>
                 </th>
    
@@ -1013,21 +1067,21 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
             <tbody>
                 <tr scope="row">
                     
-                    <td colspan="3"  class="p-1  text-left small-font col-3" style="width:25%">
+                    <td colspan="3" class="p-1  text-left small-font col-3" style="width:25%">
                         <span t-if="o.delivery_note_ids.goods_appearance_id.name" t-esc="o.delivery_note_ids.goods_appearance_id.name"/>
                     </td>
                     
-                    <td colspan="3"  class="p-1  text-left small-font col-3" style="width:25%">
+                    <td colspan="3" class="p-1  text-left small-font col-3" style="width:25%">
                         <!-- Pallets -->
-                        <br></br>
+                        <br/>
                     </td>
                     
             
-                    <td colspan="3"  class="p-1  text-left small-font col-3" style="width:25%">
+                    <td colspan="3" class="p-1  text-left small-font col-3" style="width:25%">
                        <span t-if="o.delivery_note_ids.packages" t-esc="o.delivery_note_ids.packages"/>
                     </td>
                     
-                    <td colspan="3"  class="p-1  text-left small-font col-3" style="width:25%">
+                    <td colspan="3" class="p-1  text-left small-font col-3" style="width:25%">
                         <!-- Peso Imballo -->
                     </td>
                     
@@ -1046,11 +1100,11 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
                     <th scope="col" colspan="3" class="p-1 align-middle text-center smaller-font col-2 " style="width:25%">
                     <span>Date e ora inizio trasporto</span>
                 </th>
-                    <th scope="col" colspan="3"  class="p-1 align-middle text-center smaller-font col-2 " style="width:25%">
+                    <th scope="col" colspan="3" class="p-1 align-middle text-center smaller-font col-2 " style="width:25%">
                     <span>Firma Conducente (o Vettore)</span>
                 </th>
                 
-                   <th scope="col" colspan="3"  class="p-1 align-middle text-center smaller-font col-2 " style="width:25%; heigth: 100%">
+                   <th scope="col" colspan="3" class="p-1 align-middle text-center smaller-font col-2 " style="width:25%; heigth: 100%">
                     <span>Firma Destinatario</span>
                 </th>
    
@@ -1061,22 +1115,22 @@ Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità previst
                 
                          <tr scope="row">
                     
-                    <td colspan="3"  class="p-1  text-left small-font col-3" style="width:25%">
+                    <td colspan="3" class="p-1  text-left small-font col-3" style="width:25%">
                         <span t-if="o.delivery_note_ids.transport_method_id.name" t-esc="o.delivery_note_ids.transport_method_id.name"/>
                       
                     </td>
                     
-                    <td colspan="3"  class="p-1  text-left small-font col-3" style="width:25%">
+                    <td colspan="3" class="p-1  text-left small-font col-3" style="width:25%">
                        <span t-if="o.delivery_note_ids.transport_datetime" t-esc="(datetime.datetime.strptime(str(o.delivery_note_ids.transport_datetime), '%Y-%m-%d %H:%M:%S') + relativedelta(hours=1)).strftime('%d/%m/%Y, %H:%M')"/>
                     </td>
                     
             
                     <td colspan="3" class="p-1  text-left small-font col-3" style="width:25%">
-                       <br></br>
-                       <br></br>
+                       <br/>
+                       <br/>
                     </td>
                     
-                    <td colspan="3"  class="p-1  text-left small-font col-3" style="width:25%">
+                    <td colspan="3" class="p-1  text-left small-font col-3" style="width:25%">
                         <!-- Peso Imballo -->
                     </td>
                     

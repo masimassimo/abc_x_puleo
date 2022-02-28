@@ -13,7 +13,7 @@
     'category': 'Product',
     'version': '0.1',
 
-    'depends': ['base', "product", "stock"],
+    'depends': ['base', "product", "stock", 'account'],
 
     'data': [
         'security/ir.model.access.csv',

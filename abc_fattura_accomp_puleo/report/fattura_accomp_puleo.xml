@@ -424,23 +424,17 @@
                                             <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.date_order.strftime('%d/%m/%Y')"/>
                                             </div>
                                             
-                                            <!-- DDT -->
-                                            
-                                            <!--t t-if="numeroProdottiDDT != 0"-->
+                          <!-- DDT -->
                                           
+                                          
+                                                                                   
                                            <div>
-                                           <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids">
                                                
-                                              
-
-
-                                                   
-                                            <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_count == 1">
-                                       
-                                                   
-                                    <t t-foreach="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.line_ids" t-as="righeDDT">
-                                                       
-                                    <t t-if="line.product_id.id == righeDDT.product_id.id">
+                                          
+                                             
+                                            <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].delivery_note_line_ids">
+                                                
+                                  
                                                     
                                     <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.warehouse_id.name == 'Magazzino Healthcare'">
                                                      <span>Rif. ns. DdT div. Healthcare N. </span>
@@ -449,43 +443,21 @@
                                             <span>Rif. ns. DdT div. Puleo N. </span>
                                             </t>
                                             
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.name[4:]"> </t>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].delivery_note_line_ids.delivery_note_id.name[4:]"> </t>
                                           
                                             <span> del </span>
                                             
-                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_ids.date.strftime('%d/%m/%Y')"/>
+                                            <t t-esc="o.invoice_line_ids.sale_line_ids[current_line-1].delivery_note_line_ids.delivery_note_id.date.strftime('%d/%m/%Y')"/>
                                             
                                    
-                                           </t>
-                                            </t>
-                                              </t>
+                                         
+                                        </t>
                                             
-                                             
-                                             
-                                           <t t-if="o.invoice_line_ids.sale_line_ids[current_line-1].order_id.delivery_note_count == 2">
-                                           
-                                            
-                                               <t t-if="o.delivery_note_ids.sale_ids.warehouse_id.name == 'Magazzino Healthcare'">
-                                                     <span>Rif. ns. DdT div. Healthcare N. </span>
-                                             </t>
-                                            <t t-else="">
-                                            <span>Rif. ns. DdT div. Puleo N. </span>
-                                            </t>
-                                            
-                                            <t t-esc="o.delivery_note_ids.name[4:]"> </t>
-                                          
-                                            <span> del </span>
-                                            
-                                            <t t-esc="o.delivery_note_ids.date.strftime('%d/%m/%Y')"/>
-                                             
-                                           </t>
-                                           
-                                           </t>
-                                          
-                                          
+                                
                                              </div>
-                                             
-                                             <!-- Fine DDT -->
+                                           
+                                            
+                                            <!-- FINE DDT  -->
                                             
                                            <t t-if="line.product_id and line.product_id.type != 'service' ">
                                             <!--strong t-field="line.product_id.name"/-->

@@ -55,5 +55,12 @@ class accountMoveLine(models.Model):
     _name = "account.move.line"
     _inherit = "account.move.line"
     
-    matricola = fields.Many2one('stock.production.lot', string="Matricola", domain= " [('product_id', '=', product_id)] ", readonly= False, store = True)
+    matricola = fields.Many2one('stock.production.lot', string="Matricola", store = True, domain= " [('product_id', '=', product_id)] ", readonly= False)
+    
+        
+class stockProductionLot(models.Model):
+    _name = 'stock.production.lot'
+    _inherit = "stock.production.lot"
+    
+    righe_fattura = fields.One2many('account.move.line', 'matricola', string="Righe Fattura", readonly = True)
 

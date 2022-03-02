@@ -474,6 +474,10 @@
                                                     Matricola: <span t-esc="line.matricola.name"/>
                                                 </div>
                                             
+                                                <div t-if="line.product_id.matricola">
+                                                    Matricola: <span t-esc="line.product_id.matricola.name"></span>
+                                                </div>
+                                            
                                         </t>
                                     </td>
 

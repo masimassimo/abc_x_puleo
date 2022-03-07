@@ -421,37 +421,41 @@
                                             <t t-esc="line.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
                                             </div>
                                             
-                                            <!-- DDT -->
+                              <!-- DDT -->
                                           
                                           
                                                                                    
-                                           <div>
+                                        
                                                
                                           
                                              
                                             <t t-if="line.sale_line_ids.delivery_note_line_ids">
                                                 
+                                                <t t-foreach="line.sale_line_ids.delivery_note_line_ids" t-as="lineaDDT">
+                                                
+                                                 <div>
                                   
-                                                    
+                                                
                                     <t t-if="line.sale_line_ids.order_id.warehouse_id.name == 'Magazzino Healthcare'">
                                                      <span>Rif. ns. DdT div. Healthcare N. </span>
                                              </t>
                                             <t t-else="">
                                             <span>Rif. ns. DdT div. Puleo N. </span>
                                             </t>
-                                            
-                                            <t t-esc="line.sale_line_ids.delivery_note_line_ids.delivery_note_id.name[4:]"> </t>
+                                           
+                                            <t t-esc="lineaDDT.delivery_note_id.name[4:]"> </t>
                                           
                                             <span> del </span>
                                             
-                                            <t t-esc="line.sale_line_ids.delivery_note_line_ids.delivery_note_id.date.strftime('%d/%m/%Y')"/>
-                                            
-                                   
+                                            <t t-esc="lineaDDT.delivery_note_id.date.strftime('%d/%m/%Y')"/>
+                                             </div>
+                                  
+                                   </t>
                                          
                                         </t>
                                             
                                 
-                                             </div>
+                                            
                                            
                                             
                                             <!-- FINE DDT  -->

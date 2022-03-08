@@ -466,12 +466,12 @@
                                                 <span>Nomenclatura combinata: <t t-esc="line.product_id.codice_merce"/> </span>
                                             </div>
                                     
-                                                       <div t-if="line.matricola">
-                                                    Matricola: <span t-esc="line.matricola.name"/>
-                                                </div>
-                                            
-                                                <div t-if="line.product_id.matricola">
-                                                    Matricola: <span t-esc="line.product_id.matricola.name"></span>
+                                                  <div t-if="line.product_id.matricola">
+                                                    <t t-foreach="line.product_id.matricola" t-as ="matricole">
+                                                    <div>
+                                                    Matricola: <span t-esc="matricole.name"></span>
+                                                    </div>
+                                                    </t>
                                                 </div>
                                             
                                         </t>

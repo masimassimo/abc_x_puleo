@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from odoo import models, fields, api
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class abc_campi_product_template(models.Model):
@@ -46,7 +48,7 @@ class productProduct(models.Model):
     
     stato_articolo = fields.Selection([("gestito", "Gestito"), ("installabile", "Installabile"), ("superato", "Superato"),], string = "Stato articolo", related="product_tmpl_id.stato_articolo", store = True, readonly = False)
     
-    matricola = fields.Many2one('stock.production.lot', string = "Matricola", store = True, domain= " [('product_id', '=', id)] ", copy = True, readonly = False)
+    matricola = fields.Many2many('stock.production.lot', string = "Matricola", store = True, domain= " [('product_id', '=', id)] ", copy = True, readonly = False)
     
     #matricola2= fields.Many2one('stock.production.lot', string = "matricola_2", domain= " [('product_id', '=', id)] ", readonly=False)
     
@@ -55,12 +57,12 @@ class accountMoveLine(models.Model):
     _name = "account.move.line"
     _inherit = "account.move.line"
     
-    matricola = fields.Many2one('stock.production.lot', string="Matricola", store = True, domain= " [('product_id', '=', product_id)] ", readonly= False)
-    
-        
+    matricola = fields.Many2many('stock.production.lot', string = "Matricola", store = True, domain= " [('product_id', '=', product_id)] ", copy = True, readonly = False)    
+
 class stockProductionLot(models.Model):
     _name = 'stock.production.lot'
     _inherit = "stock.production.lot"
     
     righe_fattura = fields.One2many('account.move.line', 'matricola', string="Righe Fattura", readonly = True)
+
 

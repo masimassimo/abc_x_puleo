@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+    
+
+    <record id="acquisto_print_report" model="ir.actions.report">
+        <field name="name">Richiesta di preventivo Puleo</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">abc_preventivo_e_ordine_puleo.preventivo_acquisto_main_template_puleo</field>
+        <field name="report_file">abc_preventivo_e_ordine_puleo.preventivo_acquisto_main_template_puleo</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order" />
+        <field name="binding_type">report</field>
+        <field name="print_report_name">"Richiesta di preventivo Puleo - %s" %(object.name)</field>
+        <field name="paperformat_id" ref="abc_preventivo_e_ordine_puleo.preventivo_e_ordine_formato_carta_acquisto_puleo"/>
+    </record>
+        
+        
+    <record id="acquisto_print_report_2" model="ir.actions.report">
+        <field name="name">Ordine di acquisto Puleo</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">abc_preventivo_e_ordine_puleo.ordine_acquisto_main_template_puleo</field>
+        <field name="report_file">abc_preventivo_e_ordine_puleo.ordine_acquisto_main_template_puleo</field>
+        <field name="binding_model_id" ref="purchase.model_purchase_order" />
+        <field name="binding_type">report</field>
+        <field name="print_report_name">"Ordine di acquisto Puleo - %s" %(object.name)</field>
+        <field name="paperformat_id" ref="abc_preventivo_e_ordine_puleo.preventivo_e_ordine_formato_carta_acquisto_puleo"/>
+    </record>
+        
+    </data>
+</odoo>

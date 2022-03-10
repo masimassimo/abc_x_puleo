@@ -8,5 +8,33 @@
                 <field name="cmr_code" placeholder="00000"/>
             </xpath>
         </field>
+            </record>
+        
+        
+     <record id="view_picking_form_1" model="ir.ui.view">
+      <field name="model">stock.picking</field>
+       <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+              <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                <page string="CMR" name="studio_page_CMR">
+                  <group name="studio_group_CMR">
+                    <group name="studio_group_CMR_left">
+                        <field name="vettore_cmr" domain = "[('category_id.name', '=', 'VETTORE')]"/>
+                        <field name="totale_peso_lordo_cmr"/>
+                        <field name="totale_volume_cmr"/>
+                        
+                      </group>
+                    <group name="studio_group_CMR_right">
+                        <field name="targa_motrice_cmr"/>
+                        <field name="targa_rimorchio_cmr"/>
+                        
+                    </group>
+                    
+                  </group>
+                </page>
+            </xpath> 
+     </field>
     </record>
+    
+    
 </odoo>

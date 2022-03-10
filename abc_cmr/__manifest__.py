@@ -9,14 +9,14 @@
         Modulo per la stampa del modello MRC Convention Relative au Contrat de Transport International de Marchandises par la Route
     """,
 
-    'author': "Massimo Masi - ABC Srl",
+    'author': "A.B.C. Srl",
     'website': "https://www.abcstrategie.it/",
     
     'category': 'Inventory',
-    'version': '0.1',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
-    'depends': ['stock','web'],
+    'depends': ['stock','web', 'base'],
 
     # always loaded
     'data': [

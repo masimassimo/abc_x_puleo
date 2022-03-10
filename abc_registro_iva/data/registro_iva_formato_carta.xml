@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Creo un nuovo formato carta per il Registro IVA personalizzato. -->
-<odoo noupdate="1">
+<odoo>
     <record id="registro_iva_formato_carta" model="report.paperformat">
         <field name="name">Formato carta DDT Puleo</field>
         <field name="default" eval="False" />

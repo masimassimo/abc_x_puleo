@@ -13,7 +13,7 @@
     'website': "https://www.abcstrategie.it/",
     
     'category': 'Inventory',
-    'version': '0.2',
+    'version': '0.3',
 
     # any module necessary for this one to work correctly
     'depends': ['stock','web', 'base'],
@@ -23,6 +23,7 @@
         #'security/ir.model.access.csv',
         'data/cmr_paperformat.xml',
         'views/report_cmr.xml',
+        'views/report_cmr_vuoto.xml',
         'views/stock_picking_view.xml',
     ],
     # only loaded in demonstration mode

@@ -1,0 +1,1216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <report id="report_cmr_create_vuoto" string="CMR Report Vuoto" model="stock.picking" report_type="qweb-pdf" file="abc_cmr.report_cmr_vuoto" name="abc_cmr.report_cmr_vuoto"/>
+    <record id="report_cmr_create_vuoto" model="ir.actions.report">
+        <field name="paperformat_id" ref="abc_cmr.paperformat_cmr"/>
+    </record>
+    <template id="report_cmr_document_vuoto">
+       <t t-foreach="['1', '2', '3', '4']" t-as="doc_copy">
+        <t t-call="web.basic_layout">
+            <style>
+                    body {
+                        font-family: Arial, sans-serif;
+                        font-size: 5pt;
+                        
+                
+                <t t-if="doc_copy == '1'">
+                            color: black !important;
+                        </t>
+                <t t-if="doc_copy == '2'">
+                            color: black !important;
+                        </t>
+                <t t-if="doc_copy == '3'">
+                            color: black !important;
+                        </t>
+                    }
+                    table td, table td * {
+                        vertical-align: middle;
+                    }
+                    .text-bigger {
+                        font-size: 1.5em;
+                    }
+                    .table td {
+                        border: 2px solid;
+                        padding: 3px;
+                    }
+                    .table-inner td {
+                        border: 0;
+                    }
+                    .rotated {
+                        width: 450mm;
+                        -webkit-transform: rotate(270deg);
+                        transform: rotate(270deg);
+                    }
+                    .vertical-left {
+                        margin-left: -222mm;
+                        margin-top: 122mm;
+                    }
+                    .vertical-right {
+                        margin-left: -10mm;
+                        margin-top: -25mm;
+                    }
+                
+            
+            </style>
+            <div class="page">
+                <div class="row">
+                    <div class="col-8">
+                        <table>
+                            <tr class="text-bigger">
+                                <td style="font-size: 3em">
+                                    <strong>
+                                        <span t-esc="doc_copy"/>
+                                    </strong>
+                                </td>
+                                <t t-if="doc_copy == '1'">
+                                    <td class="pl-3">
+                                            Copia per il mittente - Exemplaire de l'expediteur
+                                            
+                                        
+                                        <br/>
+                                            Copy for sender
+                                        
+                                    
+                                    </td>
+                                </t>
+                                <t t-if="doc_copy == '2'">
+                                    <td class="pl-3">
+                                            Copia per il destinatario - Exemplaire du destinataire
+                                            
+                                        
+                                        <br/>
+                                            Copy for consignee
+                                        
+                                    
+                                    </td>
+                                </t>
+                                <t t-if="doc_copy == '3'">
+                                    <td class="pl-3">
+                                            Copia per il vettore - Exemplaire du transporteur
+                                            
+                                        
+                                        <br/>
+                                            Copy for carrier
+                                        
+                                    
+                                    </td>
+                                </t>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-4 text-right" style="margin-top: -0.5px">
+                        <table>
+                            <tr>
+                                <td class="align-left" style="width: 100px; border-left: 1px solid; border-top: 1px solid;border-bottom:1px solid;">
+                                            Codice trasportatore
+                                    
+                                    <br/>
+                                            Code transporteur
+                                    
+                                    <br/>
+                                            
+                                            Code of carrier
+                                    
+                                    <br/>
+                                            Code Frachtfurher                       
+                                        
+                                
+                                </td>
+                                <td class="align-left" style="width: 100px; border-left: 1px solid; border-right:1px solid; border-top: 1px solid; border-bottom: 1px solid;">
+                                    <span t-field="o.cmr_code" style="font-size: 3em"/>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1" style="max-width: 2%">
+                        <div class="rotated vertical-left">
+                            <table>
+                                <tr>
+                                    <td>
+                                            I numeri dall'1 al 15 compreso devono essere compilati sotto la responsabilità del mittente, oltre ai numeri 19-21-22. - Le parti tracciate in grassetto devono essere compilate dal trasportatore.
+                                            
+                                        
+                                        <br/>
+                                            A remplir sous la responsabilité de l'expediteur 1-15 y compris et 19+21+22. Les parties encadrées de lignes grasses doivent etre remplies par le transporeur.
+                                            
+                                        
+                                        <br/>
+                                            Auszufullen unter der Verantwortung des Absenders 1-15 eischließlich 19+21+22. Die mit fett gedruckten Linien eingerahmten Rubriken mussen vom Frachtfuhrer ausgefullt werden.
+                                        
+                                    
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="rotated vertical-right">
+                                Per le merci pericolose indicare oltre la denominazione corrente, la classe, la cifra e se del caso la lettera.
+                                
+                            
+                            <br/>
+                                En cas de marchandises dangereuses indiquer, outre la cerficatión èventuelle, à la derniére ligne du cadre: la classe, le chiffre et le cas écheánt, la lettre.
+                                
+                            
+                            <br/>
+                                Bei gefahrlichen Gutern ist, auBer der eventuallen Bescheinigung auf der letzten Linie der Rubrik anzugeben: die Klasse, die Ziffer sowie gegebenenfalls der Buchstabe
+                            
+                        
+                        </div>
+                    </div>
+                    <div class="col-11" style="margin-top:-5px;">
+                        <table class="table">
+                            <tr>
+                                <td class="w-50">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em; height: 25mm">
+                                                <strong>1</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Mittente (cognome, nome, stato)
+                                                    
+                                                
+                                                <br/>
+                                                    Expéditeur (nom, adresse, pays)
+                                                    
+                                                
+                                                <br/>
+                                                    Absender (name, anschrit, land)
+                                                    
+                                                <!--
+                                                <h6 class="text-center" style="font-weight:bold; font-size:170%;">PULEO S.p.A.
+                                                    
+                                                    <br/>91025 MARSALA TP, Italia
+                                                    
+                                                    <br/>
+    S.S. 115 km, 21 - Fraz. Bosco 479
+                                                    
+                                                    <br/>
+    Tel.+390923968284/Fax +39092396820
+                                                    
+                                                    <br/>
+    Capitale Sociale int. vers. 1.500.000,00
+                                                    
+                                                    <br/>
+    P.IVA / C.F. 01233360815
+                                                
+                                                </h6>
+                                            -->
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="border-left: 3px solid; border-top: 3px solid; border-right: 3px solid; border-bottom: 0">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td class="text-uppercase w-50">
+                                                    Lettera di vettura internazionale
+                                                    
+                                                
+                                                <br/>
+                                                    Letter de voiture internationale
+                                                    
+                                                
+                                                <br/>
+                                                    International consignment note
+                                                    
+                                                
+                                                <br/>
+                                                    Franchtbrief - transportdokument
+                                                
+                                            
+                                            </td>
+                                            <td>
+                                                <t t-if="doc_copy == '1'">
+                                                    <img src="/abc_cmr/static/src/img/logo-cmr-red.svg" width="auto" height="25px"/>
+                                                </t>
+                                                <t t-if="doc_copy == '2'">
+                                                    <img src="/abc_cmr/static/src/img/logo-cmr-blue.svg" width="auto" height="25px"/>
+                                                </t>
+                                                <t t-if="doc_copy == '3'">
+                                                    <img src="/abc_cmr/static/src/img/logo-cmr-green.svg" width="auto" height="25px"/>
+                                                </t>
+                                                <t t-if="doc_copy == '4'">
+                                                    <img src="/abc_cmr/static/src/img/logo-cmr.svg" width="auto" height="25px"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                    Questo trasporto è sottomesso, nonostante qualunque
+                                                    clausola contraria alla Convenzione relativa al contratto di
+                                                    trasporto internazionale di merci su strada (CMR).
+                                                </td>
+                                            <td>
+                                                    Ce Transport est soumis, no-
+                                                    nobstant toute clause contraire,
+                                                    a la Convention relative au
+                                                    contrat de transport international
+                                                    de marchandises par route 
+                                                    (CMR).
+                                                </td>
+                                            <td>
+                                                    Diese Beforderung unterliegt trotz
+                                                    einer gegenteiligen Abmachung
+                                                    den Bestimmungen des Uberein-
+                                                    kommens uber den Beforderungs-
+                                                    vertrag im internationalen
+                                                    Straßengueterverkehr (CMR).
+                                                </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em; height: 25mm">
+                                                <strong>2</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Destinatario (cognome, nome, stato)
+                                                    
+                                                
+                                                <br/>
+                                                    Destinataire (nom, adresse, pays)
+                                                    
+                                                
+                                                <br/>
+                                                    Empfanger (Name, Anschrift, Land)
+                                                    
+                                                
+                                                <span/>
+                                                <!--
+                                                <div class ="text_center">
+                                                
+                                                    <br/>
+                                                    <h6 style="font-weight:bold; font-size:150%;">
+                                                        <t t-if="o.partner_id.name" t-esc="o.partner_id.name"></t>
+                                                        <t t-if="o.partner_id.country_id.name" t-esc="o.partner_id.country_id.name"></t>
+                                                    </h6>
+                                                </div>
+                                                -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="border-left: 3px solid; border-top: 2px solid; border-right: 3px solid;">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em">
+                                                <strong>16</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Trasportatore (cognome, nome, indirizzo, stato)
+                                                    
+                                                
+                                                <br/>
+                                                    Trasporteur (nom, adresse, pays)
+                                                    
+                                                
+                                                <br/>
+                                                    Frachtführer (Name, Anschrift, Land)
+                                                    
+                                                
+                                                <span/>
+                                                <!--
+                                                <div class ="text_center">
+                                                    <br/>
+                                                    <h6 style="font-weight:bold; font-size:150%;">
+                                                        <t t-if="o.vettore_cmr"></t>
+                                                        <span t-esc="o.vettore_cmr.name"></span>
+                                                        <span t-esc="o.vettore_cmr.street"></span>
+                                                        <span t-esc="o.vettore_cmr.country_id.name"></span>
+                                                    </h6>
+                                                </div>
+                                                -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em; height: 17mm">
+                                                <strong>3</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Luogo previsto per la consegna della merce (località, stato)
+                                                    
+                                                
+                                                <br/>
+                                                    Lieu prévu pour la livraison de la marchandise (lieu, pays)
+                                                    
+                                                
+                                                <br/>
+                                                    Auslieferungsort des Gutes (Ort, Land)
+                                                    
+                                                
+                                                <span/>
+                                                <!--
+                                                <div class ="text_center">
+                                                    <br/>
+                                                    <h6 style="font-weight:bold; font-size:150%;">
+                                                        <t t-if="o.partner_id.street" t-esc="o.partner_id.street"></t>
+                                                        <t t-if="o.partner_id.country_id.name" t-esc="o.partner_id.country_id.name"></t>
+                                                    </h6>
+                                                </div>
+                                                -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="border-left: 3px solid; border-top: 2px solid; border-right: 3px solid">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em">
+                                                <strong>17</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Trasportatori successivi (cognome, nome, indirizzo, stato)
+                                                    
+                                                
+                                                <br/>
+                                                    Transporteurs successifs (nom, adresse, pays)
+                                                    
+                                                
+                                                <br/>
+                                                    Nachfolgende Frachtführer (Name, Anschrift, Land)
+                                                
+                                            
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em; height: 17mm">
+                                                <strong>4</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Luogo e data della presa in carico della merce (luogo, stato, data)
+                                                    
+                                                
+                                                <br/>
+                                                    Lieu et date de la prise en charge de la marchandise (lieu, pays, date)
+                                                    
+                                                
+                                                <br/>
+                                                    Ort und Tag der Ubernahme des Gutes (Ort, Land, Datum)
+                                                    
+                                                
+                                                <span/>
+                                                <!--
+                                                <div class ="text_center">
+                                                    <br/>
+                                                    <h6 style="font-weight:bold; font-size:150%;">
+                                                        <t t-if="o.scheduled_date">
+                                                            <span t-field="o.scheduled_date"></span>
+                                                        </t>
+                                                        <t t-if="o.partner_id.street" t-esc="o.partner_id.street"></t>
+                                                        <t t-if="o.partner_id.country_id.name" t-esc="o.partner_id.country_id.name"></t>
+                                                    </h6>
+                                                </div>
+                                                -->
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td style="border-left: 3px solid; border-right: 3px solid; border-bottom: 0">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em">
+                                                <strong>18</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Riserve ed osservazioni del trasportatore
+                                                    
+                                                
+                                                <br/>
+                                                    Reserves et observations du transporteur
+                                                    
+                                                
+                                                <br/>
+                                                    Vorbehalte und Bemerkungen des Frachtführers
+                                                
+                                            
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em; height: 16mm">
+                                                <strong>5</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Documenti allegati
+                                                    
+                                                
+                                                <br/>
+                                                    Documents annexes
+                                                    
+                                                
+                                                <br/>
+                                                    Beigefugte Dokumente
+                                                    
+                                                
+                                                <span/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="align-bottom" style="border-left: 3px solid; border-top: 0; border-right: 3px solid; border-bottom: 3px solid">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td class="text-bigger" colspan="2"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-0" colspan="2">
+                                    <table class="table-inner w-100">
+                                        <tr>
+                                            <td>
+                                                <table class="table-inner">
+                                                    <tr style="height: 40mm">
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>6</strong>
+                                                        </td>
+                                                        <td class="pl-1">
+                                                                Contrassegni e numeri
+                                                                
+                                                            
+                                                            <br/>
+                                                                Marques et numéros
+                                                                
+                                                            
+                                                            <br/>
+                                                                Kennzeichen und Nummern
+                                                                
+                                                            
+                                                            <span/>
+                                                            <!--
+                                                            <t t-foreach="o.move_ids_without_package.filtered(lambda x: x.quantity_done)" t-as="move_id">
+                                                                <div class ="text_center">
+                                                                    <h6 style="font-weight:bold; font-size:150%;">  
+                                                                N
+                                                            </h6>
+                                                                </div>
+                                                            </t>
+                                                            -->
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <span/>
+                                            </td>
+                                            <td>
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>7</strong>
+                                                        </td>
+                                                        <td class="pl-1">
+                                                                Numero dei colli
+                                                                
+                                                            
+                                                            <br/>
+                                                                Nombre des colls
+                                                                
+                                                            
+                                                            <br/>
+                                                                Anzahl der Packstücke
+                                                            
+                                                        
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!--
+                                                <table class="table table-sm" name="stock_move_table1" style="margin-left:15px;">
+                                                    <tbody>
+                                                        <t t-set="lines" t-value="o.move_line_ids_without_package.filtered(lambda x: x.product_uom_qty)"/>
+                                                        <tr t-foreach="lines" t-as="move">
+                                                            <td>
+                                                                <span style="font-weight:800;" t-field="move.product_uom_qty"/>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                -->
+                                            </td>
+                                            <td>
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>8</strong>
+                                                        </td>
+                                                        <td class="pl-1">
+                                                                Imballaggio
+                                                                
+                                                            
+                                                            <br/>
+                                                                Mode d'emballage
+                                                                
+                                                            
+                                                            <br/>
+                                                                Art der Verpackung
+                                                                 
+                                                            
+                                                            <span/>
+                                                            <!--
+                                                            <t t-foreach="o.move_ids_without_package.filtered(lambda x: x.quantity_done)" t-as="move_id">
+                                                                <div class ="text_center">
+                                                                    <h6 style="font-weight:bold; font-size:150%;">
+                                                                        <t t-if="move_id.product_id.packaging_ids">
+                                                                            <span t-if="move_id.product_id.packaging_ids[0].name" t-esc="move_id.product_id.packaging_ids[0].name"></span>
+                                                                        </t>
+                                                                    </h6>
+                                                                </div>
+                                                            </t>
+                                                            -->
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!--
+                                                <table class="table table-sm" name="stock_move_table2" style="margin-left:15px;">
+                                                    <tbody>
+                                                        <t t-set="lines" t-value="o.move_line_ids_without_package.filtered(lambda x: x.product_uom_qty)"/>
+                                                        <tr t-foreach="lines" t-as="move">
+                                                            <td>
+                                                                
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                -->
+                                            </td>
+                                            <td>
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>9</strong>
+                                                        </td>
+                                                        <td class="pl-1">
+                                                                Denominazione corrente della merce
+                                                                
+                                                            
+                                                            <br/>
+                                                                Nature de la marchandise
+                                                                
+                                                            
+                                                            <br/>
+                                                                Bezeichnung des Gutes
+                                                                    
+                                                            <br/>
+                                                           
+                                                           
+                                                            <span/>
+                                                            <!--
+                                         
+                                                            <t t-foreach="o.move_ids_without_package.filtered(lambda x: x.quantity_done)" t-as="move_id">
+                                                                <div class ="text_center">
+                                                                    <h6 style="font-weight:bold; font-size:100%;">
+                                                                        <span t-if="move_id.product_id.name" t-esc="move_id.product_id.name"></span>
+                                                                    </h6>
+                                                                </div>
+                                                            </t>
+                                                            -->
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!--
+                                                    <table class="table table-sm" name="stock_move_table3" style="margin-left:15px;">
+                                                    <tbody><t t-set="lines" t-value="o.move_line_ids_without_package.filtered(lambda x: x.product_uom_qty)"/>
+                                                    <tr t-foreach="lines" t-as="move">
+                                                    <td>
+                                                    <span style="font-weight:800;" t-field="move.product_id"/>
+                                                    </td>
+                                                    </tr>
+                                                    </tbody></table>
+                                                    -->
+                                            </td>
+                                            <td style="border-left: 2px solid">
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>10</strong>
+                                                        </td>
+                                                        <td class="pl-1">
+                                                                N. di statistica
+                                                                
+                                                            
+                                                            <br/>
+                                                                N.º statistique
+                                                                
+                                                            
+                                                            <br/>
+                                                                Statistiknummer
+                                                                  
+                                                            
+                                                            <span/>
+                                                            <!--
+                                                            <t t-foreach="o.move_ids_without_package.filtered(lambda x: x.quantity_done)" t-as="move_id">
+                                                                <div class ="text_center" >
+                                                                    <h6 style="font-weight:bold; font-size:150%;">
+                                                                        <span t-if="move_id.product_id.codice_merce" t-esc="move_id.product_id.codice_merce"></span>
+                                                                    </h6>
+                                                                </div>
+                                                            </t>
+                                                        -->
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!--
+                                                    <table class="table table-sm" name="stock_move_table4" style="margin-left:20px;"><tbody><t t-set="lines" t-value="o.move_line_ids_without_package.filtered(lambda x: x.product_uom_qty)"/><tr t-foreach="lines" t-as="move"><td></td></tr></tbody></table>
+                                                    -->
+                                            </td>
+                                            <td style="border-left: 2px solid">
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>11</strong>
+                                                        </td>
+                                                        <td class="pl-1">
+                                                                Peso lordo Kg.
+                                                                
+                                                            
+                                                            <br/>
+                                                                Poids brut Kg.
+                                                                
+                                                            
+                                                            <br/>
+                                                                Bruttogewicht in kg.
+                                                                 
+                                                            
+                                                            <span/>
+                                                            <div class ="text_center">
+                                                                <h6 style="font-weight:bold; font-size:150%;">
+                                                                    <span t-if="o.totale_peso_lordo_cmr" t-esc="o.totale_peso_lordo_cmr"></span> KG
+                                                            
+                                                                
+                                                                </h6>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <!--
+                                                    <table class="table table-sm" name="stock_move_table5" style="margin-left:20px;"><tbody><t t-set="lines" t-value="o.move_line_ids_without_package.filtered(lambda x: x.product_uom_qty)"/><tr t-foreach="lines" t-as="move"><td></td></tr></tbody></table>
+                                                    -->
+                                            </td>
+                                            <td style="border-left: 2px solid">
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>12</strong>
+                                                        </td>
+                                                        <td class="pl-1">
+                                                                Volume m3
+                                                                
+                                                            
+                                                            <br/>
+                                                                Cubage m3
+                                                                
+                                                            
+                                                            <br/>
+                                                                Umfang in m3
+                                                            
+                                                            
+                                                            <span/>
+                                                            <!--
+                                                            <div class ="text_center">
+                                                                <h6 style="font-weight:bold; font-size:150%;">
+                                                                    <span t-if="o.totale_volume_cmr" t-esc="o.totale_volume_cmr"></span>
+                                                                </h6>
+                                                            </div>
+                                                            -->
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td style="border-top: 2px solid">
+                                                    Classe
+                                                    
+                                                
+                                                <br/>
+                                                    Classe/Klasse
+                                                
+                                            
+                                            </td>
+                                            <td style="border-top: 2px solid">
+                                                    Cifra
+                                                    
+                                                
+                                                <br/>
+                                                    Chiffre/Ziffer
+                                                
+                                            
+                                            </td>
+                                            <td style="border-top: 2px solid">
+                                                    Lettera
+                                                    
+                                                
+                                                <br/>
+                                                    Lettre/Buchstabe
+                                                
+                                            
+                                            </td>
+                                            <td style="border-top: 2px solid">
+                                                    (ADR*)
+                                                </td>
+                                            <td style="border-left: 2px solid"/>
+                                            <td style="border-left: 2px solid">
+                                                    TOTALE
+                                                </td>
+                                            <td style="border-left: 2px solid">
+                                                    TOTALE
+                                                </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-bottom-0 w-50">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em; height: 25mm">
+                                                <strong>13</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Istruzioni del mittente
+                                                    
+                                                
+                                                <br/>
+                                                    Instructions de l'expediteur
+                                                    
+                                                
+                                                <br/>
+                                                    Anweisungen des Absenders
+                                                    
+                                                
+                                                <span/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="border-bottom-0">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em">
+                                                <strong>19</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Convenzioni particolari
+                                                    
+                                                
+                                                <br/>
+                                                    Conventions particuliéres
+                                                    
+                                                
+                                                <br/>
+                                                    Besondere Vereinbarungen
+                                                    
+                                                
+                                                <span/>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-top-0 w-50"/>
+                                <td class="border-top-0 p-0" rowspan="2">
+                                    <table class="w-100" style="line-height: 1em; border: 3px solid">
+                                        <tr>
+                                            <td class="w-25" style="text-indent: 15px">
+                                                    Da pagare per/ A payer
+                                                    
+                                                
+                                                <br/>
+                                                <strong class="text-bigger">20</strong> par/ Zu Zahlen vom:
+                                                
+                                            
+                                            </td>
+                                            <td class="w-25">
+                                                    Mittente
+                                                    
+                                                
+                                                <br/>
+                                                    Expéditeur/Absender
+                                                
+                                            
+                                            </td>
+                                            <td class="w-25">
+                                                    Valuta
+                                                    
+                                                
+                                                <br/>
+                                                    Monnaie/Wahrung
+                                                
+                                            
+                                            </td>
+                                            <td>
+                                                    Destinatario
+                                                    
+                                                
+                                                <br/>
+                                                    Destinat./Empfanger
+                                                
+                                            
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                    Prezzo del trasp./Prix tran-
+                                                    
+                                                
+                                                <br/>
+                                                    sport/Fracht:
+                                                    
+                                                
+                                                <br/>
+                                                    Abb./Reductions
+                                                    
+                                                
+                                                <br/>
+                                                    Ermaßigungen:
+                                                
+                                            
+                                            </td>
+                                            <td/>
+                                            <td/>
+                                            <td/>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                    Saldo / Solde
+                                                    
+                                                
+                                                <br/>
+                                                    Zwischensumme:
+                                                    
+                                                
+                                                <br/>
+                                                    Maggior./ Supplements
+                                                    
+                                                
+                                                <br/>
+                                                    Zuschlage:
+                                                    
+                                                
+                                                <br/>
+                                                    Supplem./Charges
+                                                    
+                                                
+                                                <br/>
+                                                    Nebengebuhren:
+                                                
+                                            
+                                            </td>
+                                            <td/>
+                                            <td/>
+                                            <td/>
+                                        </tr>
+                                        <tr class="pt-2 pb-2">
+                                            <td>
+                                                <span class="text-uppercase">Tot./Tot./Gesarntsumme:</span>
+                                            </td>
+                                            <td/>
+                                            <td/>
+                                            <td/>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr style="height: 20mm">
+                                <td class="w-50">
+                                    <table class="table-inner">
+                                        <tr>
+                                            <td style="font-size: 1.5em">
+                                                <strong>14</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Istruzioni per il pagamento del nolo/Prescriptions d'affranchissement
+                                                    
+                                                
+                                                <br/>
+                                                    Frachtzahlungsanweisungen
+                                                    
+                                                
+                                                <span/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border"/>
+                                            <td>Franco / Franco / Frei</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border"/>
+                                            <td>Assegnato / Non franco / Unfrei</td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="w-50">
+                                    <table class="table-inner w-100">
+                                        <tr>
+                                            <td style="font-size: 1.5em">
+                                                <strong>21</strong>
+                                            </td>
+                                            <td class="pl-1 w-50">
+                                                    Compilato a
+                                                    
+                                                
+                                                <br/>
+                                                    Etabile á
+                                                    
+                                                
+                                                <br/>
+                                                    Ausgefertigt in
+                                                    
+                                                
+                                            
+                                            </td>
+                                            <td class="w-25">
+                                                    il
+                                                    
+                                                
+                                                <br/>
+                                                    le
+                                                    
+                                                
+                                                <br/>
+                                                    am
+                                                
+                                            
+                                            </td>
+                                            <td class="w-25">
+                                                <br/>
+                                                    20
+                                                
+                                            
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td class="p-0">
+                                    <table class="table-inner w-100" style="border: 3px solid">
+                                        <tr style="height: 12mm">
+                                            <td style="font-size: 1.5em">
+                                                <strong>15</strong>
+                                            </td>
+                                            <td class="pl-1">
+                                                    Rimborso / Remboursement / Ruckerstattung
+                                                </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="p-0" colspan="2">
+                                    <table class="table-inner w-100">
+                                        <tr style="height:14mm">
+                                            <td>
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>22</strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-4 align-bottom">
+                                                                FIRMA E TIMBRO DEL MITTENTE
+                                                                
+                                                            
+                                                            <br/>
+                                                                Signature et timbre de l'expediteur
+                                                                
+                                                            
+                                                            <br/>
+                                                                Unterschrift und Stempel des Absenders
+                                                            
+                                                        
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>23</strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height: 14mm">
+                                                        <td class="pl-4">
+                                                            <span>
+                                                                FIRMA/TIMBRO DEL TRASPORTATORE
+                                                                
+                                                                
+                                                                <br/>
+                                                                Signature et timbre du transporteur
+                                                                
+                                                                
+                                                                <br/>
+                                                                Unterschrift und Stempel des Frachtfuhrers
+                                                            
+                                                            
+                                                            </span>
+                                                            <table class="table-inner w-100">
+                                                                <tr>
+                                                                    <td class="">
+                                                                            
+                                                                            TARGA MOTRICE 
+                            
+                                                                            
+                                                                        
+                                                                        <br/>
+                                                                            Numero d'immatricolation de la motric
+                                                                            
+                                                                        
+                                                                        <br/>
+                                                                            Nummernschild der Kraftmaschine
+                                                                       
+                                                                        
+                                                                        <span/>
+                                                                        <!--
+                                                                        <div class ="text_center">
+                                                                            <h6 style="font-weight:bold; font-size:150%;">
+                                                                            <span t-if="o.targa_motrice_cmr" t-esc="o.targa_motrice_cmr"></span>
+                                                                            </h6>
+                                                                        </div>
+                                                                        -->
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                            <table class="table-inner w-100">
+                                                                <tr>
+                                                                    <td class="">
+                                                                            TARGA RIMORCHIO 
+                                                                        
+                                                                            
+                                                                        
+                                                                        <br/>
+                                                                            Tractor number plate
+                                                                            
+                                                                        
+                                                                        <br/>
+                                                                            Nummernschild des Anhanger
+                                                                            
+                                                                       
+                                                                        
+                                                                        <span/>
+                                                                        <!--
+                                                                        <div class ="text_center">
+                                                                            <h6 style="font-weight:bold; font-size:150%;">
+                                                                            <span t-if="o.targa_rimorchio_cmr" t-esc="o.targa_rimorchio_cmr"></span>
+                                                                            </h6>
+                                                                        </div>
+                                                                        -->
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table class="table-inner">
+                                                    <tr>
+                                                        <td style="font-size: 1.5em">
+                                                            <strong>24</strong>
+                                                        </td>
+                                                    </tr>
+                                                    <tr style="height: 14mm">
+                                                        <td class="pl-4">
+                                                            <span>Merce ricevuta / Marchandises recues / Gut empfangen</span>
+                                                            <table class="table-inner w-100">
+                                                                <tr>
+                                                                    <td class="">
+                                                                            Luogo
+                                                                            
+                                                                        
+                                                                        <br/>
+                                                                            Lieu
+                                                                            
+                                                                        
+                                                                        <br/>
+                                                                            Ort
+                                                                        
+                                                                    
+                                                                    </td>
+                                                                    <td class="">
+                                                                            il
+                                                                            
+                                                                        
+                                                                        <br/>
+                                                                            le
+                                                                            
+                                                                        
+                                                                        <br/>
+                                                                            am
+                                                                        
+                                                                    
+                                                                    </td>
+                                                                    <td class="">
+                                                                        <br/>
+                                                                            20
+                                                                        
+                                                                    
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="pl-4">
+                                                                Firma e timbro del destinatario
+                                                                
+                                                            
+                                                            <br/>
+                                                                Signature et timbre du destinataire
+                                                                
+                                                            
+                                                            <br/>
+                                                                Unterschrift und Stempel des Empfangers
+                                                            
+                                                        
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </t>
+    </template>
+    <template id="report_cmr_vuoto">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-set="lang" t-value="o.partner_id.lang"/>
+                <t t-call="abc_cmr.report_cmr_document_vuoto" t-lang="lang"/>
+            </t>
+        </t>
+    </template>
+</odoo>

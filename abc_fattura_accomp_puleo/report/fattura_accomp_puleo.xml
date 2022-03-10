@@ -473,13 +473,15 @@
                                             -
                                                 <span>Nomenclatura combinata: <t t-esc="line.product_id.codice_merce"/> </span>
                                             </t>
+                                            <!--
                                                 <div t-if="line.product_id.matricola">
-                                                    <t t-foreach="line.product_id.matricola" t-as ="matricole">
+                                                    <t t-foreach="line.product_id.matricola" t-as="matricole">
                                                     <div>
-                                                    Matricola: <span t-esc="matricole.name"></span>
+                                                    Matricola: <span t-esc="matricole.name"/>
                                                     </div>
                                                     </t>
                                                 </div>
+                                            -->
                                         </t>
                                     </td>
 

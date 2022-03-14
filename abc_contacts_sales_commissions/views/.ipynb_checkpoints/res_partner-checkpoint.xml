@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        
+        <record model="ir.ui.view" id="view_contacts_commissions">
+            <field name="name">Provvigioni contatti</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//form[1]/sheet[1]/notebook[1]" position="inside">
+                    <page string="Provvigioni" name="page_provvigioni">
+                        <group string = "Agenti e Provvigioni">
+                            <group name ="group_left">
+                                <field name = "agenti_ids" widget = "many2many_tags" options="{'no_create': True, 'no_create_edit':True}"/>
+                            </group>
+                            <group name ="group_right">
+                            <field name = "contatti_ids" widget = "many2many_tags"/>
+                            </group>
+                              <field name="provvigioni_ids" context="{'default_contatto': id}">
+                                  <tree string="Provvigioni">
+                                      <field name="nome"/>
+                                      <field name="tipo"/>
+                                      <field name="prodotto"/>
+                                      <field name="categoria_prodotto"/>
+                                      <field name="currency_id" invisible="1"/>
+                                      <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                      <field name="percentuale"/>
+                                      <field name="contatto" invisible="1"/>
+                                  </tree>
+
+                                  <form string="Provvigioni">
+                                      <h1><field name="nome"/></h1>
+                                      <group>
+                                        <field name="tipo"/>
+                                        <field name="prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_categoria_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}"/>
+                                        <field name="categoria_prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}" /> 
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                        <field name="percentuale"/>
+                                        <field name="contatto" invisible="1"/>
+                                      </group>
+                                </form>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+  
+    </data>
+</odoo>

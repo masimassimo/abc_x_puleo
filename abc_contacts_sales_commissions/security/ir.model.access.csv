@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_abc_contacts_sales_commissions,abc.contacts_sales_commissions user,model_abc_contacts_sales_commissions,base.group_user,1,1,1,1
+access_abc_lines_sales_commission,abc.lines_sales_commission user,model_abc_lines_sales_commission,base.group_user,1,1,1,1

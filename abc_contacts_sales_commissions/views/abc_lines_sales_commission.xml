@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+      
+    <!-- FORM VIEW -->
+
+    <record model="ir.ui.view" id="form_lines_sales_commission">
+        <field name="name">Form righe provvigioni</field>
+        <field name="model">abc.lines_sales_commission</field>
+        <field name="arch" type="xml">
+            <form string="Form righe provvigione">
+                <sheet>                    
+                    <group>
+                      
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- TREE VIEW -->
+      
+    <record model="ir.ui.view" id="tree_lines_sales_commission">
+        <field name="name">Tree righe provvigioni</field>
+        <field name="model">abc.lines_sales_commission</field>
+        <field name="arch" type="xml">
+            <tree string="Tree righe provvigione">
+              
+            </tree>
+        </field>
+    </record>
+      
+    <!-- SEARCH VIEW -->
+      
+    <record model="ir.ui.view" id="search_lines_sales_commission">
+        <field name="name">Search righe provvigioni</field>
+        <field name="model">abc.lines_sales_commission</field>
+        <field name="arch" type="xml">
+            <search string="Search righe provvigione">
+ 
+            </search>
+        </field>
+    </record>
+      
+      
+    <!-- MENU MODULO -->
+      
+    <record model="ir.actions.act_window" id="action_contacts_sales_commissions_lines">
+        <field name="name">Righe provvigioni</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">abc.lines_sales_commission</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+           
+    <menuitem id="abc_contacts_sales_commissions_lines" name="Righe provvigioni" parent="abc_contacts_sales_commissions_second_menu" action="action_contacts_sales_commissions_lines"/>
+        
+  </data>
+</odoo>

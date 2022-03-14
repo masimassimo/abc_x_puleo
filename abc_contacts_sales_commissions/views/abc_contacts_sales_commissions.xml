@@ -1,0 +1,74 @@
+<odoo>
+  <data>
+      
+    <!-- FORM VIEW -->
+
+    <record model="ir.ui.view" id="form_contacts_sales_commissions">
+        <field name="name">Form provvigioni contatti</field>
+        <field name="model">abc.contacts_sales_commissions</field>
+        <field name="arch" type="xml">
+            <form string="Form provvigione contatto">
+                <sheet>                    
+                    <group>
+                        <field name="nome" />
+                        <field name="tipo" />
+                        <field name="prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_categoria_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}"/>
+                        <field name="categoria_prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}" />
+                        <field name="currency_id" invisible="1"/>
+                        <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                        <field name="percentuale"/>
+                        <field name="contatto"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- TREE VIEW -->
+      
+    <record model="ir.ui.view" id="tree_contacts_sales_commissions">
+        <field name="name">Tree provvigioni contatti</field>
+        <field name="model">abc.contacts_sales_commissions</field>
+        <field name="arch" type="xml">
+            <tree string="Tree provvigione contatto">
+                <field name="nome" />
+                <field name="tipo" />
+                <field name="prodotto"/>
+                <field name="categoria_prodotto"/>
+                <field name="importo"/>
+                <field name="percentuale"/>
+                <field name="contatto"/>
+            </tree>
+        </field>
+    </record>
+      
+    <!-- SEARCH VIEW -->
+      
+    <record model="ir.ui.view" id="search_contacts_sales_commissions">
+        <field name="name">Search provvigioni contatti</field>
+        <field name="model">abc.contacts_sales_commissions</field>
+        <field name="arch" type="xml">
+            <search string="Search provvigione contatto">
+                <field name="contatto"/>
+            </search>
+        </field>
+    </record>
+      
+      
+    <!-- MENU MODULO -->
+
+    <menuitem id="abc_contacts_sales_commissions_menu" name="Provvigioni"/>
+      
+    <record model="ir.actions.act_window" id="action_contacts_sales_commissions_rules">
+        <field name="name">Regole provvigioni</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">abc.contacts_sales_commissions</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+           
+    <menuitem id="abc_contacts_sales_commissions_second_menu" name="Menu provvigioni" parent="abc_contacts_sales_commissions_menu"/> 
+      
+    <menuitem id="abc_contacts_sales_commissions_rules" name="Regole provvigioni" parent="abc_contacts_sales_commissions_second_menu" action="action_contacts_sales_commissions_rules"/> 
+        
+  </data>
+</odoo>

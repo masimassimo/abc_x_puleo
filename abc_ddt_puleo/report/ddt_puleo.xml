@@ -378,7 +378,7 @@
                                            
                                             <span t-field="line.product_id"/> 
                                             <div>
-                                            <span t-raw="line.name"></span>
+                                            <span t-raw="line.name"/>
                                             </div>
 
                                             
@@ -402,7 +402,7 @@
                                             <t t-foreach="line.move_id.move_line_ids" t-as="lot_line">
                                             <t t-if="lot_line.lot_id">
                                             <div>
-                                            Lotto:
+                                            Matricola/Lotto:
                                             <strong>
                                                 <span t-field="lot_line.lot_id"/>
                                             </strong>
@@ -410,21 +410,6 @@
                                             </t>
                                             </t>
                                             </div>
-                                            
-                                            <!--
-                                           
-                                            <div t-if="doc.sale_ids.picking_ids">
-                                                <t t-foreach="doc.sale_ids.picking_ids.move_line_ids" t-as="trasferimenti">
-                                                    <t t-if="trasferimenti.product_id == line.product_id">
-                                                        <span>ciao</span>
-                                                    <span t-esc="trasferimenti.lot_name"></span>
-                                                    </t>
-                                               
-                                                </t>
-                                                
-                                            </div>
-                                            
-                                            -->
                                         
                                     </td>
                                     
@@ -613,7 +598,8 @@
                             
                               <td colspan="3" class="p-1 align-middle text-left small-font col-1" style="width:25%">
 
-                                 <span t-if="doc.transport_datetime" t-esc="(datetime.datetime.strptime(str(doc.transport_datetime), '%Y-%m-%d %H:%M:%S') + relativedelta(hours=1)).strftime('%d/%m/%Y, %H:%M')"/>
+                                <!-- <span t-if="doc.transport_datetime" t-esc="(datetime.datetime.strptime(str(doc.transport_datetime), '%Y-%m-%d %H:%M:%S') + relativedelta(hours=1)).strftime('%d/%m/%Y, %H:%M')"/> -->
+                                <span t-if="doc.transport_datetime" t-field="doc.transport_datetime"></span>
                                 
                                 
                             </td>

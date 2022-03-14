@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'DDT',
-    'version': '0.1',
+    'version': '0.2',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'stock', 'l10n_it_delivery_note', 'l10n_it_delivery_note_batch', 'l10n_it_delivery_note_base', 'l10n_it_delivery_note_order_link'],

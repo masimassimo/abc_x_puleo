@@ -6,7 +6,7 @@
         <t t-call="web.basic_layout">
             <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
 
-           <style type="text/css">
+                  <style type="text/css">
        
                     .small-font {
                                     font-size:80%;
@@ -210,7 +210,29 @@
                                                 
                     </td>
                      <td colspan="2" class="p-1 align-middle text-left small-font col-3" style="width:33.33%">
-                        <span t-field="o.invoice_origin"/> - <t t-if="o.invoice_line_ids.sale_line_ids.order_id.date_order" t-esc="o.invoice_line_ids.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                        <t t-if ="o.invoice_line_ids.sale_line_ids">
+                            <t t-value = "[]" t-set ="ordini_vendita"></t>
+                            <t t-foreach="o.invoice_line_ids.sale_line_ids" t-as ="righe_ordine_vendita">
+                                <t t-if="righe_ordine_vendita.order_id not in ordini_vendita">
+                                    <t t-value="ordini_vendita.append(righe_ordine_vendita.order_id)" t-set="ordini_vendita_dummy">
+                                    </t>
+                                </t>
+                       
+                            </t>
+                         
+    
+                            
+                        </t>
+                        
+                            <t t-foreach="ordini_vendita" t-as="ordine_vendita">
+                                <t t-esc="ordine_vendita.name"></t>
+                                <t t-esc="ordine_vendita.date_order.strftime('%d/%m/%Y')"></t>
+                            </t>
+                                
+                       
+                       
+                            
+                     
                     </td>
                 
                     

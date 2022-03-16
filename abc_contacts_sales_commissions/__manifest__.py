@@ -20,6 +20,7 @@
         'views/res_partner.xml',
         'views/sale_order.xml',
         'views/abc_lines_sales_commission.xml',
+        'views/account_move.xml',
     ],
     "installable": True,
     "application": True,

@@ -7,7 +7,7 @@ class resPartner(models.Model):
     _name = "res.partner"
     
     #Campo One2many collegato alla provvigione del contatto.
-    provvigioni_ids = fields.One2many("abc.contacts_sales_commissions", "contatto", string = "Provvigioni", help = "Specchietto provvigioni.", tracking = True)
+    provvigioni_ids = fields.One2many(comodel_name = "abc.contacts_sales_commissions", inverse_name = "contatto", string = "Provvigioni", help = "Specchietto provvigioni.", tracking = True)
     
     #Campo Many2many che si collega ai partner, NB: DIPENDE DA contatti_ids ALTRIMENTI NON FUNZIONA. 
     agenti_ids = fields.Many2many(comodel_name = "res.partner", relation = "relazione", column1 = "colonna1", column2 = "colonna2", string = "Agenti", domain = "[('provvigioni_ids', '!=', False)]")

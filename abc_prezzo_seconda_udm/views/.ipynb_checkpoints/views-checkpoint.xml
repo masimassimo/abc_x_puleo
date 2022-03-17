@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+      <record model="ir.ui.view" id="view_abc_prezzo_seconda_udm_ext_inherit">
+        <field name="name">purchase.order.view_abc_prezzo_seconda_udm_ext_inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@name='products']/field/tree/field[@name='price_unit']" position="after">
+                 <field name="price_unit_sec" attrs="{'readonly': [('invoice_lines', '!=', [])]}"/>
+            </xpath>
+            <xpath expr="//notebook/page/field/form/group/group/field[@name='price_unit']" position="after">
+                 <field name="price_unit_sec"/>
+            </xpath>
+        </field>
+      </record>
+      
+      
+          <record id="product_template_form_view_1" model="ir.ui.view">
+        <field name="name">Product template Secondary Unit 1</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product_secondary_unit.product_template_form_view"/>
+        <field name="groups_id" eval="[(4, ref('uom.group_uom'))]" />
+        <field name="arch" type="xml">
+           <xpath expr="//field[@name='factor']" position="after">
+                 <field name="fattore_inverso"/>
+                   <field name="costo_secondario"/>
+            </xpath>
+        </field>
+    </record>
+
+
+  </data>
+</odoo>
+
+
+
+
+
+

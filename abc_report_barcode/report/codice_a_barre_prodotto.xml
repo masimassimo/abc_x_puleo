@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="codice_a_barre_prodotto_template_1">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="template">
+                        <t t-foreach="template.product_variant_ids" t-as="product">
+                            <t t-call="abc_report_barcode.codice_a_barre_prodotto_template_2">
+                            <t t-set="product" t-value="product"/>
+                        </t>
+                    </t>
+                </t>
+            </div>
+        </t>
+    </template>
+    
+    
+    
+    
+    <template id="codice_a_barre_prodotto_template_3">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <t t-foreach="docs" t-as="product">
+                        <t t-call="abc_report_barcode.codice_a_barre_prodotto_template_2">
+                            <t t-set="product" t-value="product"/>
+                        </t>
+                    </t>
+                </div>
+            </t>
+        </template>
+    
+    
+    
+    
+    
+    
+    
+     <template id="codice_a_barre_prodotto_template_2">
+        
+            <style>
+                .barcode {
+                width: 60mm;
+                heigth: 50mm;
+                text-align: center;
+                }
+                
+                    .small-font {
+                                    font-size:60%;
+                                }
+            </style>
+    
+    
+    
+            <div class="barcode">
+                <table class="table table-bordered mb-0 barcode" style="border: 2px solid black;">
+                    <tr>
+                        <th class="table-active text-center small-font">
+                            <strong t-field="product.display_name"/>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td class="text-center align-middle">
+                            <t t-if="product.barcode">
+                                <img alt="Barcode" t-if="len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('EAN13', quote_plus(product.barcode or ''))"/>
+                                <img alt="Barcode" t-elif="len(product.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('EAN8', quote_plus(product.barcode or ''))"/>
+                                <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('Code128', quote_plus(product.barcode or ''))"/>
+                                <span t-field="product.barcode"/>
+                            </t>
+                            <t t-else=""><span class="text-muted">No barcode available</span></t>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+    </template>
+
+</odoo>

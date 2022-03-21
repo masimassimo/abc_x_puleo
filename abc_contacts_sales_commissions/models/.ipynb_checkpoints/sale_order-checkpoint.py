@@ -8,10 +8,21 @@ class saleOrder(models.Model):
     _inherit = "sale.order"
     _name = "sale.order"
     
+    #Funzione che calcola il totale degli importi di provvigione.
+    @api.depends("provvigioni_sline_ids.importo")
+    def calcola_totale_provvigioni_s(self):
+        for record in self:
+            totale_provvigioni_s = 0
+            righe_provvigioni = record.provvigioni_sline_ids
+            for riga_provvigione in righe_provvigioni:
+                totale_provvigioni_s += riga_provvigione.importo
+            record.update({"totale_provvigioni_s": totale_provvigioni_s})
+    
     provvigioni_sline_ids = fields.One2many(comodel_name = "abc.lines_sales_commission", inverse_name="riferimento_ordine", string = "Righe provvigioni", help = "Specchietto righe provvigioni.", tracking = True)
     
-
-                
+    #Campo totale_provvigioni che somma gli importi di tutte le singole righe di provvigione.
+    totale_provvigioni_s = fields.Monetary(string = "Totale provvigioni", readonly = True, tracking = True, help = "La somma degli importi delle singole righe di provvigione.", compute = "calcola_totale_provvigioni_s")
+                    
 class saleOrderLine(models.Model):
     _inherit = "sale.order.line"
     _name = "sale.order.line"
@@ -20,6 +31,9 @@ class saleOrderLine(models.Model):
         result = super(saleOrderLine, self).write(vals)
         
         for record in self:
+            righe_da_eliminare = []
+            n_provvigioni = 0
+            righe_provvigioni_attuali = record.order_id.provvigioni_sline_ids
             if record.order_id.partner_id.agenti_ids:
                 agenti = record.order_id.partner_id.agenti_ids
                 
@@ -28,8 +42,15 @@ class saleOrderLine(models.Model):
                     
                     for provvigione_agente in provvigioni_agente:
                                         tipo = provvigione_agente.tipo
-                                        importo = provvigione_agente.importo
                                         percentuale = provvigione_agente.percentuale
+                                        importo_percentuale = 0
+                                        
+                                        if(percentuale != 0):
+                                            importo = percentuale/100.0 * (record.price_unit * record.product_uom_qty)
+                                            importo_percentuale = importo
+                                        else:
+                                            importo = provvigione_agente.importo
+                                        
                                         contatto = provvigione_agente.contatto
                                         prodotto = None
                                         categoria_prodotto = None
@@ -50,14 +71,32 @@ class saleOrderLine(models.Model):
 
                                      
                                         if (prodotto_attuale != None and ((prodotto == prodotto_attuale) or (categoria_prodotto == categoria_prodotto_attuale))):
+                                                    n_provvigioni += 1
+                                                    _logger.info("N Provv: %s", n_provvigioni)
                                                     _logger.info("-------- IF VERO ------- ")
                                                     record.order_id.provvigioni_sline_ids = [(0, 0, {
                                                                                             "tipo": tipo,
                                                                                             "prodotto": prodotto.id,
                                                                                             "categoria_prodotto": categoria_prodotto,
                                                                                             "importo": importo,
+                                                                                            "importo_percentuale": importo_percentuale,
                                                                                             "percentuale": percentuale,
                                                                                             "contatto": contatto.id,
                                                                                             "riferimento_riga_ordine": record.id
                                                                                             })]
+                #Snippet che permette di eliminare i doppioni non aggiornati!
+                if len(record.order_id.provvigioni_sline_ids) > n_provvigioni:
+                        _logger.info("IF PROVV: %s", n_provvigioni)
+                        _logger.info("LOG ---------- righe_provvigioni_attuali %s", righe_provvigioni_attuali)
+                        
+                        for riga_provvigione_attuale in righe_provvigioni_attuali:
+                            if riga_provvigione_attuale.riferimento_riga_ordine.id == record.id:
+                                _logger.info("RIGHE PROVVIGIONI UGUALI")
+                                righe_da_eliminare.append(riga_provvigione_attuale)
+                                
+                        if(righe_da_eliminare):
+                            for riga_da_eliminare in righe_da_eliminare:
+                                riga_da_eliminare.unlink()
+                                _logger.info("Riga %s eliminata!", riga_da_eliminare.id)
+                    
         return result

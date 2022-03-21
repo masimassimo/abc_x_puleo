@@ -23,10 +23,10 @@ class abc_contacts_sales_commissions(models.Model):
     currency_id = fields.Many2one('res.currency', string='Currency', default=lambda self: self.env.user.company_id.currency_id)
     
     #Importo relativo alla provvigione calcolato sulla percentuale assegnata al contatto.
-    importo = fields.Monetary(string = "Importo", help = "Importo di provvigione dettato dalla tipologia di regola selezionata e dalla percentuale.", tracking = True, compute_sudo=True,)
+    importo = fields.Monetary(string = "Importo", help = "Importo di provvigione dettato dalla tipologia di regola selezionata e dalla percentuale.", tracking = True, compute_sudo=True, default = 0)
     
     #Percentuale di provvigione assegnata al contatto.
-    percentuale = fields.Float(string = "Percentuale", help = "Percentuale di provvigione assegnata al contatto.", tracking = True)
+    percentuale = fields.Float(string = "Percentuale", help = "Percentuale di provvigione assegnata al contatto.", tracking = True, default = 0)
     
     #Contatto al quale si vuole dare la provvigione.
     contatto = fields.Many2one("res.partner", string = "Contatto", help = "Contatto al quale si desidera dare la provvigione.", tracking = True)

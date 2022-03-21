@@ -22,20 +22,22 @@
                                       <field name="prodotto"/>
                                       <field name="categoria_prodotto"/>
                                       <field name="currency_id" invisible="1"/>
-                                      <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                                      <field name="percentuale"/>
+                                      <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('percentuale', '!=', 0)]}"/>
+                                      <field name="percentuale" attrs="{'invisible': [('importo', '!=', 0)]}"/>
                                       <field name="contatto" invisible="1"/>
                                   </tree>
 
                                   <form string="Provvigioni">
-                                      <h1><field name="nome"/></h1>
+                                      <h1> Nome regola:
+                                          <field name="nome"/>
+                                      </h1>
                                       <group>
                                         <field name="tipo"/>
                                         <field name="prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_categoria_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}"/>
                                         <field name="categoria_prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}" /> 
                                         <field name="currency_id" invisible="1"/>
-                                        <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}"/>
-                                        <field name="percentuale"/>
+                                        <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('percentuale', '!=', 0)]}"/>
+                                        <field name="percentuale" attrs="{'invisible': [('importo', '!=', 0)]}"/>
                                         <field name="contatto" invisible="1"/>
                                       </group>
                                 </form>

@@ -14,19 +14,18 @@
                             <group name ="group_right">
                          
                             </group>
-                              <field name="provvigioni_sline_ids" context="{'default_tipo': 'regola_importo_fisso'}">
+                              <field name="provvigioni_sline_ids" context="{'default_tipo': 'regola_importo_fisso'}" >
                                   <tree string="Tree Righe provvigioni">
                                       <field name="tipo" />
                                       <field name="prodotto"/>
                                       <field name="categoria_prodotto" />
                                       <field name="currency_id" invisible="1" />
-                                      <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('percentuale', '!=', 0)]}"/>
-                                      <field name="importo_percentuale" attrs="{'invisible': ['|', ('tipo', '=', 'regola_importo_fisso'), ('percentuale', '=', 0)]}"/>
-                                      <field name="percentuale" attrs="{'invisible': [('tipo', '=', 'regola_importo_fisso')]}"/>
+                                      <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                      <field name="percentuale"/>
                                       <field name="contatto"/>
-                                      <field name="riferimento_riga_ordine" readonly="1" optional="hide"/>
-                                      <field name="riferimento_ordine" readonly="1" optional="hide"/>
-                                      <field name="riferimento_fattura" readonly = "1" optional="hide"/>
+                                      <field name="riferimento_riga_ordine" optional="hide"/>
+                                      <field name="riferimento_ordine" optional="hide"/>
+                                      <field name="riferimento_fattura" optional="hide"/>
                                       <field name="stato_provvigione" decoration-success="stato_provvigione == 'fatturato'" decoration-danger="stato_provvigione == 'da_fatturare'" widget="badge" optional="show"/>
                                   </tree>
                                   <form string="Form Righe Provvigioni">
@@ -36,8 +35,8 @@
                                         <field name="categoria_prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}" /> 
                                         <field name="currency_id" invisible="1"/>
                                         <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('percentuale', '!=', 0)]}"/>
-                                        <field name="percentuale" attrs="{'invisible': [('tipo', '=', 'regola_importo_fisso')]}"/>
-                                        <field name="contatto"/>
+                                        <field name="percentuale" attrs="{'invisible': [('tipo', '=', 'regola_importo_fisso')]}" />
+                                        <field name="contatto" attrs="{'readonly': [('contatto', '!=', False)]} " force_save="1"/>
                                         <field name="riferimento_riga_ordine" readonly = "1"/>
                                         <field name="riferimento_ordine" readonly = "1"/>
                                         <field name="riferimento_fattura" readonly = "1"/>

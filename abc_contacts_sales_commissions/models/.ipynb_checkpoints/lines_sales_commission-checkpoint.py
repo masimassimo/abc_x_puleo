@@ -14,7 +14,7 @@ class abc_lines_sales_commission(models.Model):
                             help =  "Prodotto - Regola che vale su un determinato prodotto. \n"
                                     "Categoria prodotto - Regola che vale su una determinata categoria di prodotti. \n"
                                     "Importo fisso - Regola di provvigione ad importo costante. \n",
-                            tracking = True, required = True, default = "regola_prodotto", readonly = True
+                            tracking = True, required = True, default = "regola_importo_fisso", readonly = True
                            )
     
     #Moneta corrente obbligatoria per il campo importo.
@@ -27,10 +27,10 @@ class abc_lines_sales_commission(models.Model):
     importo_percentuale = fields.Float(string = "Importo percentuale", help = "Importo sulla percentuale scelta.", tracking = True, default = 0)
     
     #Percentuale di provvigione assegnata al contatto.
-    percentuale = fields.Float(string = "Percentuale", help = "Percentuale di provvigione assegnata al contatto.", tracking = True, default = 0)
+    percentuale = fields.Float(string = "Percentuale %", help = "Percentuale di provvigione assegnata al contatto.", tracking = True, default = 0)
     
     #Contatto al quale si vuole dare la provvigione.
-    contatto = fields.Many2one("res.partner", string = "Contatto", help = "Contatto al quale si desidera dare la provvigione.", tracking = True, readonly = True)
+    contatto = fields.Many2one("res.partner", string = "Contatto", help = "Contatto al quale si desidera dare la provvigione.", tracking = True, required = True, store = True)
     
     #Campo prodotto che permette di selezionare qualsiasi prodotto se selezionato il tipo regola_prodotto
     prodotto = fields.Many2one("product.product", string = "Prodotto", help = "Seleziona il prodotto sul quale si riceve la provvigione.", tracking = True, readonly = True)

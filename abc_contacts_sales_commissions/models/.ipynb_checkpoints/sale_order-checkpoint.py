@@ -20,6 +20,17 @@ class saleOrder(models.Model):
     
     provvigioni_sline_ids = fields.One2many(comodel_name = "abc.lines_sales_commission", inverse_name="riferimento_ordine", string = "Righe provvigioni", help = "Specchietto righe provvigioni.", tracking = True)
     
+    @api.onchange("provvigioni_sline_ids")
+    def calcola_nuovo_importo(self):
+        _logger.info("calcola_nuovo_importo")
+        for record in self:
+            righe_provvigioni = record.provvigioni_sline_ids
+            for riga_provvigione in righe_provvigioni:
+                if riga_provvigione.percentuale != 0:
+                    nuovo_importo = riga_provvigione.percentuale/100.0 * (riga_provvigione.riferimento_riga_ordine.price_unit * riga_provvigione.riferimento_riga_ordine.product_uom_qty)
+                    _logger.info("nuovo_importo %s", nuovo_importo)
+                    riga_provvigione.update({'importo': nuovo_importo})
+    
     #Campo totale_provvigioni che somma gli importi di tutte le singole righe di provvigione.
     totale_provvigioni_s = fields.Monetary(string = "Totale provvigioni", readonly = True, tracking = True, help = "La somma degli importi delle singole righe di provvigione.", compute = "calcola_totale_provvigioni_s")
                     
@@ -49,7 +60,7 @@ class saleOrderLine(models.Model):
                                             importo = percentuale/100.0 * (record.price_unit * record.product_uom_qty)
                                             importo_percentuale = importo
                                         else:
-                                            importo = provvigione_agente.importo
+                                            importo = provvigione_agente.importo * record.product_uom_qty
                                         
                                         contatto = provvigione_agente.contatto
                                         prodotto = None
@@ -70,14 +81,26 @@ class saleOrderLine(models.Model):
                                             categoria_prodotto_attuale = record.product_id.categ_id
 
                                      
-                                        if (prodotto_attuale != None and ((prodotto == prodotto_attuale) or (categoria_prodotto == categoria_prodotto_attuale))):
+                                        if (prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale ):
+                                                    n_provvigioni += 1
+                                                    _logger.info("N Provv: %s", n_provvigioni)
+                                                    _logger.info("-------- IF VERO ------- ")
+                                                    record.order_id.provvigioni_sline_ids = [(0, 0, {
+                                                                                            "tipo": tipo,
+                                                                                            "categoria_prodotto": categoria_prodotto.id,
+                                                                                            "importo": importo,
+                                                                                            "importo_percentuale": importo_percentuale,
+                                                                                            "percentuale": percentuale,
+                                                                                            "contatto": contatto.id,
+                                                                                            "riferimento_riga_ordine": record.id
+                                                                                            })]
+                                        elif (prodotto_attuale != None and prodotto == prodotto_attuale):
                                                     n_provvigioni += 1
                                                     _logger.info("N Provv: %s", n_provvigioni)
                                                     _logger.info("-------- IF VERO ------- ")
                                                     record.order_id.provvigioni_sline_ids = [(0, 0, {
                                                                                             "tipo": tipo,
                                                                                             "prodotto": prodotto.id,
-                                                                                            "categoria_prodotto": categoria_prodotto,
                                                                                             "importo": importo,
                                                                                             "importo_percentuale": importo_percentuale,
                                                                                             "percentuale": percentuale,

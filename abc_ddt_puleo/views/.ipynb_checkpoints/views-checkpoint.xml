@@ -1,0 +1,43 @@
+<odoo>
+  <data>
+   
+           <record model="ir.ui.view" id="l10n_it_delivery_note_inherit_1">
+      <field name="name">l10n_it_delivery_note_inherit_1</field>
+      <field name="model">stock.delivery.note</field>
+      <field name="inherit_id" ref="l10n_it_delivery_note.stock_delivery_note_form_view"/>
+      <field name="arch" type="xml">
+          
+        <xpath expr="//group[4]/group[2]" position="after">
+    
+         <group>
+                            <field name="tipo_container"/>
+                            <field name="n_container" />
+             <field name="n_sigillo" />
+                        </group>
+       
+   
+        </xpath>
+      </field>
+      </record>
+    
+    
+          <!-- Faccio in modo che il campo carrier_id all'interno della vista del DDT mostri i contatti che hanno anche l'etichetta VETTORE impostata. -->
+      
+             <record model="ir.ui.view" id="l10n_it_delivery_note_inherit_2">
+      <field name="name">l10n_it_delivery_note_inherit_2</field>
+      <field name="model">stock.delivery.note</field>
+      <field name="inherit_id" ref="l10n_it_delivery_note.stock_delivery_note_form_view"/>
+      <field name="arch" type="xml">
+          
+        <xpath expr="//field[@name='carrier_id']" position="replace">
+    
+            <field name="carrier_id" domain = "['|', ('supplier_rank','&gt;', 0) , ('category_id.name', '=', 'VETTORE')]"/>
+       
+   
+        </xpath>
+      </field>
+      </record>
+      
+      
+  </data>
+</odoo>

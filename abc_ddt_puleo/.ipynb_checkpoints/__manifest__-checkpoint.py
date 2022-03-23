@@ -10,16 +10,18 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'DDT',
-    'version': '0.1',
+    'version': '0.3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base', 'stock'],
+    'depends': ['base', 'stock', 'l10n_it_delivery_note', 'l10n_it_delivery_note_batch', 'l10n_it_delivery_note_base', 'l10n_it_delivery_note_order_link'],
 
     # always loaded
     'data': [
         'data/ddt_formato_carta.xml',
         'security/ir.model.access.csv',
         'report/ddt_puleo.xml',
+        'views/views.xml',
+        'views/stock_picking.xml',
     ],
     "installable":True,
     "application": True,

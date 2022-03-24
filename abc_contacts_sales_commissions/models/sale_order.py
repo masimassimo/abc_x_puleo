@@ -19,7 +19,7 @@ class saleOrder(models.Model):
             record.update({"totale_provvigioni_s": totale_provvigioni_s})
     
     provvigioni_sline_ids = fields.One2many(comodel_name = "abc.lines_sales_commission", inverse_name="riferimento_ordine", string = "Righe provvigioni", help = "Specchietto righe provvigioni.", tracking = True)
-    
+        
     @api.onchange("provvigioni_sline_ids")
     def calcola_nuovo_importo(self):
         _logger.info("calcola_nuovo_importo")
@@ -33,6 +33,7 @@ class saleOrder(models.Model):
     
     #Campo totale_provvigioni che somma gli importi di tutte le singole righe di provvigione.
     totale_provvigioni_s = fields.Monetary(string = "Totale provvigioni", readonly = True, tracking = True, help = "La somma degli importi delle singole righe di provvigione.", compute = "calcola_totale_provvigioni_s")
+    
                     
 class saleOrderLine(models.Model):
     _inherit = "sale.order.line"
@@ -113,7 +114,7 @@ class saleOrderLine(models.Model):
                         _logger.info("LOG ---------- righe_provvigioni_attuali %s", righe_provvigioni_attuali)
                         
                         for riga_provvigione_attuale in righe_provvigioni_attuali:
-                            if riga_provvigione_attuale.riferimento_riga_ordine.id == record.id:
+                            if riga_provvigione_attuale.riferimento_riga_ordine.id == record.id and not riga_provvigione_attuale.riferimento_ordine_fittizio:
                                 _logger.info("RIGHE PROVVIGIONI UGUALI")
                                 righe_da_eliminare.append(riga_provvigione_attuale)
                                 

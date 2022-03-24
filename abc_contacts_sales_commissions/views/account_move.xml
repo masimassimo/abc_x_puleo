@@ -25,7 +25,7 @@
                                       <field name="contatto" />
                                       <field name="riferimento_ordine" optional="hide"/>
                                       <field name="riferimento_fattura" optional="hide"/>
-                                      <field name="stato_provvigione" decoration-success="stato_provvigione == 'fatturato'" decoration-danger="stato_provvigione == 'da_fatturare'" widget="badge" optional="show"/>
+                                      <field name="stato_provvigione" decoration-success="stato_provvigione == 'liquidata'" decoration-danger="stato_provvigione == 'da_liquidare'" widget="badge" optional="show"/>
                                   </tree>
                                   <form string="Form Righe Provvigioni">
                                       <group>

@@ -8,6 +8,97 @@ class saleOrder(models.Model):
     _inherit = "sale.order"
     _name = "sale.order"
     
+    #Funzione che permette di calcolare le provvigioni su un determinato Ordine di vendita. Essa ogni volta che viene aggiunto o rimosso un prodotto dall'ordine di vendita viene chiamata e
+    #a seconda degli agenti relativi al campo partner_id dell'ordine di vendita e alle loro regole di provvigione, se è il caso (una regola matcha con un prodotto in ordine) va a scrivere 
+    #la provvigione per l'agente. 
+    @api.depends("order_line")
+    def _calcolaProvvigioni(self):
+        
+        for record in self:
+            righe_ordine_vendita = record.order_line
+              
+            for riga_ordine_vendita in righe_ordine_vendita:
+                provvigioni_sline_ids = []
+                righe_da_eliminare = [] #Check
+                righe_provvigioni_attuali = record.provvigioni_sline_ids
+                
+                for riga_provvigione_attuale in righe_provvigioni_attuali:
+                    if riga_provvigione_attuale.riferimento_riga_ordine.id == riga_ordine_vendita.id and not riga_provvigione_attuale.riferimento_ordine_fittizio:
+                        righe_da_eliminare.append(riga_provvigione_attuale)
+                    
+                    if(righe_da_eliminare):
+                        for riga_da_eliminare in righe_da_eliminare:
+                            _logger.info("Adesso elimino la riga: %s", riga_da_eliminare.id)
+                            riga_da_eliminare.unlink()
+                
+                if record.partner_id.agenti_ids:
+                    agenti = record.partner_id.agenti_ids
+
+                    for agente in agenti:
+                        provvigioni_agente = agente.provvigioni_ids
+
+                        for provvigione_agente in provvigioni_agente:
+                            tipo = provvigione_agente.tipo
+                            percentuale = provvigione_agente.percentuale
+                            importo_percentuale = 0
+                            contatto = provvigione_agente.contatto
+                            prodotto = None
+                            categoria_prodotto = None
+                            prodotto_attuale = None #Check
+                            categoria_prodotto_attuale = None #Check
+
+                            if(percentuale != 0):
+                                importo = percentuale/100.0 * (riga_ordine_vendita.price_unit * riga_ordine_vendita.product_uom_qty)
+                                importo_percentuale = importo
+                            else:
+                                importo = provvigione_agente.importo * riga_ordine_vendita.product_uom_qty
+
+                            if tipo == "regola_prodotto":
+                                prodotto = provvigione_agente.prodotto
+
+                            if tipo == "regola_categoria_prodotto":
+                                categoria_prodotto = provvigione_agente.categoria_prodotto
+
+                            if riga_ordine_vendita.product_id:
+                                prodotto_attuale = riga_ordine_vendita.product_id
+
+                            if riga_ordine_vendita.product_id.categ_id:
+                                categoria_prodotto_attuale = riga_ordine_vendita.product_id.categ_id
+                             
+                            if (prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale): #Check
+                                _logger.info("-------- Aggiunta provvigione per CATEGORIA. ------- ")
+                                provvigioni_sline_ids.append((0, 0, {
+                                                                    "tipo": tipo,
+                                                                    "categoria_prodotto": categoria_prodotto.id,
+                                                                    "importo": importo,
+                                                                    "importo_percentuale": importo_percentuale,
+                                                                    "percentuale": percentuale,
+                                                                    "contatto": contatto.id,
+                                                                    "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                    }))
+                            elif (prodotto_attuale != None and prodotto == prodotto_attuale): #Check
+                                _logger.info("-------- Aggiunta provvigione per PRODOTTO. ------- ")
+                                provvigioni_sline_ids.append((0, 0, {
+                                                                    "tipo": tipo,
+                                                                    "prodotto": prodotto.id,
+                                                                    "importo": importo,
+                                                                    "importo_percentuale": importo_percentuale,
+                                                                    "percentuale": percentuale,
+                                                                    "contatto": contatto.id,
+                                                                    "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                    }))
+                if(provvigioni_sline_ids):     
+                    _logger.info("Provvigione line_ids : %s", provvigioni_sline_ids)
+            
+                    record.write({"provvigioni_sline_ids": provvigioni_sline_ids})
+            
+                    _logger.info("-------- Ho terminato di scrivere le provvigioni! ------- ")
+                else:
+                    _logger.info("Non ho scritto nessuna provvigione per il prodotto: %s", riga_ordine_vendita.product_id.name)
+             
+    #Campo dummy che mi permette di calcolare le provvigioni relative ad un ordine di vendita.        
+    aggiungi_provvigioni = fields.Boolean(string = "Aggiungi provvigioni", help = "Campo dummy che mi permette di calcolare le provvigioni relative ad un ordine di vendita.", store = True, compute = _calcolaProvvigioni)
+        
     #Funzione che calcola il totale degli importi di provvigione.
     @api.depends("provvigioni_sline_ids.importo")
     def calcola_totale_provvigioni_s(self):
@@ -17,6 +108,7 @@ class saleOrder(models.Model):
             for riga_provvigione in righe_provvigioni:
                 totale_provvigioni_s += riga_provvigione.importo
             record.update({"totale_provvigioni_s": totale_provvigioni_s})
+            _logger.info(" -------- calcola_totale_provvigioni_s -------- ")
     
     provvigioni_sline_ids = fields.One2many(comodel_name = "abc.lines_sales_commission", inverse_name="riferimento_ordine", string = "Righe provvigioni", help = "Specchietto righe provvigioni.", tracking = True)
         
@@ -34,7 +126,9 @@ class saleOrder(models.Model):
     #Campo totale_provvigioni che somma gli importi di tutte le singole righe di provvigione.
     totale_provvigioni_s = fields.Monetary(string = "Totale provvigioni", readonly = True, tracking = True, help = "La somma degli importi delle singole righe di provvigione.", compute = "calcola_totale_provvigioni_s")
     
-                    
+    
+    
+'''
 class saleOrderLine(models.Model):
     _inherit = "sale.order.line"
     _name = "sale.order.line"
@@ -124,3 +218,4 @@ class saleOrderLine(models.Model):
                                 _logger.info("Riga %s eliminata!", riga_da_eliminare.id)
                     
         return result
+'''

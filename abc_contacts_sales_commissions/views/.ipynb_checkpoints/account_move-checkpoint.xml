@@ -36,7 +36,7 @@
                                         <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('percentuale', '!=', 0)]}"/>
                                         <field name="percentuale" attrs="{'invisible': [('tipo', '=', 'regola_importo_fisso')]}" />
                                         <field name="contatto" attrs="{'readonly': [('contatto', '!=', False)]} " force_save="1"/>
-                                        <field name="riferimento_ordine" readonly = "1"/> 
+                                        <field name="riferimento_ordine" /> 
                                         <field name="riferimento_fattura" readonly = "1"/>  
                                         <field name="stato_provvigione"/>
                                       </group>

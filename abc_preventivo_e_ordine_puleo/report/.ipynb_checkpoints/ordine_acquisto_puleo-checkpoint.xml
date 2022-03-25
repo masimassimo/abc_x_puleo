@@ -9,7 +9,7 @@
         </t>
         <t t-if="o.dest_address_id">
             <t t-set="information_block">
-                <strong>Shipping address:</strong>
+                <strong>Indirizzo di spedizione:</strong>
                 <div t-if="o.dest_address_id">
                     <div t-field="o.dest_address_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}" name="purchase_shipping_address"/>
                 </div>
@@ -18,7 +18,7 @@
         </t>
             <t t-else="">
                 <t t-set="information_block">
-                    <strong>Shipping address:</strong>
+                    <strong>Indirizzo di spedizione:</strong>
                     <div t-if="o.picking_type_id and o.picking_type_id.warehouse_id">
                         <span t-field="o.picking_type_id.warehouse_id.name"/>
                         <div t-field="o.picking_type_id.warehouse_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
@@ -29,22 +29,22 @@
         <div class="page">
             <div class="oe_structure"/>
 
-            <h2 t-if="o.state == 'draft'">Request for Quotation #<span t-field="o.name"/></h2>
-            <h2 t-if="o.state in ['sent', 'to approve']">Purchase Order #<span t-field="o.name"/></h2>
-            <h2 t-if="o.state in ['purchase', 'done']">Purchase Order #<span t-field="o.name"/></h2>
-            <h2 t-if="o.state == 'cancel'">Cancelled Purchase Order #<span t-field="o.name"/></h2>
+            <h2 t-if="o.state == 'draft'">Richiesta di Preventivo #<span t-field="o.name"/></h2>
+            <h2 t-if="o.state in ['sent', 'to approve']">Ordine di acquisto #<span t-field="o.name"/></h2>
+            <h2 t-if="o.state in ['purchase', 'done']">Ordine di acquisto #<span t-field="o.name"/></h2>
+            <h2 t-if="o.state == 'cancel'">Ordine di acquisto cancellato #<span t-field="o.name"/></h2>
 
             <div id="informations" class="row mt32 mb32">
                 <div t-if="o.user_id" class="col-3 bm-2">
-                    <strong>Purchase Representative:</strong>
+                    <strong>Referente acquisti:</strong>
                     <p t-field="o.user_id" class="m-0"/>
                 </div>
                 <div t-if="o.partner_ref" class="col-3 bm-2">
-                    <strong>Your Order Reference:</strong>
+                    <strong>Riferimento fornitore:</strong>
                     <p t-field="o.partner_ref" class="m-0"/>
                 </div>
                 <div t-if="o.date_order" class="col-3 bm-2">
-                    <strong>Order Date:</strong>
+                    <strong>Data ordine:</strong>
                     <p t-field="o.date_order" class="m-0"/>
                 </div>
             <div t-if="o.incoterm_id" class="col-3 bm-2">
@@ -53,7 +53,7 @@
             </div>
         
             </div>
-            <t t-call="product_matrix.matrix_copy_5">
+            <t t-call="product_matrix.matrix">
                 <t t-set="order" t-value="o"/>
             </t>
         
@@ -61,14 +61,14 @@
             <table class="table table-sm o_main_table">
                 <thead>
                     <tr>
-                        <th name="th_description"><strong>Description</strong></th>
-                        <th name="th_taxes"><strong>Taxes</strong></th>
-                        <th name="th_date_req" class="text-center"><strong>Date Req.</strong></th>
-                        <th name="th_quantity" class="text-right"><strong>Qty</strong></th>
-                        <th name="th_price_unit" class="text-right"><strong>Unit Price</strong></th>
-                    <th><strong>Total Discount(%) </strong></th>
+                        <th name="th_description"><strong>Descrizione</strong></th>
+                        <th name="th_taxes"><strong>Imposte</strong></th>
+                        <th name="th_date_req" class="text-center"><strong>Data Ric.</strong></th>
+                        <th name="th_quantity" class="text-right"><strong>Quantità</strong></th>
+                        <th name="th_price_unit" class="text-right"><strong>Prezzo Unitario</strong></th>
+               
                 
-                        <th name="th_amount" class="text-right"><strong>Amount</strong></th>
+                        <th name="th_amount" class="text-right"><strong>Totale</strong></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -99,11 +99,14 @@
                                     </t>
                                 </td>
                                 <td class="text-right">
-                                    <span t-field="line.price_unit"/>
+                                      <t t-if="line.secondary_uom_qty and line.secondary_uom_id and line.price_unit_sec">
+                                        <span t-field="line.price_unit_sec"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-field="line.price_unit"/>
+                                    </t>
                                 </td>
-                        <td class="text-center">
-                            <span t-field="line.discount"/>
-                        </td>                      
+                                          
                 
                                 <td class="text-right">
                                     <span t-field="line.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
@@ -125,7 +128,7 @@
                         <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">
                             <tr class="is-subtotal text-right">
                                 <td colspan="99" id="subtotal">
-                                    <strong class="mr16">Subtotal</strong>
+                                    <strong class="mr16">Subtotale</strong>
                                     <span t-esc="current_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                                 </td>
                             </tr>
@@ -138,19 +141,19 @@
                 <div class="col-4">
                     <table class="table table-sm">
                         <tr class="border-black">
-                            <td name="td_subtotal_label"><strong>Subtotal</strong></td>
+                            <td name="td_subtotal_label"><strong>Subtotale</strong></td>
                             <td class="text-right">
                                 <span t-field="o.amount_untaxed" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                             </td>
                         </tr>
                         <tr>
-                            <td name="td_taxes_label">Taxes</td>
+                            <td name="td_taxes_label">Imposte</td>
                             <td class="text-right">
                                 <span t-field="o.amount_tax" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                             </td>
                         </tr>
                         <tr class="border-black o_total">
-                            <td name="td_amount_total_label"><strong>Total</strong></td>
+                            <td name="td_amount_total_label"><strong>Totale</strong></td>
                             <td class="text-right">
                                 <span t-field="o.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
                             </td>

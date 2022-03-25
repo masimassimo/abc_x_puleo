@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Sale',
-    'version': '0.8',
+    'version': '0.9',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'purchase', 'purchase_order_secondary_unit', 'product_secondary_unit'],

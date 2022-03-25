@@ -9,13 +9,13 @@
         </t>
         <t t-if="o.dest_address_id">
             <t t-set="information_block">
-                <strong>Shipping address:</strong>
+                <strong>Indirizzo di spedizione:</strong>
                 <div t-field="o.dest_address_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}" name="purchase_shipping_address"/>
             </t>
         </t>
             <t t-else="">
                 <t t-set="information_block">
-                    <strong>Shipping address:</strong>
+                    <strong>Indirizzo di spedizione:</strong>
                     <div t-if="o.picking_type_id and o.picking_type_id.warehouse_id">
                         <span t-field="o.picking_type_id.warehouse_id.name"/>
                         <div t-field="o.picking_type_id.warehouse_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;phone&quot;], &quot;no_marker&quot;: True, &quot;phone_icons&quot;: True}"/>
@@ -26,7 +26,7 @@
         <div class="page">
             <div class="oe_structure"/>
 
-            <h2>Request for Quotation <span t-field="o.name"/></h2>
+            <h2>Richiesta di Preventivo <span t-field="o.name"/></h2>
             <div id="informations" class="row mt16 mb16">
                 <div t-if="o.incoterm_id" class="col-3 bm-2">
                     <strong>Incoterm:</strong>
@@ -36,15 +36,15 @@
         
 
             
-            <t t-call="product_matrix.matrix_copy_4">
+            <t t-call="product_matrix.matrix">
                 <t t-set="order" t-value="o"/>
             </t>
         <table class="table table-sm">
                 <thead>
                     <tr>
-                        <th name="th_description"><strong>Description</strong></th>
-                        <th name="th_expected_date" class="text-center"><strong>Expected Date</strong></th>
-                        <th name="th_quantity" class="text-right"><strong>Qty</strong></th>
+                        <th name="th_description"><strong>Descrizione</strong></th>
+                        <th name="th_expected_date" class="text-center"><strong>Data Attesa</strong></th>
+                        <th name="th_quantity" class="text-right"><strong>Quantità</strong></th>
                     </tr>
                 </thead>
                 <tbody>

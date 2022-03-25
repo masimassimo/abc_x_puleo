@@ -44,7 +44,7 @@
                     <tr>
                         <th name="th_description"><strong>Descrizione</strong></th>
                         <th name="th_expected_date" class="text-center"><strong>Data Attesa</strong></th>
-                        <th name="th_quantity" class="text-right"><strong>Qty</strong></th>
+                        <th name="th_quantity" class="text-right"><strong>Quantità</strong></th>
                     </tr>
                 </thead>
                 <tbody>

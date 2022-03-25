@@ -64,9 +64,9 @@
                         <th name="th_description"><strong>Descrizione</strong></th>
                         <th name="th_taxes"><strong>Imposte</strong></th>
                         <th name="th_date_req" class="text-center"><strong>Data Ric.</strong></th>
-                        <th name="th_quantity" class="text-right"><strong>Qty</strong></th>
+                        <th name="th_quantity" class="text-right"><strong>Quantità</strong></th>
                         <th name="th_price_unit" class="text-right"><strong>Prezzo Unitario</strong></th>
-                    <th><strong>Totale Sconto(%) </strong></th>
+               
                 
                         <th name="th_amount" class="text-right"><strong>Totale</strong></th>
                     </tr>
@@ -106,9 +106,7 @@
                                         <span t-field="line.price_unit"/>
                                     </t>
                                 </td>
-                        <td class="text-center">
-                            <span t-field="line.discount"/>
-                        </td>                      
+                                          
                 
                                 <td class="text-right">
                                     <span t-field="line.price_subtotal" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>

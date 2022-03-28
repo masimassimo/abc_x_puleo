@@ -13,4 +13,7 @@ class resPartner(models.Model):
     agenti_ids = fields.Many2many(comodel_name = "res.partner", relation = "relazione", column1 = "colonna1", column2 = "colonna2", string = "Agenti", domain = "[('provvigioni_ids', '!=', False)]")
     
     #Campo Many2many che si collega ai partner, NB: DIPENDE DA agenti_ids ALTRIMENTI NON FUNZIONA.
-    contatti_ids = fields.Many2many(comodel_name = "res.partner", relation = "relazione", column1 = "colonna2", column2 = "colonna1", string = "Contatti", readonly = True)
+    contatti_ids = fields.Many2many(comodel_name = "res.partner", relation = "relazione", column1 = "colonna2", column2 = "colonna1", string = "Contatti associati", readonly = True)
+    
+    #Campo Booleano che permette di discriminare un cliente Direzionale da Non Direzionale.
+    direzionale = fields.Boolean(string = "Direzionale", help = "Campo Booleano che permette di discriminare un cliente Direzionale da Non Direzionale.", tracking = True, default = False)

@@ -10,6 +10,7 @@
             <form string="Form provvigione contatto">
                 <sheet>                    
                     <group>
+                        <field name="name"/>
                         <field name="nome" />
                         <field name="tipo" />
                         <field name="prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_categoria_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}"/>
@@ -31,6 +32,7 @@
         <field name="model">abc.contacts_sales_commissions</field>
         <field name="arch" type="xml">
             <tree string="Tree provvigione contatto">
+                <field name="name"/>
                 <field name="nome" />
                 <field name="tipo" />
                 <field name="prodotto"/>
@@ -49,6 +51,7 @@
         <field name="model">abc.contacts_sales_commissions</field>
         <field name="arch" type="xml">
             <search string="Search provvigione contatto">
+                <field name="name"/>
                 <field name="contatto"/>
             </search>
         </field>
@@ -57,7 +60,7 @@
       
     <!-- MENU MODULO -->
 
-    <menuitem id="abc_contacts_sales_commissions_menu" name="Provvigioni"/>
+    <menuitem id="abc_contacts_sales_commissions_menu" name="Provvigioni" web_icon="abc_contacts_sales_commissions,static/src/img/logo.png"/>
       
     <record model="ir.actions.act_window" id="action_contacts_sales_commissions_rules">
         <field name="name">Regole provvigioni</field>

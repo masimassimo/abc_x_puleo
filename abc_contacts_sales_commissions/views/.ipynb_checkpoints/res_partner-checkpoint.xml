@@ -12,7 +12,8 @@
                             <group name ="group_left">
                                 <field name = "agenti_ids" widget = "many2many_tags" options="{'no_create': True, 'no_create_edit':True}"/>
                             </group>
-                            <group name ="group_right">
+                            <group name = "group_right">
+                            <field name = "direzionale"/>
                             <field name = "contatti_ids" widget = "many2many_tags"/>
                             </group>
                               <field name="provvigioni_ids" context="{'default_contatto': id}">
@@ -21,10 +22,10 @@
                                       <field name="tipo"/>
                                       <field name="prodotto"/>
                                       <field name="categoria_prodotto"/>
-                                      <field name="currency_id" invisible="1"/>
                                       <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('percentuale', '!=', 0)]}"/>
                                       <field name="percentuale" attrs="{'invisible': [('importo', '!=', 0)]}"/>
                                       <field name="contatto" invisible="1"/>
+                                      <field name="direzionale"/>
                                   </tree>
 
                                   <form string="Provvigioni">
@@ -35,10 +36,10 @@
                                         <field name="tipo"/>
                                         <field name="prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_categoria_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}"/>
                                         <field name="categoria_prodotto" attrs="{'invisible': ['|', ('tipo', '=', 'regola_prodotto'), ('tipo', '=', 'regola_importo_fisso')]}" /> 
-                                        <field name="currency_id" invisible="1"/>
                                         <field name="importo" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('percentuale', '!=', 0)]}"/>
                                         <field name="percentuale" attrs="{'invisible': [('importo', '!=', 0)]}"/>
                                         <field name="contatto" invisible="1"/>
+                                        <field name="direzionale"/>
                                       </group>
                                 </form>
                             </field>

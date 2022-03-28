@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Contacts',
-    'version': '0.3',
+    'version': '0.4',
 
     'depends': ['base', 'account', 'sale'],
 
@@ -21,6 +21,7 @@
         'views/sale_order.xml',
         'views/abc_lines_sales_commission.xml',
         'views/account_move.xml',
+        'views/conf.xml'
     ],
     "installable": True,
     "application": True,

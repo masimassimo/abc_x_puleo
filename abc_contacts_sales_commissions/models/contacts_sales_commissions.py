@@ -6,6 +6,8 @@ class abc_contacts_sales_commissions(models.Model):
     _name = "abc.contacts_sales_commissions"    
     _description = "Modulo che gestisce le provvigioni sui contatti."
     
+    name = fields.Char(string="Nome Provvigione" , store=True, required=True, tracking=True)
+    
     #Nome della regola.
     nome = fields.Char(string = "Nome regola", help = "Il nome dato alla regola.", required = True)
     
@@ -36,3 +38,6 @@ class abc_contacts_sales_commissions(models.Model):
     
     #Campo categoria_prodotto che permette di selezionare qualsiasi prodotto se selezionato il tipo regola_categoria_prodotto
     categoria_prodotto = fields.Many2one("product.category", string = "Categoria prodotto", help = "Seleziona la categoria di prodotti sulla quale si riceve la provvigione.", tracking = True)
+    
+    #Campo Direzionale che permette di discriminare una regola Direzionale da una Non Direzionale. Qualora il cliente fosse Direzionale verranno considerate solo le regole Direzionali.
+    direzionale = fields.Boolean(string = "Direzionale", help = "Campo Direzionale che permette di discriminare una regola Direzionale da una Non Direzionale. Qualora il cliente fosse Direzionale verranno considerate solo le regole Direzionali.", tracking = True, default = False)

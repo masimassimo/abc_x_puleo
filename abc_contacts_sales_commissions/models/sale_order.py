@@ -15,7 +15,13 @@ class saleOrder(models.Model):
     def _calcolaProvvigioni(self):
         
         for record in self:
+            cliente_direzionale = False
+            addetto_vendite = self.env['res.config.settings'].get_values()['addetto_vendite']
             righe_ordine_vendita = record.order_line
+            
+            if(record.partner_id.direzionale):
+                _logger.info("Il Cliente %s è un cliente Direzionale", record.partner_id.name)
+                cliente_direzionale = True
               
             for riga_ordine_vendita in righe_ordine_vendita:
                 provvigioni_sline_ids = []
@@ -30,63 +36,125 @@ class saleOrder(models.Model):
                         for riga_da_eliminare in righe_da_eliminare:
                             _logger.info("Adesso elimino la riga: %s", riga_da_eliminare.id)
                             riga_da_eliminare.unlink()
+                            
+                #Se il flag del menù di configurazione è attivo viene considerato come unico agente l'addetto vendite. Altrimenti tutti quelli presenti nel campo agenti_ids.
+                if(addetto_vendite):
+                    agenti = record.user_id
+                    _logger.info("Il flag è attivo e l'agente è: %s", record.user_id)
                 
-                if record.partner_id.agenti_ids:
-                    agenti = record.partner_id.agenti_ids
-
+                else:
+                    if(record.partner_id.agenti_ids):
+                        agenti = record.partner_id.agenti_ids
+                        
+                if(agenti):
+                    
                     for agente in agenti:
                         provvigioni_agente = agente.provvigioni_ids
 
                         for provvigione_agente in provvigioni_agente:
-                            tipo = provvigione_agente.tipo
-                            percentuale = provvigione_agente.percentuale
-                            importo_percentuale = 0
-                            contatto = provvigione_agente.contatto
-                            prodotto = None
-                            categoria_prodotto = None
-                            prodotto_attuale = None #Check
-                            categoria_prodotto_attuale = None #Check
+                            
+                            if(cliente_direzionale and provvigione_agente.direzionale):
+                                tipo = provvigione_agente.tipo
+                                percentuale = provvigione_agente.percentuale
+                                importo_percentuale = 0
+                                contatto = provvigione_agente.contatto
+                                prodotto = None
+                                categoria_prodotto = None
+                                prodotto_attuale = None #Check
+                                categoria_prodotto_attuale = None #Check
 
-                            if(percentuale != 0):
-                                importo = percentuale/100.0 * (riga_ordine_vendita.price_unit * riga_ordine_vendita.product_uom_qty)
-                                importo_percentuale = importo
-                            else:
-                                importo = provvigione_agente.importo * riga_ordine_vendita.product_uom_qty
+                                if(percentuale != 0):
+                                    importo = percentuale/100.0 * (riga_ordine_vendita.price_unit * riga_ordine_vendita.product_uom_qty)
+                                    importo_percentuale = importo
+                                else:
+                                    importo = provvigione_agente.importo * riga_ordine_vendita.product_uom_qty
 
-                            if tipo == "regola_prodotto":
-                                prodotto = provvigione_agente.prodotto
+                                if tipo == "regola_prodotto":
+                                    prodotto = provvigione_agente.prodotto
 
-                            if tipo == "regola_categoria_prodotto":
-                                categoria_prodotto = provvigione_agente.categoria_prodotto
+                                if tipo == "regola_categoria_prodotto":
+                                    categoria_prodotto = provvigione_agente.categoria_prodotto
 
-                            if riga_ordine_vendita.product_id:
-                                prodotto_attuale = riga_ordine_vendita.product_id
+                                if riga_ordine_vendita.product_id:
+                                    prodotto_attuale = riga_ordine_vendita.product_id
 
-                            if riga_ordine_vendita.product_id.categ_id:
-                                categoria_prodotto_attuale = riga_ordine_vendita.product_id.categ_id
-                             
-                            if (prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale): #Check
-                                _logger.info("-------- Aggiunta provvigione per CATEGORIA. ------- ")
-                                provvigioni_sline_ids.append((0, 0, {
-                                                                    "tipo": tipo,
-                                                                    "categoria_prodotto": categoria_prodotto.id,
-                                                                    "importo": importo,
-                                                                    "importo_percentuale": importo_percentuale,
-                                                                    "percentuale": percentuale,
-                                                                    "contatto": contatto.id,
-                                                                    "riferimento_riga_ordine": riga_ordine_vendita.id
-                                                                    }))
-                            elif (prodotto_attuale != None and prodotto == prodotto_attuale): #Check
-                                _logger.info("-------- Aggiunta provvigione per PRODOTTO. ------- ")
-                                provvigioni_sline_ids.append((0, 0, {
-                                                                    "tipo": tipo,
-                                                                    "prodotto": prodotto.id,
-                                                                    "importo": importo,
-                                                                    "importo_percentuale": importo_percentuale,
-                                                                    "percentuale": percentuale,
-                                                                    "contatto": contatto.id,
-                                                                    "riferimento_riga_ordine": riga_ordine_vendita.id
-                                                                    }))
+                                if riga_ordine_vendita.product_id.categ_id:
+                                    categoria_prodotto_attuale = riga_ordine_vendita.product_id.categ_id
+
+                                if (prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale): #Check
+                                    _logger.info("-------- Aggiunta provvigione DIREZIONALE per CATEGORIA. ------- ")
+                                    provvigioni_sline_ids.append((0, 0, {
+                                                                        "tipo": tipo,
+                                                                        "categoria_prodotto": categoria_prodotto.id,
+                                                                        "importo": importo,
+                                                                        "importo_percentuale": importo_percentuale,
+                                                                        "percentuale": percentuale,
+                                                                        "contatto": contatto.id,
+                                                                        "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                        }))
+                                elif (prodotto_attuale != None and prodotto == prodotto_attuale): #Check
+                                    _logger.info("-------- Aggiunta provvigione DIREZIONALE per PRODOTTO. ------- ")
+                                    provvigioni_sline_ids.append((0, 0, {
+                                                                        "tipo": tipo,
+                                                                        "prodotto": prodotto.id,
+                                                                        "importo": importo,
+                                                                        "importo_percentuale": importo_percentuale,
+                                                                        "percentuale": percentuale,
+                                                                        "contatto": contatto.id,
+                                                                        "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                        }))
+                                    
+                            if(not cliente_direzionale and not provvigione_agente.direzionale):
+                                tipo = provvigione_agente.tipo
+                                percentuale = provvigione_agente.percentuale
+                                importo_percentuale = 0
+                                contatto = provvigione_agente.contatto
+                                prodotto = None
+                                categoria_prodotto = None
+                                prodotto_attuale = None #Check
+                                categoria_prodotto_attuale = None #Check
+
+                                if(percentuale != 0):
+                                    importo = percentuale/100.0 * (riga_ordine_vendita.price_unit * riga_ordine_vendita.product_uom_qty)
+                                    importo_percentuale = importo
+                                else:
+                                    importo = provvigione_agente.importo * riga_ordine_vendita.product_uom_qty
+
+                                if tipo == "regola_prodotto":
+                                    prodotto = provvigione_agente.prodotto
+
+                                if tipo == "regola_categoria_prodotto":
+                                    categoria_prodotto = provvigione_agente.categoria_prodotto
+
+                                if riga_ordine_vendita.product_id:
+                                    prodotto_attuale = riga_ordine_vendita.product_id
+
+                                if riga_ordine_vendita.product_id.categ_id:
+                                    categoria_prodotto_attuale = riga_ordine_vendita.product_id.categ_id
+
+                                if (prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale): #Check
+                                    _logger.info("-------- Aggiunta provvigione NON DIREZIONALE per CATEGORIA. ------- ")
+                                    provvigioni_sline_ids.append((0, 0, {
+                                                                        "tipo": tipo,
+                                                                        "categoria_prodotto": categoria_prodotto.id,
+                                                                        "importo": importo,
+                                                                        "importo_percentuale": importo_percentuale,
+                                                                        "percentuale": percentuale,
+                                                                        "contatto": contatto.id,
+                                                                        "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                        }))
+                                elif (prodotto_attuale != None and prodotto == prodotto_attuale): #Check
+                                    _logger.info("-------- Aggiunta provvigione NON DIREZIONALE per PRODOTTO. ------- ")
+                                    provvigioni_sline_ids.append((0, 0, {
+                                                                        "tipo": tipo,
+                                                                        "prodotto": prodotto.id,
+                                                                        "importo": importo,
+                                                                        "importo_percentuale": importo_percentuale,
+                                                                        "percentuale": percentuale,
+                                                                        "contatto": contatto.id,
+                                                                        "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                        }))
+
                 if(provvigioni_sline_ids):     
                     _logger.info("Provvigione line_ids : %s", provvigioni_sline_ids)
             

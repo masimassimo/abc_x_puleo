@@ -1,0 +1,42 @@
+<odoo>
+    <record model="ir.ui.view" id="abc_contacts_sales_commissions_conf_view">
+        <field name="name">Configurazione ABC - Contacts Sales Commissions </field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base.res_config_settings_view_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('settings')]" position="inside">
+                <div class="app_settings_block" data-string="Contacts Sales Commission Data-String" string="Contacts Sales Commission" data-key="abc_contacts_sales_commissions">
+                    <h2>Impostazioni CSC</h2>
+                    <div class="row mt16 o_settings_container">
+                        <div class="col-xs-12 col-md-6 o_setting_box">
+                            <div class="o_setting_right_pane">
+                                <label for="addetto_vendite"/>
+                                <div class="text-muted">
+                                    Campo Booleano che permette di decidere se considerare gli Agenti di un determinato contatto o il solo Addetto Vendite.
+                                </div>
+                                <div class="content-group">
+                                    <div class="mt16">
+                                        <field name="addetto_vendite" class="o_light_label"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    
+    <record model="ir.actions.act_window" id="abc_contacts_sales_commissions_conf">
+            <field name="name">Configurazione ABC - Contacts Sales Commissions</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="abc_contacts_sales_commissions_conf_view"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'abc_contacts_sales_commissions'}</field>
+        </record>
+
+        <menuitem id="abc_contacts_sales_commissions_conf_menu" name="Configurazione CSC"
+                  parent="abc_contacts_sales_commissions_menu" action="abc_contacts_sales_commissions_conf"/>
+    
+</odoo>

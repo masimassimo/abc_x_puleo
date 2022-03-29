@@ -1,0 +1,28 @@
+<odoo>
+    <template id="report_provvigioni_pdf">
+    <t t-call="web.html_container">
+        <span> CIAO </span>
+        <t t-foreach="docs" t-as="line">
+            <span t-esc="line.name"/>
+        </t>
+        
+        <table style="width:100%; font-size: small;" cellspacing="0">
+            <thead>
+                <tr class="first_th_row">
+                    <td 
+                        colspan="4" 
+                        style="padding:10;"
+                        t-esc="' Periodo di stampa dal ' + data_da + ' al ' + data_a"
+                        
+                    />
+                </tr>
+                <tr style="page-break-inside: avoid">
+                    <th class="left_without_line">Data provvigione</th>
+                    <th class="left_without_line">Stato provvigione</th>
+                </tr>
+            </thead>
+        </table>
+            
+    </t>
+    </template>
+</odoo>

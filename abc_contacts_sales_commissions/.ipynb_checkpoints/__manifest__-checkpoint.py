@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Contacts',
-    'version': '0.5',
+    'version': '0.6',
 
     'depends': ['base', 'account', 'sale'],
 
@@ -23,6 +23,10 @@
         'views/account_move.xml',
         'views/conf.xml',
         'data/sequence.xml',
+        'wizards/report_provvigioni_view.xml',
+        'data/report_provvigioni_formato_carta.xml',
+        'report/report_provvigioni_conf.xml',
+        'report/report_provvigioni_pdf.xml',
     ],
     "installable": True,
     "application": True,

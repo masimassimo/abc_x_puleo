@@ -23,6 +23,7 @@
                         <field name="riferimento_ordine_fittizio" />
                         <field name="stato_provvigione"/>
                         <field name="data_liquidazione"/>
+                        <field name="data_creazione"/>
                     </group>
                 </sheet>
             </form>
@@ -35,10 +36,10 @@
         <field name="name">Tree righe provvigioni</field>
         <field name="model">abc.lines_sales_commission</field>
         <field name="arch" type="xml">
-            <tree string="Tree righe provvigione" create = "false" >
-                <header>
-                    
-                </header>
+            <tree string="Tree righe provvigione">
+                <!-- <header> 
+                        <button name="action_apri_wizard" string="Wizard" type="object" class="oe_highlight"/>
+                    </header> -->
                         <field name="name"/>
                         <field name="riferimento_ordine"/>
                         <field name="riferimento_fattura"/>
@@ -52,7 +53,9 @@
                         <field name="riferimento_ordine_fittizio" attrs="{'invisible': [('riferimento_ordine_fittizio', '=', 0)]}" optional="hide"/>
                         <field name="stato_provvigione" decoration-success="stato_provvigione == 'liquidata'" decoration-danger="stato_provvigione == 'da_liquidare'" widget="badge" optional="show"/>
                         <field name="data_liquidazione"  attrs="{'readonly': [('stato_provvigione', '=', 'da_liquidare')]}"/>
+                        <field name="data_creazione"/>
             </tree>
+
         </field>
     </record>
       

@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+
+        <record id="action_report_provvigioni" model="ir.actions.report">
+            <field name="name">Report provvigione</field>
+            <field name="model">abc.lines_sales_commission</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">abc_contacts_sales_commissions.report_provvigioni_pdf</field>
+            <field name="report_file">abc_contacts_sales_commissions.report_provvigioni_pdf</field>
+            <field name="binding_model_id" ref="abc_contacts_sales_commissions.model_abc_lines_sales_commission"/>
+            <field name="binding_type">report</field>
+            <field name="print_report_name">"Report provvigione - %s" %(object.name)</field>
+            <field name="paperformat_id" ref="abc_contacts_sales_commissions.report_provvigioni_formato_carta"/>
+
+        </record>
+
+    </data>
+
+</odoo>

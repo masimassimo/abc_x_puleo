@@ -1,0 +1,41 @@
+<odoo>
+    
+    <record id="report_provvigioni_view_form" model="ir.ui.view">
+        <field name="name">Form report provvigioni</field>
+        <field name="model">abc.report_provvigioni</field>
+        <field name="arch" type="xml">
+            <form string="Form report provvigioni">
+                <group>
+                    <group>
+                        <field name="data_da"/>
+                    </group>
+                    <group>
+                        <field name="data_a"/>
+                    </group>
+                
+                <separator string="Stato provvigione" colspan="2" />
+                <group>
+                        <field name="stato_provvigione"/>
+                </group>
+                </group>
+
+                <footer>
+                    <button name="stampaReportProvvigioni" type="object" string="Stampa" class="btn-primary"/>
+                    <button string="Chiudi" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_wizard_csc" model="ir.actions.act_window">
+        <field name="name">Stampa report provvigioni</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">abc.report_provvigioni</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    
+    <menuitem id="abc_report_provvigioni" name="Report P." parent="abc_contacts_sales_commissions_second_menu" action="action_wizard_csc"/>
+            
+</odoo>
+

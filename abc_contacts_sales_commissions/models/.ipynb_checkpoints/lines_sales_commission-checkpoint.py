@@ -15,9 +15,13 @@ class abc_lines_sales_commission(models.Model):
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('abc.lines_sales_commission.sequence') or _('New')
+            #vals['data_creazione'] = self.datetime.now()
         result = super(abc_lines_sales_commission, self).create(vals)
         return result
-        
+    
+    #Campo relativo alla data di creazione.
+    data_creazione = fields.Date(string = "Data creazione", help = "La data in cui la riga di provvigione viene creata.", store = True, Tracking = True, index = True, default = lambda self: datetime.now())
+    
     #Nome della linea di provvigione. Questo corrisponde ad un numero di sequenza che viene incrementato automaticamente.
     name = fields.Char(string="Nome riga provvigione", help = "Il nome dato alla riga di provvigione.", store=True, required=True, tracking=True, index = True, copy = False, readonly = True, default=lambda self: _('New'))
     
@@ -81,3 +85,18 @@ class abc_lines_sales_commission(models.Model):
     
     #Campo che indica la data in cui viene liquidata la provvigione.
     data_liquidazione = fields.Date(string = "Data liquidazione", help = "Data in cui viene liquidata la provvigiione", readonly = False, compute = _calcolaDataLiquidazione)
+    
+    
+    '''
+    #Tasto che chiama il Wizard.
+    def action_apri_wizard(self):
+        return {
+            "type": "ir.actions.act_window",
+            "name": _('Mark as Done'),
+            "view_mode": "form",
+            "view_type": "form",
+            "target": "new",
+            "view_id": self.env.ref("abc_contacts_sales_commissions.report_provvigioni_view_form").id,
+            "res_model": "abc.report_provvigioni"
+        }
+    '''

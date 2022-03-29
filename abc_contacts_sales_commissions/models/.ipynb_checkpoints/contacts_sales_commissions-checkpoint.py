@@ -50,3 +50,4 @@ class abc_contacts_sales_commissions(models.Model):
     
     #Campo Direzionale che permette di discriminare una regola Direzionale da una Non Direzionale. Qualora il cliente fosse Direzionale verranno considerate solo le regole Direzionali.
     direzionale = fields.Boolean(string = "Direzionale", help = "Campo Direzionale che permette di discriminare una regola Direzionale da una Non Direzionale. Qualora il cliente fosse Direzionale verranno considerate solo le regole Direzionali.", tracking = True, default = False)
+    

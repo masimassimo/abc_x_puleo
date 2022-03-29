@@ -1,0 +1,19 @@
+<odoo>
+  <data>
+      
+      <record model="ir.ui.view" id="sale_tree_inherit_1">
+        <field name="name">sale_tree_inherit_1</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="calcola_indirizzo_consegna" string= "Indirizzo consegna"/>
+            </xpath>
+        </field>
+      </record>
+
+  </data>
+</odoo>
+
+
+

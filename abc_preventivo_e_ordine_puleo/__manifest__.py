@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Sale',
-    'version': '0.9',
+    'version': '1.0',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'purchase', 'purchase_order_secondary_unit', 'product_secondary_unit'],
@@ -26,6 +26,7 @@
         'report/ordine_acquisto_puleo.xml',
         'report/fattura_pro_forma_puleo.xml',
         'views/views.xml',
+        'views/sale_order_tree.xml',
 
     ],
     "installable":True,

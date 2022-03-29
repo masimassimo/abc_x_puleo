@@ -275,10 +275,16 @@
                 <div style="margin-top:10px;  line-height:100%">
                     <strong t-if="doc.partner_shipping_id == doc.partner_id" style="">Indirizzo di Fatturazione e Spedizione:</strong>
                     <strong t-if="doc.partner_shipping_id != doc.partner_id" style="">Indirizzo di Fatturazione:</strong>
+                     <div t-if="doc.partner_id">
+                            <span t-field="doc.partner_id"/>
+                    </div>
                     <div style="" t-field="doc.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
                     <br/>
                     <t t-if="doc.partner_shipping_id != doc.partner_id">
                         <strong style="">Indirizzo di Spedizione:</strong>
+                        <div t-if="doc.partner_shipping_id">
+                            <span t-field="doc.partner_shipping_id"/>
+                        </div>
                         <div style="" t-field="doc.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
                     </t>
                </div>

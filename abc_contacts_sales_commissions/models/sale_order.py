@@ -16,6 +16,7 @@ class saleOrder(models.Model):
         
         for record in self:
             cliente_direzionale = False
+            agenti = ""
             addetto_vendite = self.env['res.config.settings'].get_values()['addetto_vendite']
             righe_ordine_vendita = record.order_line
             

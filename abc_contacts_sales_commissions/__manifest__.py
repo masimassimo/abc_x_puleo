@@ -23,7 +23,7 @@
         'views/account_move.xml',
         'views/conf.xml',
         'data/sequence.xml',
-        'wizards/report_provvigioni_view.xml',
+        'wizard/wizard_report_provvigioni_view.xml',
         'data/report_provvigioni_formato_carta.xml',
         'report/report_provvigioni_conf.xml',
         'report/report_provvigioni_pdf.xml',

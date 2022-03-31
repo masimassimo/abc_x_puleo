@@ -8,7 +8,7 @@ from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
 
 
-class reportRegistroIva(models.AbstractModel):
+class reportProvvigionale(models.AbstractModel):
     _name = "report.abc_contacts_sales_commissions.report_provvigioni_pdf"
     _description = "ReportProvvigionale"
 
@@ -23,6 +23,7 @@ class reportRegistroIva(models.AbstractModel):
             "doc_model": self.env["abc.lines_sales_commission"],
             "data": data["form"],
             "docs": self.env["abc.lines_sales_commission"].browse(data["ids"]),
+            "company": self.env.company,
             #"get_move": self._get_move,
             #"tax_lines": self._get_tax_lines,
             "format_date": self._format_date,

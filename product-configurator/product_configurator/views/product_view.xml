@@ -386,7 +386,7 @@
                 <field name="config_ok" />
             </xpath>
             <xpath
-                    expr="//div/div[2]/strong[hasclass('o_kanban_record_title')]"
+                    expr="//div/div[2]/strong[@class='o_kanban_record_title']"
                     position="after"
                 >
                 <div

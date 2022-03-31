@@ -411,7 +411,7 @@
                                                   <span> Rif. ns. Commessa cliente </span>
                                             <t t-esc="line.sale_line_ids.order_id.name"/>
                                             <span> del </span>
-                                            <t t-esc="line.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                                            <span t-field="line.sale_line_ids.order_id.date_order"/>
 
                                         </t>
                                         <t t-else="">
@@ -419,7 +419,7 @@
                                             <span> Rif. ns. Commessa cliente </span>
                                             <t t-esc="line.sale_line_ids.order_id.name"/>
                                             <span> del </span>
-                                            <t t-esc="line.sale_line_ids.order_id.date_order.strftime('%d/%m/%Y')"/>
+                                            <span t-field="line.sale_line_ids.order_id.date_order"/>
                                             </div>
                                             
                                            <!-- DDT -->

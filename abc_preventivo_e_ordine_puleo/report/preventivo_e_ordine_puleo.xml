@@ -402,8 +402,13 @@
                                     <td class="p-1 align-middle text-left smaller-font col-4" style="width:51.65%">
                                         
                                 
-                                    
-                                                <span t-raw="line.name"/>
+                                     <t t-if="doc.flag_prezzo_configurazione_variante">
+                                                    <span t-field="line.name"/>
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-raw="line.name"/>
+                                                </t>
+                                                
                                                 <t t-if="not line.product_id">
                                                     <span t-raw="line.name"/>
                                                 </t>

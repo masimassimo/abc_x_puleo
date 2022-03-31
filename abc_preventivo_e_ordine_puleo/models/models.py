@@ -54,29 +54,15 @@ class saleOrder(models.Model):
                         riga_ordine.update({'name': nome_prodotto + descrizione_prodotto_originaria})
 
                         
-    @api.depends("partner_shipping_id", "partner_shipping_id.street", "partner_shipping_id.city", "partner_shipping_id.state_id", "partner_shipping_id.zip", "partner_shipping_id.country_id")
+    @api.depends("partner_shipping_id")
     def _calcolaIndirizzoConsegna(self):
         for record in self:
             _logger.info("Dentro _calcolaIndirizzoConsegna")
-            via = ""
-            città = ""
-            provincia = ""
-            cap = ""
-            stato = ""
-            if(record.partner_shipping_id.street):
-                via = record.partner_shipping_id.street
-            if(record.partner_shipping_id.city):
-                città = record.partner_shipping_id.city
-            if(record.partner_shipping_id.state_id):
-                provincia = record.partner_shipping_id.state_id.name
-            if(record.partner_shipping_id.zip):
-                cap = record.partner_shipping_id.zip
-            if(record.partner_shipping_id.country_id):
-                stato = record.partner_shipping_id.country_id.name
-            record.write({"calcola_indirizzo_consegna": via + " " + città + " " + provincia + " " + cap + " " + stato})
+            indirizzo_di_consegna = record.partner_shipping_id.name
+            record.write({"calcola_indirizzo_consegna": indirizzo_di_consegna})
             
             
 
-                        
+          
     #Campo che mi permette di calcolare l'indirizzo di consegna.
-    calcola_indirizzo_consegna = fields.Char(string = "Calcola indirizzo consegna", store = True, compute = _calcolaIndirizzoConsegna)
+    calcola_indirizzo_consegna = fields.Char(string = "Calcola indirizzo consegna", store = False, compute = _calcolaIndirizzoConsegna)

@@ -15,21 +15,22 @@ class saleOrder(models.Model):
     _name = "sale.order"
     _inherit = "sale.order"
     
+    #Campo booleano che permette di triggerare la funzione 'funzione'.
     flag_prezzo_configurazione_variante = fields.Boolean(string = "Prezzo configurazione variante", default = False, tracking = True, help = "Flag che attiva la possibilità di vedere i prezzi delle singole configurazioni delle varianti all'interno della descrizione del prodotto.")
     
+    #Funzione che permette di cambiare la descrizione del prodotto qualora si selezionasse il flag 'flag_prezzo_configurazione_variante'. Nella descrizione
+    #compariranno i prezzi delle singole configurazioni varianti. 
     @api.onchange("flag_prezzo_configurazione_variante")
     def funzione(self):
         for record in self:
-            simbolo_euro = (u"\N{euro sign}")
-            attributi = ""
-            descrizione_prodotto_attuale = ""
-                
+            simbolo_euro = (u"\N{euro sign}")                
             righe_ordine = record.order_line
             
             if(record.flag_prezzo_configurazione_variante):
                 _logger.info("Righe ordine %s", righe_ordine)
                 for riga_ordine in righe_ordine:
                     if(riga_ordine.product_id.product_template_attribute_value_ids):
+                        attributi = ""
                         descrizione_prodotto_attuale = riga_ordine.name
                         nome_prodotto = riga_ordine.product_id.name
                         attributi_prodotto = riga_ordine.product_id.product_template_attribute_value_ids
@@ -40,6 +41,7 @@ class saleOrder(models.Model):
                             if(stringa_attributo not in descrizione_prodotto_attuale):
                                 attributi = attributi + stringa_attributo + ", \n "
                                 riga_ordine.update({'name': nome_prodotto + ": \n " + attributi + " "})
+
                         
             elif(not record.flag_prezzo_configurazione_variante):
                 for riga_ordine in righe_ordine:

@@ -58,7 +58,7 @@ class saleOrder(models.Model):
     def _calcolaIndirizzoConsegna(self):
         for record in self:
             _logger.info("Dentro _calcolaIndirizzoConsegna")
-            indirizzo_di_consegna = record.partner_shipping_id.name
+            indirizzo_di_consegna = record.partner_shipping_id.display_name
             record.write({"calcola_indirizzo_consegna": indirizzo_di_consegna})
             
             

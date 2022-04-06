@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Contacts',
-    'version': '0.8',
+    'version': '0.9',
 
     'depends': ['base', 'account', 'sale'],
 

@@ -3,6 +3,8 @@ from odoo.exceptions import UserError
 import logging
 _logger = logging.getLogger(__name__)
 
+#GUARDA IL MODULO REGISTRO_IVA DI OCA PER COMPRENDERE IL FUNZIONAMENTO DI QUESTO E DEL FILE CSC_REPORT_PROVVIGIONALE IN MODELS E DEL REPORT.
+
 class abc_report_provvigioni(models.TransientModel):
     _name = "abc.report_provvigioni"
     _description = "Wizard stampa report provvigioni"
@@ -11,8 +13,10 @@ class abc_report_provvigioni(models.TransientModel):
     data_a = fields.Date("Alla data", required=True)
     
     #Campo che indica lo stato di liquidazione della riga di provvigione.
-    stato_provvigione = fields.Selection( [("da_liquidare", "Da liquidare"), 
-                              ("liquidata", "Liquidata")], 
+    stato_provvigione = fields.Selection( [
+                                            ("non_maturata", "Non maturata"),
+                                            ("da_liquidare", "Da liquidare"), 
+                                            ("liquidata", "Liquidata")], 
                             help = "Stato di liquidazione della riga di provvigione.", tracking = True, default = "da_liquidare", required = True)
     
     

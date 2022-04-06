@@ -14,7 +14,7 @@
             <thead>
                 <tr class="first_th_row">
                     <td 
-                        colspan="5" 
+                        colspan="6" 
                         style="padding:10;"
                         t-esc="' Periodo di stampa dal ' + data_da + ' al ' + data_a"
                         
@@ -26,6 +26,9 @@
                     <th class="left_without_line">Data provvigione</th>
                     <th class="left_without_line">Stato provvigione</th>
                     <th class="left_without_line">Importo provvigione</th>
+                    <t t-if="stato_provvigione == 'liquidata'">
+                    <th class="left_without_line">Data liquidazione</th>
+                    </t>
                 </tr>
             </thead>
             <tbody>
@@ -56,6 +59,12 @@
                             <td class="left_without_line_bold">
                                 <div style="page-break-inside: avoid" t-esc="cscl.importo" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: company.currency_id}"/>
                             </td>
+                            <!-- Data liquidazione CSCL -->
+                            <t t-if="stato_provvigione == 'liquidata'">
+                            <td class="left_without_line_bold">
+                                <div style="page-break-inside: avoid" t-esc="format_date(cscl.data_liquidazione,date_format)"/>
+                            </td>
+                            </t>
                     </tr>                       
                 </t>
             </tbody>

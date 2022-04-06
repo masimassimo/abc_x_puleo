@@ -7,6 +7,7 @@ from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
 
+#GUARDA IL MODULO REGISTRO_IVA DI OCA PER COMPRENDERE IL FUNZIONAMENTO DI QUESTO E DEL WIZARD E DEL REPORT.
 
 class reportProvvigionale(models.AbstractModel):
     _name = "report.abc_contacts_sales_commissions.report_provvigioni_pdf"
@@ -29,6 +30,7 @@ class reportProvvigionale(models.AbstractModel):
             "format_date": self._format_date,
             "data_da": self._format_date(data["form"]["data_da"], date_format),
             "data_a": self._format_date(data["form"]["data_a"], date_format),
+            "stato_provvigione": data["form"]["stato_provvigione"],
             #"registry_type": data["form"]["registry_type"],
             #"invoice_total": self._get_move_total,
             #"tax_registry_name": data["form"]["tax_registry_name"],

@@ -58,7 +58,6 @@ class accountMove(models.Model):
                     riga_provvigioni_fattura.update({"maturata": True})
                 
             
-    
     #Campo che esegue la funzione _matura_provvigioni non appena una fattura viene pagata.
     matura_provvigioni = fields.Boolean(string = "Matura provvigioni", compute = _matura_provvigioni, store = True)
     

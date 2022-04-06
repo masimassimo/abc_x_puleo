@@ -4,6 +4,9 @@ from odoo import models, fields, api, _
 from datetime import datetime
 import logging
 _logger = logging.getLogger(__name__)
+from odoo.exceptions import UserError
+
+
 
 class abc_lines_sales_commission(models.Model):
     _name = "abc.lines_sales_commission"
@@ -15,6 +18,10 @@ class abc_lines_sales_commission(models.Model):
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('abc.lines_sales_commission.sequence') or _('New')
+            importo = vals["importo"]
+            _logger.info("Importo C : %s", importo)
+            vals['importo_da_liquidare'] = importo
+            
             #vals['data_creazione'] = self.datetime.now()
         result = super(abc_lines_sales_commission, self).create(vals)
         return result
@@ -79,14 +86,34 @@ class abc_lines_sales_commission(models.Model):
     #Campo riferimento_riga_ordine che relazione la riga di provvigione ad una precisa riga di ordine.
     riferimento_riga_ordine = fields.Many2one("sale.order.line", string = "Riferimento riga ordine", help = " ID Riga d'ordine da cui scaturisce la provvigione.", ondelete="cascade",)
     
+    #Importo di provvigione già liquidato relativo al totale.
+    importo_liquidato = fields.Monetary(string = "Importo liquidato \N{euro sign} ", help = "Importo di provvigione già liquidato relativo al totale.", tracking = True, compute_sudo=True, default = 0)
+    
+    @api.onchange("importo")
+    def _compute_importo_da_liquidare(self):
+        _logger.info(" ********** DENTRO _compute_importo_da_liquidare")
+        for record in self:
+            record.importo_da_liquidare = record.importo
+            record.importo_liquidato = 0
+    
+    @api.onchange("importo_liquidato")
+    def _REcompute_importo_da_liquidare(self):
+        _logger.info(" °°°°°°°°°° DENTRO _REcompute_importo_da_liquidare")
+        for record in self:
+            record.importo_da_liquidare = record.importo_da_liquidare - record.importo_liquidato
+    
+    #Importo di provvigione non ancora liquidato relativo al totale.
+    importo_da_liquidare = fields.Monetary(string = "Importo da liquidare \N{euro sign} ", help = "Importo di provvigione non ancora liquidato relativo al totale.", tracking = True, compute_sudo=True, store = True, default = 0)
+    
         
     @api.depends("maturata")
     def _sblocca_liquidazione(self):
         for record in self:
-            _logger.info("DENTRO _sblocca_liquidazione")
             if(record.maturata):
+                _logger.info("DENTRO _sblocca_liquidazione IF")
                 record.stato_provvigione = "da_liquidare"
             else:
+                _logger.info("DENTRO _sblocca_liquidazione ELSE")
                 record.stato_provvigione = "non_maturata"
     
     #Campo che indica lo stato di liquidazione della riga di provvigione.
@@ -94,7 +121,7 @@ class abc_lines_sales_commission(models.Model):
                               ("non_maturata", "Non maturata"),
                               ("da_liquidare", "Da liquidare"), 
                               ("liquidata", "Liquidata")], 
-                            help = "Stato di liquidazione della riga di provvigione.", tracking = True, default = "non_maturata", required = True, compute = _sblocca_liquidazione, readonly = False)
+                            help = "Stato di liquidazione della riga di provvigione.", tracking = True, default = "non_maturata", required = True, compute = _sblocca_liquidazione, readonly = False, store = True)
     
     #Funzione che al passaggio di stato_provvigione da 
     @api.depends("stato_provvigione")
@@ -107,8 +134,20 @@ class abc_lines_sales_commission(models.Model):
                 _logger.info("La provvigione ancora non è stata liquidata.")
     
     #Campo che indica la data in cui viene liquidata la provvigione.
-    data_liquidazione = fields.Date(string = "Data liquidazione", help = "Data in cui viene liquidata la provvigiione", readonly = False, compute = _calcolaDataLiquidazione)
+    data_liquidazione = fields.Date(string = "Data liquidazione", help = "Data in cui viene liquidata la provvigiione", readonly = False, compute = _calcolaDataLiquidazione, store = True)
     
 
     #Campo maturata che indica se la corrispondente fattura è stata pagata. Se la cscl risulta maturata allora è possibile liquidarla.
-    maturata = fields.Boolean(string = "Maturata", help = "Campo maturata che indica se la corrispondente fattura è stata pagata. Se la cscl risulta maturata allora è possibile liquidarla.", default = False, tracking = True, readonly = True)
+    maturata = fields.Boolean(string = "Maturata", help = "Campo maturata che indica se la corrispondente fattura è stata pagata. Se la cscl risulta maturata allora è possibile liquidarla.", default = False, tracking = True, readonly = True, store = True)
+    
+    #Funzione che permette di liquidare una o più provvigioni selezionare tramite il tasto che appare selezionandone almeno una.
+    def func_liquida_provvigione(self):
+        for record in self:
+            stato_provvigione = record.stato_provvigione
+            if(stato_provvigione == "non_maturata"):
+                raise UserError("Una o più provvigioni non sono state ancora maturata! Impossibile liquidarle.")
+            elif(stato_provvigione == "liquidata"):
+                raise UserError("Una o più provvigioni sono state già liquidate! Impossibile liquidarle nuovamente.")
+            else:
+                record.stato_provvigione = "liquidata"
+            

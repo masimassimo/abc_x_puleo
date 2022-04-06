@@ -51,7 +51,6 @@ class saleOrder(models.Model):
                 else:
                     if(record.partner_id.agenti_ids):
                         agenti = record.partner_id.agenti_ids
-                        
                 if(agenti):
                     
                     for agente in agenti:
@@ -106,7 +105,8 @@ class saleOrder(models.Model):
                                                                         "importo_percentuale": importo_percentuale,
                                                                         "percentuale": percentuale,
                                                                         "contatto": contatto.id,
-                                                                        "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                        "riferimento_riga_ordine": riga_ordine_vendita.id,
+                                                
                                                                         }))
                                 elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa):
                                     _logger.info("-------- Aggiunta provvigione CONTATTO_PREFERITO per PRODOTTO. ------- ")
@@ -117,7 +117,7 @@ class saleOrder(models.Model):
                                                                         "importo_percentuale": importo_percentuale,
                                                                         "percentuale": percentuale,
                                                                         "contatto": contatto.id,
-                                                                        "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                        "riferimento_riga_ordine": riga_ordine_vendita.id,
                                                                         }))
  
                                 
@@ -151,7 +151,6 @@ class saleOrder(models.Model):
                                         importo = percentuale/100.0 * record.amount_total
                                         regola_percentuale_fissa = True
                                         
-                                        
                                     if tipo == "regola_prodotto":
                                         prodotto = provvigione_agente.prodotto.id
 
@@ -173,7 +172,7 @@ class saleOrder(models.Model):
                                                                             "importo_percentuale": importo_percentuale,
                                                                             "percentuale": percentuale,
                                                                             "contatto": contatto.id,
-                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id,
                                                                             }))
                                     elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa):
                                         _logger.info("-------- Aggiunta provvigione DIREZIONALE per PRODOTTO. ------- ")
@@ -184,7 +183,7 @@ class saleOrder(models.Model):
                                                                             "importo_percentuale": importo_percentuale,
                                                                             "percentuale": percentuale,
                                                                             "contatto": contatto.id,
-                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id,
                                                                             }))
                                 # Provvigione per standard #
                                 ############################
@@ -233,7 +232,8 @@ class saleOrder(models.Model):
                                                                             "importo_percentuale": importo_percentuale,
                                                                             "percentuale": percentuale,
                                                                             "contatto": contatto.id,
-                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id,
+
                                                                             }))
                                     elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa):
                                         _logger.info("-------- Aggiunta provvigione NON DIREZIONALE per PRODOTTO. ------- ")
@@ -244,7 +244,7 @@ class saleOrder(models.Model):
                                                                             "importo_percentuale": importo_percentuale,
                                                                             "percentuale": percentuale,
                                                                             "contatto": contatto.id,
-                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id
+                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id,
                                                                             }))
 
                 if(provvigioni_sline_ids):     
@@ -270,7 +270,7 @@ class saleOrder(models.Model):
             record.update({"totale_provvigioni_s": totale_provvigioni_s})
             _logger.info(" -------- calcola_totale_provvigioni_s -------- ")
     
-    provvigioni_sline_ids = fields.One2many(comodel_name = "abc.lines_sales_commission", inverse_name="riferimento_ordine", string = "Righe provvigioni", help = "Specchietto righe provvigioni.", tracking = True)
+    provvigioni_sline_ids = fields.One2many(comodel_name = "abc.lines_sales_commission", inverse_name="riferimento_ordine", string = "Righe provvigioni", help = "Specchietto righe provvigioni.", tracking = True, readonly = True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},)
         
     @api.onchange("provvigioni_sline_ids")
     def calcola_nuovo_importo(self):

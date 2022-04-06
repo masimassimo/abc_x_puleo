@@ -7,7 +7,10 @@
         <field name="name">Form righe provvigioni</field>
         <field name="model">abc.lines_sales_commission</field>
         <field name="arch" type="xml">
-            <form string="Form righe provvigione"  create = "false" edit = "false">
+            <form string="Form righe provvigione"  create = "false">
+                <header>
+                    <button  name="func_liquida_provvigione" string="Liquida provvigione" class="btn-primary" type="object"/>
+                </header>
                 <sheet>
                     <h1> <field name="name"/> </h1>
                     <group>
@@ -25,6 +28,8 @@
                         <field name="data_liquidazione"/>
                         <field name="data_creazione"/>
                         <field name="maturata"/>
+                        <field name="importo_liquidato" options="{'currency_field': 'currency_id'}"/>
+                        <field name="importo_da_liquidare" options="{'currency_field': 'currency_id'}"/>
                     </group>
                 </sheet>
             </form>
@@ -37,7 +42,10 @@
         <field name="name">Tree righe provvigioni</field>
         <field name="model">abc.lines_sales_commission</field>
         <field name="arch" type="xml">
-            <tree string="Tree righe provvigione" create = "false" >
+            <tree string="Tree righe provvigione" create="false" >
+                <header>
+                    <button  name="func_liquida_provvigione" string="Liquida provvigione" class="btn-primary" type="object"/>
+                </header>
                         <field name="name"/>
                         <field name="riferimento_ordine"/>
                         <field name="riferimento_fattura"/>
@@ -53,6 +61,8 @@
                         <field name="data_liquidazione"  attrs="{'readonly': ['|', ('stato_provvigione', '=', 'da_liquidare'), ('stato_provvigione', '=', 'non_maturata')]}"/>
                         <field name="data_creazione"/>
                         <field name="maturata"/>
+                        <field name="importo_liquidato" options="{'currency_field': 'currency_id'}"/>
+                        <field name="importo_da_liquidare" options="{'currency_field': 'currency_id'}"/>
             </tree>
 
         </field>

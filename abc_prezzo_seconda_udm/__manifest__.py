@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it",
 
     'category': 'Purchases',
-    'version': '0.2',
+    'version': '0.3',
 
     'depends': ['base','purchase','product_secondary_unit','purchase_order_secondary_unit'],
 

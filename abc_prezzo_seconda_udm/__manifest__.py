@@ -10,9 +10,9 @@
     'website': "https://www.abcstrategie.it",
 
     'category': 'Purchases',
-    'version': '0.3',
+    'version': '0.4',
 
-    'depends': ['base','purchase','product_secondary_unit','purchase_order_secondary_unit'],
+    'depends': ['base','purchase','product_secondary_unit','purchase_order_secondary_unit', 'mixed_discount_app'],
 
     'data': [
         'views/views.xml',

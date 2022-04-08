@@ -27,6 +27,22 @@
             </xpath>
         </field>
     </record>
+    
+        <record model="ir.ui.view" id="view_abc_prezzo_seconda_udm_ext_inherit_1">
+        <field name="name">purchase.order.view_abc_prezzo_seconda_udm_ext_inherit_1</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="mixed_discount_app.purchase_multi_inherit_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='multi_discount']" position="attributes">
+                <attribute name="attrs">{}</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+            <xpath expr="//field[@name='discount']" position="attributes">
+                <attribute name="attrs">{}</attribute>
+                <attribute name="optional">hide</attribute>
+            </xpath>
+        </field>
+      </record>
 
 
   </data>

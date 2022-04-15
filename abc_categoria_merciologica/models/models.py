@@ -11,4 +11,4 @@ class productCategory(models.Model):
     _name = "product.category"
     _inherit = "product.category"
     
-    categoria_merciologica = fields.Char(string = "Categoria merciologica", store = True)
+    categoria_merciologica = fields.Char(string = "Categoria merceologica", store = True)

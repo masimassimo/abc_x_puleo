@@ -521,7 +521,6 @@
                                 </tr>   
                             </t>
                             <t t-else="">
-                                <t t-esc="line.display_type"></t>
                                 <t t-if="'Delivery' not in line.name">
                                     <t t-if="'DdT' not in line.name">
                                     <tr scope="row">

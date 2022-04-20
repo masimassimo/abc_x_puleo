@@ -11,7 +11,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Sale',
-    'version': '0.2',
+    'version': '0.3',
 
     'depends': ['base', 'sale', 'account', 'account_bank_statement_import', 'base_iban', 'account_qr_code_sepa'],
 

@@ -14,7 +14,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Product',
-    'version': '0.2',
+    'version': '0.3',
 
     # any module necessary for this one to work correctly
     'depends': ['product','sale', 'sale_management', 'purchase', 'account'],

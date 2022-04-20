@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Account',
-    'version': '1.4',
+    'version': '1.5',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'account', 'sale'],

@@ -47,3 +47,5 @@ class resPartner(models.Model):
     id_lead = fields.Char(string = "ID Lead", store = True)
     
     IDNOMIRIFMRK = fields.Char(string = "IDNOMIRIFMRK", store = True)
+    
+    nome_commerciale = fields.Char(string = "Nome commerciale", store = True)

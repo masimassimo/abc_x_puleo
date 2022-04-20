@@ -236,7 +236,7 @@
                        BIC: <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.bank_id.bic"/>
                        </div>
                        -->
-                       <span t-field="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente"/>
+                       <span t-field="o.invoice_line_ids.sale_line_ids[0].order_id.banca_cliente"/>
                           </t>
                           <t t-else="">
                               <br/>
@@ -267,7 +267,7 @@
                         BIC: <span class="text-right" t-field="o.partner_bank_id.bank_id.bic"/>
                         </div> 
                         -->
-                        <span t-field="o.invoice_line_ids.sale_line_ids.order_id.banca"/>
+                        <span t-field="o.invoice_line_ids.sale_line_ids[0].order_id.banca"/>
                        </t>
                          <t t-else="">
                               <br/>

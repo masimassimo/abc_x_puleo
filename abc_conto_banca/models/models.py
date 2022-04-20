@@ -30,7 +30,7 @@ class SaleOrder(models.Model):
             listaBanche.append((banca_name, banca_name + " - " + banca_nConto + " - BIC: " + banca_bic))
         return listaBanche
 
-    banca = fields.Selection(selection=lambda self: self._compute_bank(), string='Banca di riferimento', store=True)
+    banca = fields.Selection(selection=lambda self: self._compute_bank(), string='Banca di riferimento', store=True, required = True)
     
    
  

@@ -422,7 +422,7 @@
                                     <td class="p-1 align-middle text-left smaller-font col-4" style="width:51.65%">
                                         
                                         <t t-if="'Acconto' == line.product_id.name">
-                                            <span t-field="line.name"/> -
+                                            <span t-raw="line.name"/> -
                                                   <span> Rif. ns. Commessa cliente </span>
                                             <t t-esc="line.sale_line_ids.order_id.name"/>
                                             <span> del </span>
@@ -469,10 +469,10 @@
                                             
                                            <t t-if="line.product_id and line.product_id.type != 'service' ">
                                             <!--strong t-field="line.product_id.name"/-->
-                                             <strong t-field="line.name"/>
+                                             <strong t-raw="line.name"/>
                                             </t>
                                             <t t-else="">
-                                                <strong t-field="line.name"/> 
+                                                <strong t-raw="line.name"/> 
                                             </t>
                                             
                                             <div t-if="o.partner_id.country_id.id != 109 and line.product_id.codice_merce">

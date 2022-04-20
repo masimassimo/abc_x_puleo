@@ -25,6 +25,7 @@
         <field name="inherit_id" ref="base.view_partner_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='vat']" position="after">
+                <field name="nome_commerciale" attrs="{'invisible':[('company_type','==', 'person')]}"/>
                 <field name="cliente_o_fornitore_id_sam"/>
                 <field name="persona_id_sam"  invisible="1"/>
                 <field name="codice_sam_contatti"  invisible="1"/>

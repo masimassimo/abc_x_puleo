@@ -34,14 +34,15 @@
     
       <style>
                 .barcode {
-                width: 60mm;
-                heigth: 50mm;
-                text-align: center;
+                    margin-top:8px;
+                    width: 60mm;
+                    heigth: 50mm;
+                    text-align: center;
                 }
                 
-                    .small-font {
-                                    font-size:60%;
-                                }
+                .small-font {
+                    font-size:60%;
+                }
             </style>
     
     
@@ -62,9 +63,9 @@
                     <tr>
                         <td class="text-center align-middle">
                             <t t-if="product.barcode">
-                                <img alt="Barcode" t-if="len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('EAN13', quote_plus(product.barcode or ''))"/>
-                                <img alt="Barcode" t-elif="len(product.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('EAN8', quote_plus(product.barcode or ''))"/>
-                                <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('Code128', quote_plus(product.barcode or ''))"/>
+                                <img alt="Barcode" t-if="len(product.barcode) == 8" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('EAN8', quote_plus(product.barcode or ''))" style="width:100%;min-height:40px; max-height:80px;"/>
+                                <img alt="Barcode" t-elif="len(product.barcode) == 13" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('EAN13', quote_plus(product.barcode or ''))" style="width:100%;min-height:40px; max-height:80px;" />
+                                <img alt="Barcode" t-else="" t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;' % ('Code128', quote_plus(product.barcode or ''))" style="width:100%;min-height:40px; max-height:80px;"/>
                                 <span t-field="product.barcode"/>
                             </t>
                             <t t-else=""><span class="text-muted">No barcode available</span></t>

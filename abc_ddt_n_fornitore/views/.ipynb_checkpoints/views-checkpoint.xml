@@ -1,0 +1,85 @@
+<odoo>
+  <data>
+      <record id="stock_delivery_note_tree_view_n_fornitore_inherit" model="ir.ui.view">
+          <field name="name">stock.delivery.note.tree_n_fornitore_inherit</field>
+          <field name="model">stock.delivery.note</field>
+          <field name="inherit_id" ref="l10n_it_delivery_note.stock_delivery_note_tree_view"/>
+          <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="n_ddt_fornitore"/>
+                </xpath>
+          </field>
+      </record>
+      
+      <record id="stock_delivery_note_form_view_n_fornitore_inherit" model="ir.ui.view">
+          <field name="name">stock.delivery.note.form_n_fornitore_inherit</field>
+          <field name="model">stock.delivery.note</field>
+          <field name="inherit_id" ref="l10n_it_delivery_note.stock_delivery_note_form_view"/>
+          <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="n_ddt_fornitore"/>
+                </xpath>
+          </field>
+      </record>
+      
+      <record id="stock_picking_form_view_ddt" model="ir.ui.view">
+        <field name="name">stock.picking.form</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="l10n_it_delivery_note.stock_picking_form_view" />
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='delivery_note_date']" position="after">
+                    <field name="n_ddt_fornitore"/>
+                </xpath>
+            </field>
+      </record>
+      
+      <record id="stock_picking_tree_view_ddt" model="ir.ui.view">
+        <field name="name">stock.picking.tree</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="l10n_it_delivery_note.stock_picking_tree_view" />
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='delivery_note_date']" position="after">
+                    <field name="n_ddt_fornitore"/>
+                </xpath>
+            </field>
+      </record>
+      
+    <record id="purchase_order_tree_view_ddt_inherit_1" model="ir.ui.view">
+        <field name="name">purchase_order_tree_view_ddt_inherit_1</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="delivery_note_ids" widget="many2many_tags"/>
+                </xpath>
+            </field>
+      </record>
+
+      
+          <record id="purchase_order_form_inherit_1" model="ir.ui.view">
+        <field name="name">purchase_order_form_inherit_1</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='confermato_da_fornitore']" position="after">
+                    <field name="ddt_con_data" readonly="0"/>
+                </xpath>
+            </field>
+      </record>
+      
+        <record id="purchase_order_tree_view_ddt_inherit_2" model="ir.ui.view">
+        <field name="name">purchase_order_tree_view_ddt_inherit_2</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+        <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="ddt_con_data" widget="badge" />
+                </xpath>
+            </field>
+      </record>
+      
+      
+      
+  
+  </data>
+</odoo>

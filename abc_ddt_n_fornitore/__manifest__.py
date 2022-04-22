@@ -16,10 +16,10 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Stock',
-    'version': '0.2',
+    'version': '0.3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','l10n_it_delivery_note', 'l10n_it_delivery_note_order_link', 'purchase'],
+    'depends': ['base','l10n_it_delivery_note', 'l10n_it_delivery_note_order_link', 'purchase', 'abc_confermato_da_fornitore'],
 
     # always loaded
     'data': [

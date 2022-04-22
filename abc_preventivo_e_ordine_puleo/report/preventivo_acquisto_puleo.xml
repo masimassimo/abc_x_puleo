@@ -68,10 +68,18 @@
                                     </t>
                                 </td>
                             </t>
-                            <t t-else="">
+                            <t t-elif="order_line.display_type == 'line_section'">
                                 <td colspan="99" id="section">
                                     <span t-field="order_line.name"/>
                                 </td>
+                            </t>
+                             <t t-else="order_line.display_type == 'line_note'">
+                                 <!-- Alessandro: Rendo invisibile la sezione Nota come richiesta da Piero Prinzivalli -->
+                                 <!--
+                                <td colspan="99" id="section">
+                                    <span t-field="order_line.name"/>
+                                </td>
+                                -->
                             </t>
                         </tr>
                     </t>

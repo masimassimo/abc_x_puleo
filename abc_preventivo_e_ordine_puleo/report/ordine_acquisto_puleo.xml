@@ -120,9 +120,11 @@
                                 <t t-set="current_subtotal" t-value="0"/>
                             </t>
                             <t t-if="line.display_type == 'line_note'">
+                                 <!-- Alessandro: Rendo invisibile la seziona Nota come richiesta da Piero Prinzivalli
                                 <td colspan="99" id="note">
                                     <span t-field="line.name"/>
                                 </td>
+                                    -->
                             </t>
                         </tr>
                         <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">

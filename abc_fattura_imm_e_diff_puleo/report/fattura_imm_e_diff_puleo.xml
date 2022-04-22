@@ -228,7 +228,7 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%;">
-                        <t t-if="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente">
+                        <t t-if="o.invoice_line_ids.sale_line_ids">
                         <!--
                        <span t-esc="o.invoice_line_ids.sale_line_ids.order_id.banca_cliente.bank_id.name"/>
                        <div>
@@ -258,7 +258,7 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%">
-                         <t t-if="o.invoice_line_ids.sale_line_ids.order_id.banca">
+                         <t t-if="o.invoice_line_ids.sale_line_ids">
                              <!--
                         <div t-field="o.partner_bank_id.bank_id.name"/> 
                        

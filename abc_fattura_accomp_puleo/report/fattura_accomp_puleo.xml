@@ -344,7 +344,7 @@
             <tr scope="row">
              <td class="p-1 align-middle text-left small-font col-12" style="width:100%">
                  <t t-if="o.invoice_line_ids.sale_line_ids.order_id.nominativo_di_riferimento">
-                 <span t-field="o.invoice_line_ids.sale_line_ids.order_id.nominativo_di_riferimento.name"/>
+                 <span t-field="o.invoice_line_ids.sale_line_ids[0].order_id.nominativo_di_riferimento.name"/>
                  </t>
                  <t t-else="">
                      <br/>

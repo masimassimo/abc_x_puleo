@@ -42,7 +42,7 @@ class saleOrder(models.Model):
                                 attributi = attributi + stringa_attributo + ", \n "
                                 riga_ordine.update({'name': nome_prodotto + ": \n " + attributi + " "})
 
-                        
+            #Se l'azione automatica che fa vedere le configurazioni ad elenco è attiva:
             elif(not record.flag_prezzo_configurazione_variante):
                 for riga_ordine in righe_ordine:
                     nome_prodotto = riga_ordine.product_id.display_name
@@ -50,8 +50,17 @@ class saleOrder(models.Model):
                         descrizione_prodotto_attuale = riga_ordine.name
                         riga_ordine.update({'name': descrizione_prodotto_attuale})
                     else:
-                        descrizione_prodotto_originaria = riga_ordine.product_template_id.description_sale
-                        riga_ordine.update({'name': nome_prodotto + descrizione_prodotto_originaria})
+                        attributi = ""
+                        descrizione_prodotto_attuale = riga_ordine.name
+                        nome_prodotto = riga_ordine.product_id.name
+                        attributi_prodotto = riga_ordine.product_id.product_template_attribute_value_ids
+                        
+                        for attributo_prodotto in attributi_prodotto:
+                            stringa_attributo = "- " + attributo_prodotto.name
+                            
+                            if(stringa_attributo):
+                                attributi = attributi + stringa_attributo + ", \n "
+                                riga_ordine.update({'name': nome_prodotto + ": \n " + attributi + " "})
 
                         
     @api.depends("partner_shipping_id")

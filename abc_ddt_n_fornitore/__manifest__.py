@@ -19,7 +19,7 @@
     'version': '0.3',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','l10n_it_delivery_note', 'l10n_it_delivery_note_order_link', 'purchase', 'abc_confermato_da_fornitore'],
+    'depends': ['base','l10n_it_delivery_note', 'l10n_it_delivery_note_order_link', 'purchase'],
 
     # always loaded
     'data': [

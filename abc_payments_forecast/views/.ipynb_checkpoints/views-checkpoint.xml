@@ -1,0 +1,130 @@
+<odoo>
+  <data>
+      
+      <!-- SALE ORDER VIEW EXTENSION -->
+      <record model="ir.ui.view" id="view_abc_payments_forecast_ext_inherit">
+        <field name="name">abc_payments_forecast.view_abc_payments_forecast_ext_inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position="after">
+                <page string="Payments Forecast" name="payments_forecast">
+                 <field name="payment_forecast_ids">
+                    <tree string="Tree Righe provvigioni" editable="top">
+                          <field name="name" />
+                          <field name="value"/>
+                          <field name="percentage"/>
+                          <field name="metodo"/>
+                          <field name="tipologia"/>
+                          <field name="date" />
+                          <field name="fatture" options="{'no_create': True, 'no_create_edit':True}" widget="many2many_tags" domain="[('move_type','in',['out_invoice','out_refound']),('partner_id','=',cliente)]" />
+                          <field name="cliente" options="{'no_create': True, 'no_create_edit':True}" readonly="1" invisible='1'/>
+                     </tree>
+                    </field>
+                </page>
+            </xpath>
+           
+        </field>
+      </record>
+      
+    <!-- INVOICE VIEW EXTENSION -->
+      <record model="ir.ui.view" id="view_abc_payments_forecast_invoice_ext_inherit">
+        <field name="name">abc_payments_forecast.view_abc_payments_forecast_invoice_ext_inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[@id='other_tab_entry']" position="after">
+                <page string="Payments Forecast" name="payments_forecast"  attrs="{'invisible':[('move_type','not in',['out_invoice','out_refound'])]}">
+                 <!--field name="payment_forecast_ids" options="{'no_create': True, 'no_create_edit':True}" domain="[('sale_order_id.partner_id','=',partner_id)]"-->
+                 <field name="payment_forecast_ids" options="{'no_create': True, 'no_create_edit':True}" domain="[('cliente','=',partner_id)]">
+                    <tree string="Tree Righe provvigioni" editable="top">
+                          <field name="name" />
+                          <field name="value"/>
+                          <field name="percentage"/>
+                          <field name="metodo"/>
+                          <field name="tipologia"/>
+                          <field name="date" />
+                          <field name="sale_order_id" options="{'no_create': True, 'no_create_edit':True}" readonly="1"/>
+                          <field name="cliente" options="{'no_create': True, 'no_create_edit':True}" readonly="1" invisible='1'/>
+                     </tree>
+                    </field>
+                </page>
+            </xpath>
+           
+        </field>
+      </record>
+      
+      
+    <!-- explicit list view definition -->
+      
+      
+
+    <record model="ir.ui.view" id="abc_payments_forecast.list">
+      <field name="name">abc_payments_forecast list</field>
+      <field name="model">abc_payments_forecast.abc_payments_forecast</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="percentage"/>
+          <field name="metodo"/>
+          <field name="tipologia"/>
+          <field name="date"/>
+          <field name="sale_order_id"/>
+          <field name="fatture" options="{'no_create': True, 'no_create_edit':True}" widget="many2many_tags" domain="[('move_type','in',['out_invoice','out_refound']),('partner_id','=',cliente)]"/>
+          <field name="cliente" options="{'no_create': True, 'no_create_edit':True}" readonly="1"/>
+        </tree>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="abc_payments_forecast.action_window">
+      <field name="name">abc_payments_forecast window</field>
+      <field name="res_model">abc_payments_forecast.abc_payments_forecast</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+
+    <record model="ir.actions.server" id="abc_payments_forecast.action_server">
+      <field name="name">abc_payments_forecast server</field>
+      <field name="model_id" ref="model_abc_payments_forecast_abc_payments_forecast"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+
+
+    <!-- Top menu item -->
+
+    <menuitem name="Payments Forecast" id="abc_payments_forecast.menu_root" parent="sale.sale_menu_root"/>
+
+      
+    <menuitem name="Payments forecast" id="payment_forecast_menu_list"
+        parent="abc_payments_forecast.menu_root"
+        action="abc_payments_forecast.action_window"
+    sequence="1"/>    
+
+    
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="abc_payments_forecast.menu_1" parent="abc_payments_forecast.menu_root"/>
+    <menuitem name="Menu 2" id="abc_payments_forecast.menu_2" parent="abc_payments_forecast.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="abc_payments_forecast.menu_1_list" parent="abc_payments_forecast.menu_1"
+              action="abc_payments_forecast.action_window"/>
+    <menuitem name="Server to list" id="abc_payments_forecast" parent="abc_payments_forecast.menu_2"
+              action="abc_payments_forecast.action_server"/>
+-->
+  </data>
+</odoo>

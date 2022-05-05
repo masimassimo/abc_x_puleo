@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data> 
+        <template id="proforma_puleo_payments_forecast_ext"  inherit_id="abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo">
+            <!-- OVERRIDE COLONNA SCADENZA CON PAYMENTS FORECAST -->
+            <xpath expr="//table[2]/table[1]/thead[1]/tr[1]/th[1]" position="replace">
+                <th colspan="3" scope="col" class="p-1 align-middle text-center smaller-font col-3 " style="width:49.98%">
+                    <span>Scadenze</span>
+                </th>
+            </xpath>
+            <xpath expr="//table[2]/table[1]/thead[1]/tr[1]/th[2]" position="replace">
+              
+            </xpath>
+            <xpath expr="//table[2]/table[1]/thead[1]/tr[1]/th[3]" position="replace">
+              
+            </xpath>
+            <xpath expr="//table[2]/table[1]/tbody[1]/tr[1]" position="replace">
+                
+                    <tr scope='row'>
+                        <td  colspan="3" rowspan="5" class="smaller-font p-0 m-0">
+                            <table class="table table-bordered" style="width:100%; margin-collapse:collapse">
+                                <tr scope="row">
+                                    <th scope="col" class="p-1 align-middle text-center smaller-font col-2 " style="width:12.50%">
+                                        <span>Scadenza</span>
+                                    </th>
+                                    <th scope="col" class="p-1 align-middle text-center smaller-font col-2" style="width:12.50%">
+                                        <span>Importo</span>
+                                    </th>
+                                    <th scope="col" class="p-1 align-middle text-center smaller-font col-2 " style="width:12.50%">
+                                        <span>Metodo Pagamento</span>
+                                    </th>
+                                    <th scope="col" class="p-1 align-middle text-center smaller-font col-2 " style="width:12.50%">
+                                        <span>Tipologia Pagamento</span>
+                                    </th>
+                                </tr>
+                                <t t-foreach="doc.payment_forecast_ids" t-as="scadenza">
+                                    <tr scope="row">
+                                        <td scope="col" class="p-1  text-center smaller-font">
+                                            <span t-field="scadenza.date"/>
+                                        </td>
+                                        <td scope="col" class="p-1  text-center smaller-font">
+                                            <span t-field="scadenza.value" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: doc.currency_id}"/>
+                                        </td>
+                                        <td scope="col" class="p-1  text-center smaller-font">
+                                            <span t-field="scadenza.metodo.name"/>
+                                        </td>
+                                        <td scope="col" class="p-1  text-center smaller-font">
+                                            <span t-field="scadenza.tipologia.name"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+                        </td>
+                    </tr>
+                
+            </xpath>
+        </template>
+    </data>
+</odoo>

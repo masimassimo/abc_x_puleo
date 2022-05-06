@@ -258,7 +258,16 @@
                 </thead>
                 <tbody>
                       <td colspan="4" class="p-1 align-middle text-left small-font col-12" style="width:100%">
-                         <t t-if="o.invoice_line_ids.sale_line_ids">
+                          
+                        <t t-if="o.partner_bank_id">
+                              <span t-if="o.partner_bank_id.bank_id.name" t-esc="o.partner_bank_id.bank_id.name"/> - 
+                              <span t-if="o.partner_bank_id.acc_number" t-esc="o.partner_bank_id.acc_number"/> -
+                              BIC: <span t-if="o.partner_bank_id.bank_id.bic" t-esc="o.partner_bank_id.bank_id.bic"/>
+                          </t>
+                          
+                          
+                          
+                         <t t-elif="o.invoice_line_ids.sale_line_ids">
                              <!--
                         <div t-field="o.partner_bank_id.bank_id.name"/> 
                        

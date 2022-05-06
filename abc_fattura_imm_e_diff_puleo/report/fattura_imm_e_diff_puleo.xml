@@ -308,9 +308,23 @@
                 <div style="margin-top:10px;  line-height:100%">
                     <strong t-if="o.partner_shipping_id == o.partner_id" style="">Indirizzo di Fatturazione e Spedizione:</strong>
                     <strong t-if="o.partner_shipping_id != o.partner_id" style="">Indirizzo di Fatturazione:</strong>
-                     <div t-if="o.partner_shipping_id">
+                    
+                    <div t-if="o.invoice_line_ids.sale_line_ids">
+                      
+                        <span t-field="o.invoice_line_ids.sale_line_ids[0].order_id.partner_invoice_id"/>
+                        <!--
+                        <span t-field="o.invoice_line_ids.sale_line_ids[0].order_id.partner_id.street"></span>
+                        <span t-field="o.invoice_line_ids.sale_line_ids[0].order_id.partner_id.zip"></span>
+                        <span t-field="o.invoice_line_ids.sale_line_ids[0].order_id.partner_id.city"></span>
+                        <span t-field="o.invoice_line_ids.sale_line_ids[0].order_id.partner_id.state_id"></span>
+                        -->
+                        </div>
+                  
+                    
+                     <div t-else="">
                             <span t-field="o.partner_shipping_id"/>
                         </div>
+                        
                     <div style="" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;], &quot;no_marker&quot;: True}"/>
                     
                     <t t-if="o.partner_shipping_id != o.partner_id">

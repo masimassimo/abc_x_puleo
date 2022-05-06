@@ -10,11 +10,12 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Contacts',
-    'version': '0.9',
+    'version': '1.3',
 
     'depends': ['base', 'account', 'sale'],
 
     'data': [
+        'security/csc_groups.xml',
         'security/ir.model.access.csv',
         'views/abc_contacts_sales_commissions.xml',
         'views/res_partner.xml',

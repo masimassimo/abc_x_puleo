@@ -6,6 +6,9 @@ from odoo import api, models
 from odoo.exceptions import UserError
 from odoo.tools.misc import formatLang
 from odoo.tools.translate import _
+import logging
+
+_logger = logging.getLogger(__name__)
 
 #GUARDA IL MODULO REGISTRO_IVA DI OCA PER COMPRENDERE IL FUNZIONAMENTO DI QUESTO E DEL WIZARD E DEL REPORT.
 
@@ -45,8 +48,12 @@ class reportProvvigionale(models.AbstractModel):
         return docargs
     
     def _format_date(self, my_date, date_format):
+        _logger.info("_format_date")
+        if(my_date, bool):
+            _logger.info("Nessuna data inserita")
+            return my_date
         # supporting both cases, as data['form']['from_date'] is string
-        if isinstance(my_date, str):
+        elif isinstance(my_date, str):
             formatted_date = time.strftime(
                 date_format, time.strptime(my_date, "%Y-%m-%d")
             )

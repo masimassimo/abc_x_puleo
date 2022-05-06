@@ -13,18 +13,16 @@ class saleOrder(models.Model):
     #la provvigione per l'agente. 
     @api.depends("order_line")
     def _calcolaProvvigioni(self):
-        
+        _logger.info("sale_order.py - _calcolaProvvigioni")
         for record in self:
             cliente_direzionale = False
             contatto_preferito = False
             agenti = ""
             addetto_vendite = self.env['res.config.settings'].get_values()['addetto_vendite']
             righe_ordine_vendita = record.order_line
+            importo_X = 0
             
-            if(record.partner_id.direzionale):
-                _logger.info("Il Cliente %s è un cliente Direzionale", record.partner_id.name)
-                cliente_direzionale = True
-                
+            #Cliente direzionale True
             if(record.partner_id.direzionale):
                 _logger.info("Il Cliente %s è un cliente Direzionale", record.partner_id.name)
                 cliente_direzionale = True
@@ -34,16 +32,18 @@ class saleOrder(models.Model):
                 righe_da_eliminare = [] #Check
                 righe_provvigioni_attuali = record.provvigioni_sline_ids
                 
-                for riga_provvigione_attuale in righe_provvigioni_attuali:
+                
+                """for riga_provvigione_attuale in righe_provvigioni_attuali:
                     if ((riga_provvigione_attuale.riferimento_riga_ordine.id == riga_ordine_vendita.id and not riga_provvigione_attuale.riferimento_ordine_fittizio) or riga_provvigione_attuale.tipo == "regola_percentuale_fissa"):
                         righe_da_eliminare.append(riga_provvigione_attuale)
                     
                     if(righe_da_eliminare):
                         for riga_da_eliminare in righe_da_eliminare:
-                            _logger.info("Adesso elimino la riga: %s", riga_da_eliminare.id)
-                            riga_da_eliminare.unlink()
+                            _logger.info("Adesso elimino la riga: %s", riga_da_eliminare.id)"""
+                
                             
-                #Se il flag del menù di configurazione è attivo viene considerato come unico agente l'addetto vendite. Altrimenti tutti quelli presenti nel campo agenti_ids.
+                            
+                #Se il flag del menù di configurazione Addetto vendite è attivo viene considerato come unico agente l'addetto vendite. Altrimenti tutti quelli presenti nel campo agenti_ids.
                 if(addetto_vendite):
                     agenti = record.user_id
                     _logger.info("Il flag è attivo e l'agente è: %s", record.user_id)
@@ -59,6 +59,7 @@ class saleOrder(models.Model):
                         for provvigione_agente_check_preferito in provvigioni_agente:
                             regola_percentuale_fissa = False
                             if(provvigione_agente_check_preferito.contatto_preferito == record.partner_id):
+                                _logger.info("Provvigione tipo A")
                                 contatto_preferito = True
                                 _logger.info("La regola %s ha il contatto preferito", provvigione_agente_check_preferito.name)
                                 
@@ -75,7 +76,7 @@ class saleOrder(models.Model):
                                 categoria_prodotto_attuale = None #Check
 
                                 if(percentuale != 0):
-                                    importo = percentuale/100.0 * (riga_ordine_vendita.price_unit * riga_ordine_vendita.product_uom_qty)
+                                    importo = percentuale/100.0 * (riga_ordine_vendita.price_subtotal)
                                     importo_percentuale = importo
                                 else:
                                     importo = provvigione_agente_check_preferito.importo * riga_ordine_vendita.product_uom_qty
@@ -96,7 +97,8 @@ class saleOrder(models.Model):
                                 if riga_ordine_vendita.product_id.categ_id:
                                     categoria_prodotto_attuale = riga_ordine_vendita.product_id.categ_id.id
 
-                                if ((prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale) or regola_percentuale_fissa):
+                                if ((prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale) or regola_percentuale_fissa) and importo != 0.0:
+                                    importo_X = importo
                                     _logger.info("-------- Aggiunta provvigione CONTATTO_PREFERITO per CATEGORIA. ------- ")
                                     provvigioni_sline_ids.append((0, 0, {
                                                                         "tipo": tipo,
@@ -108,7 +110,8 @@ class saleOrder(models.Model):
                                                                         "riferimento_riga_ordine": riga_ordine_vendita.id,
                                                 
                                                                         }))
-                                elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa):
+                                elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa) and importo != 0.0:
+                                    importo_X = importo
                                     _logger.info("-------- Aggiunta provvigione CONTATTO_PREFERITO per PRODOTTO. ------- ")
                                     provvigioni_sline_ids.append((0, 0, {
                                                                         "tipo": tipo,
@@ -125,6 +128,7 @@ class saleOrder(models.Model):
                                 
                                 
                         if(not contatto_preferito):
+                            _logger.info("Provvigione tipo B")
                             for provvigione_agente in provvigioni_agente:
                                 regola_percentuale_fissa = False
                                 
@@ -142,7 +146,7 @@ class saleOrder(models.Model):
                                     categoria_prodotto_attuale = None #Check
 
                                     if(percentuale != 0):
-                                        importo = percentuale/100.0 * (riga_ordine_vendita.price_unit * riga_ordine_vendita.product_uom_qty)
+                                        importo = percentuale/100.0 * (riga_ordine_vendita.price_subtotal)
                                         importo_percentuale = importo
                                     else:
                                         importo = provvigione_agente.importo * riga_ordine_vendita.product_uom_qty
@@ -163,7 +167,8 @@ class saleOrder(models.Model):
                                     if riga_ordine_vendita.product_id.categ_id:
                                         categoria_prodotto_attuale = riga_ordine_vendita.product_id.categ_id.id
 
-                                    if ((prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale) or regola_percentuale_fissa):
+                                    if ((prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale) or regola_percentuale_fissa) and importo != 0.0:
+                                        importo_X = importo
                                         _logger.info("-------- Aggiunta provvigione DIREZIONALE per CATEGORIA. ------- ")
                                         provvigioni_sline_ids.append((0, 0, {
                                                                             "tipo": tipo,
@@ -174,7 +179,8 @@ class saleOrder(models.Model):
                                                                             "contatto": contatto.id,
                                                                             "riferimento_riga_ordine": riga_ordine_vendita.id,
                                                                             }))
-                                    elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa):
+                                    elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa) and importo != 0.0:
+                                        importo_X = importo
                                         _logger.info("-------- Aggiunta provvigione DIREZIONALE per PRODOTTO. ------- ")
                                         provvigioni_sline_ids.append((0, 0, {
                                                                             "tipo": tipo,
@@ -189,6 +195,7 @@ class saleOrder(models.Model):
                                 ############################
 
                                 if(not cliente_direzionale and not provvigione_agente.direzionale and not provvigione_agente.contatto_preferito):
+                                    _logger.info("Provvigione tipo C")
                                     tipo = provvigione_agente.tipo
                                     percentuale = provvigione_agente.percentuale
                                     importo_percentuale = 0
@@ -199,11 +206,11 @@ class saleOrder(models.Model):
                                     categoria_prodotto_attuale = None #Check
 
                                     if(percentuale != 0):
-                                        importo = percentuale/100.0 * (riga_ordine_vendita.price_unit * riga_ordine_vendita.product_uom_qty)
+                                        importo = percentuale/100.0 * (riga_ordine_vendita.price_subtotal)
                                         importo_percentuale = importo
                                     else:
                                         importo = provvigione_agente.importo * riga_ordine_vendita.product_uom_qty
-                                        
+                                    _logger.info("IMPORTO3 : %s", importo)        
                                     if tipo == "regola_percentuale_fissa":
                                         importo = percentuale/100.0 * record.amount_total
                                         regola_percentuale_fissa = True
@@ -223,19 +230,23 @@ class saleOrder(models.Model):
                                         
                                     _logger.info("CONDIZIONE : %s", ((prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale) or regola_percentuale_fissa))
 
-                                    if ((prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale) or regola_percentuale_fissa):
+                                    if ((prodotto_attuale != None and categoria_prodotto == categoria_prodotto_attuale) or regola_percentuale_fissa) and importo != 0.0:
+                                        _logger.info("IMPORTO2 : %s", importo)
+                                        importo_X = importo
                                         _logger.info("-------- Aggiunta provvigione NON DIREZIONALE per CATEGORIA. ------- ")
                                         provvigioni_sline_ids.append((0, 0, {
-                                                                            "tipo": tipo,
-                                                                            "categoria_prodotto": categoria_prodotto,
-                                                                            "importo": importo,
-                                                                            "importo_percentuale": importo_percentuale,
-                                                                            "percentuale": percentuale,
-                                                                            "contatto": contatto.id,
-                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id,
+                                                                                "tipo": tipo,
+                                                                                "categoria_prodotto": categoria_prodotto,
+                                                                                "importo": importo,
+                                                                                "importo_percentuale": importo_percentuale,
+                                                                                "percentuale": percentuale,
+                                                                                "contatto": contatto.id,
+                                                                                "riferimento_riga_ordine": riga_ordine_vendita.id,
 
-                                                                            }))
-                                    elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa):
+                                                                                }))
+                                            
+                                    elif ((prodotto_attuale != None and prodotto == prodotto_attuale) or regola_percentuale_fissa) and importo != 0.0:
+                                        importo_X = importo
                                         _logger.info("-------- Aggiunta provvigione NON DIREZIONALE per PRODOTTO. ------- ")
                                         provvigioni_sline_ids.append((0, 0, {
                                                                             "tipo": tipo,
@@ -248,8 +259,25 @@ class saleOrder(models.Model):
                                                                             }))
 
                 if(provvigioni_sline_ids):     
+                    
+                    for riga_provvigione_attuale in righe_provvigioni_attuali:
+                        if ((riga_provvigione_attuale.riferimento_riga_ordine.id == riga_ordine_vendita.id and not riga_provvigione_attuale.riferimento_ordine_fittizio) or riga_provvigione_attuale.tipo == "regola_percentuale_fissa"):
+                            righe_da_eliminare.append(riga_provvigione_attuale)
+                    
+                        if(righe_da_eliminare):
+                            for riga_da_eliminare in righe_da_eliminare:
+                                _logger.info("Adesso elimino la riga: %s", riga_da_eliminare.id)
+                                
+                                _logger.info("IMPORTO1 : %s", importo)
+                                
+                                provvigioni_sline_ids = []
+                                
+                                provvigioni_sline_ids.append((1, riga_da_eliminare.id, {
+                                                                            "importo": importo_X,
+                                                                            "riferimento_riga_ordine": riga_ordine_vendita.id,
+                                                                            }))
+                    
                     _logger.info("Provvigione line_ids : %s", provvigioni_sline_ids)
-            
                     record.write({"provvigioni_sline_ids": provvigioni_sline_ids})
             
                     _logger.info("-------- Ho terminato di scrivere le provvigioni! ------- ")
@@ -262,26 +290,27 @@ class saleOrder(models.Model):
     #Funzione che calcola il totale degli importi di provvigione.
     @api.depends("provvigioni_sline_ids.importo")
     def calcola_totale_provvigioni_s(self):
+        _logger.info("sale_order.py - calcola_totale_provvigioni_s")
         for record in self:
             totale_provvigioni_s = 0
             righe_provvigioni = record.provvigioni_sline_ids
             for riga_provvigione in righe_provvigioni:
                 totale_provvigioni_s += riga_provvigione.importo
             record.update({"totale_provvigioni_s": totale_provvigioni_s})
-            _logger.info(" -------- calcola_totale_provvigioni_s -------- ")
+            _logger.info("totale_provvigioni_s: %s", totale_provvigioni_s)
     
-    provvigioni_sline_ids = fields.One2many(comodel_name = "abc.lines_sales_commission", inverse_name="riferimento_ordine", string = "Righe provvigioni", help = "Specchietto righe provvigioni.", tracking = True, readonly = True, states={'draft': [('readonly', False)], 'sent': [('readonly', False)]},)
+    provvigioni_sline_ids = fields.One2many(comodel_name = "abc.lines_sales_commission", inverse_name="riferimento_ordine", string = "Righe provvigioni", help = "Specchietto righe provvigioni.", tracking = True,)
         
     @api.onchange("provvigioni_sline_ids")
     def calcola_nuovo_importo(self):
-        _logger.info("calcola_nuovo_importo")
+        _logger.info("sale_order.py - calcola_nuovo_importo")
         for record in self:
             righe_provvigioni = record.provvigioni_sline_ids
             for riga_provvigione in righe_provvigioni:
                 if riga_provvigione.percentuale != 0:
                     nuovo_importo = riga_provvigione.percentuale/100.0 * (riga_provvigione.riferimento_riga_ordine.price_unit * riga_provvigione.riferimento_riga_ordine.product_uom_qty)
-                    _logger.info("nuovo_importo %s", nuovo_importo)
                     riga_provvigione.update({'importo': nuovo_importo})
+                    _logger.info("nuovo_importo %s", nuovo_importo)
     
     #Campo totale_provvigioni che somma gli importi di tutte le singole righe di provvigione.
     totale_provvigioni_s = fields.Monetary(string = "Totale provvigioni", readonly = True, tracking = True, help = "La somma degli importi delle singole righe di provvigione.", compute = "calcola_totale_provvigioni_s")

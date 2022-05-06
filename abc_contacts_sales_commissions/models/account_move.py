@@ -11,6 +11,7 @@ class accountMove(models.Model):
     #Funzione che calcola il totale degli importi di provvigione.
     @api.depends("provvigioni_aline_ids.importo")
     def calcola_totale_provvigioni_a(self):
+        _logger.info("account_move.py - calcola_totale_provvigioni_a")
         for record in self:
             totale_provvigioni_a = 0
             righe_provvigioni = record.provvigioni_aline_ids
@@ -22,7 +23,7 @@ class accountMove(models.Model):
             
     @api.depends("invoice_line_ids", "invoice_line_ids.sale_line_ids.order_id.provvigioni_sline_ids")
     def _aggiungi_provvigioni_rimanenti(self):
-        
+        _logger.info("account_move.py - _aggiungi_provvigioni_rimanenti")
         for record in self:
             provvigioni_aline_ids = []
             righe_fattura = record.invoice_line_ids
@@ -31,15 +32,23 @@ class accountMove(models.Model):
                 
                 if(riga_fattura.sale_line_ids):
                     righe_ordine_vendita = riga_fattura.sale_line_ids
+                    _logger.info("RIGHE ORDINE DI VENDITA: %s", righe_ordine_vendita)
 
                     for riga_ordine_vendita in righe_ordine_vendita:
                         ordine_vendita = riga_ordine_vendita.order_id
+                        _logger.info("Ordine di vendita: %s", ordine_vendita)
 
                         if(ordine_vendita.provvigioni_sline_ids):
                             righe_provvigione = ordine_vendita.provvigioni_sline_ids
+                            _logger.info("Righe provvigioni: %s", righe_provvigione)
+                            
                             
                             for riga_provvigione in righe_provvigione:
-                                riga_provvigione.update({"riferimento_fattura": record.id})
+                                _logger.info(riga_provvigione.riferimento_riga_ordine)
+                                if(riga_provvigione.riferimento_riga_ordine == riga_ordine_vendita):
+                                    riga_provvigione.update({"riferimento_fattura": record.id})
+                                else:
+                                    _logger.info("La riga di provvigione: %s non fa parte di questa fattura", riga_provvigione)
 
                     
             _logger.info(" ------ Provvigioni aggiornate con il Riferimento Fattura. ------")
@@ -49,9 +58,10 @@ class accountMove(models.Model):
     
     @api.depends("payment_state")
     def _matura_provvigioni(self):
+        _logger.info("account_move.py - _matura_provvigioni")
         for record in self:
             _logger.info("Dentro _matura_provvigioni")
-            if(record.provvigioni_aline_ids and record.payment_state == "in_payment"): #DA MODIFICARE CON PAID
+            if(record.provvigioni_aline_ids and (record.payment_state == "in_payment" or record.payment_state == "paid")): #DA MODIFICARE CON PAID
                 righe_provvigioni_fattura = record.provvigioni_aline_ids
                 
                 for riga_provvigioni_fattura in righe_provvigioni_fattura:

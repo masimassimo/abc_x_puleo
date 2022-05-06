@@ -1,0 +1,529 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* abc_fattura_accomp_puleo
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-06 09:49+0000\n"
+"PO-Revision-Date: 2022-05-06 12:10+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.actions.report,print_report_name:abc_fattura_accomp_puleo.fattura_accomp_print_report_puleo
+msgid "\"Fattura Accompagnatoria Puleo - %s\" %(object.name)"
+msgstr "“Puleo Accompanying Invoice - %s” %(object.name)"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid ""
+"-\n"
+"                                                  <span> Rif. ns. Commessa cliente </span>"
+msgstr ""
+"-\n"
+"                                                  <span> Ref. our customer order </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span style=\"margin-bottom:0px;\">Spett.le</span>"
+msgstr "<span style=“margin-bottom:0px;”>Respectable</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span> Rif. ns. Commessa cliente </span>"
+msgstr "<span> Ref. our customer order </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span> del </span>"
+msgstr "<span> of </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid ""
+"<span>AVVISO IMPORTANTE: i Vs. dati anagrafici e la partita iva che appaiono sul presente documento saranno quelli che verranno utilizzati, salvo Vs. diversa precisazione, agli effetti dell' Art. 2 DPR 633/72.\n"
+"Con questo avviso Ci consideriamo esonerati da qualsiasi responsabilità prevista dall' Art.41 DPR 633/72.</span>"
+msgstr ""
+"<span>IMPORTANT NOTICE: Your personal data and VAT number appearing on this document will be those that will be used, unless you specify otherwise, to the effects of ‘Art. 2 DPR 633/72.\n"
+"With this notice we consider ourselves exonerated from any responsibility provided for by Art.41 DPR 633/72.</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Abbuoni IVA Omaggi</span>"
+msgstr "<span>VAT allowances Gifts</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Acconto</span>"
+msgstr "<span>Down payment</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Agente</span>"
+msgstr "<span>Agent</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Aliquota</span>"
+msgstr "<span>Tax rate</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Aspetto Esteriore dei Beni</span>"
+msgstr "<span>Exterior Appearance of Goods</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Banca </span>"
+msgstr "<span> Bank </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Banca d'Appoggio </span>"
+msgstr "<span>Support Bank </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>CONTRIBUTO CONAI ASSOLTO</span>"
+msgstr "<span>CONAI CONTRIBUTION PAID</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Cap. Soc. Int. vers. € 1.500.000.00</span>"
+msgstr "<span>Cap. Soc. Int. vers. € 1.500.000.00</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Cod. IVA</span>"
+msgstr "<span>VAT Code</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Codice Fiscale</span>"
+msgstr "<span>Fiscal Code</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Codice</span>"
+msgstr "<span>Code</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Colli</span>"
+msgstr "<span>Hills</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Data</span>"
+msgstr "<span>Date</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Date e ora inizio trasporto</span>"
+msgstr "<span>Transportation start date and time</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Descrizione</span>"
+msgstr "<span>Description</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Documento</span>"
+msgstr "<span>Document</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Fattura Pro-forma</span>"
+msgstr "<span>Pro Forma Invoice</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Firma Conducente (o Vettore)</span>"
+msgstr "<span>Driver (or Carrier) Signature</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Firma Destinatario</span>"
+msgstr "<span>Signature Recipient</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>IVA</span>"
+msgstr "<span>VAT</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Imponibile</span>"
+msgstr "<span>Subtotal</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Importo da Pagare</span>"
+msgstr "<span>Amount to Pay</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Importo</span>"
+msgstr "<span>Amount</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Imposte</span>"
+msgstr "<span>Taxes</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Note</span>"
+msgstr "<span>Note</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Numero</span>"
+msgstr "<span>Number</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>N° Container</span>"
+msgstr "<span>N° Container</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>P.IVA/C.F./REG.I. 01233360815</span>"
+msgstr "<span>P.IVA/C.F./REG.I. 01233360815</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Pagamento immediato</span>"
+msgstr "<span>Immediate Payment</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Pagamento</span>"
+msgstr "<span>Payment</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Pallets</span>"
+msgstr "<span>Pallets</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Partita IVA</span>"
+msgstr "<span>VAT Number</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Peso Imballo</span>"
+msgstr "<span>Packaging weight</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Peso Lordo</span>"
+msgstr "<span>Gross Weight</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Peso Netto</span>"
+msgstr "<span>Net Weight</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Prezzo Un</span>"
+msgstr "<span>Unitary Price</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Quantità</span>"
+msgstr "<span>Quantity</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Rif. Ordine Cliente</span>"
+msgstr "<span>Customer Order Ref.</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Rif. ns. DdT div. Healthcare N. </span>"
+msgstr "<span>Rif. ns. DdT div. Healthcare N. </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Rif. ns. DdT div. Puleo N. </span>"
+msgstr "<span>Rif. ns. DdT div. Puleo N. </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Scadenza</span>"
+msgstr "<span>Expiration</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Sconto%</span>"
+msgstr "<span>Discount%</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Sconto</span>"
+msgstr "<span>Discount</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Seal number</span>"
+msgstr "<span>Seal number</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Spese Assicurazione</span>"
+msgstr "<span>Insurance Expenses</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Spese Bancarie</span>"
+msgstr "<span>Banking Expenses</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Spese Bolli</span>"
+msgstr "<span>Spending Stamps</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Spese Imballo</span>"
+msgstr "<span>Packaging costs</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Spese Trasporto</span>"
+msgstr "<span>Transportation Expenses</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Spese Varie</span>"
+msgstr "<span>Various Expenses</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Tipo Container</span>"
+msgstr "<span>Container Type</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Tipo Pagamento</span>"
+msgstr "<span>Payment Type</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Totale Articoli</span>"
+msgstr "<span>Total Articles</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Totale Documento</span>"
+msgstr "<span>Total Document</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Totale IVA</span>"
+msgstr "<span>Total VAT</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Totale Imponibile</span>"
+msgstr "<span>Total Taxable</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Totale Omaggi</span>"
+msgstr "<span>Total Giveaways</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Totale Sc. Incondizionato</span>"
+msgstr "<span>Total Unconditional Disc. </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Totale Sconto Merce</span>"
+msgstr "<span>Total Merchandise Discount</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Totale Solo IVA</span>"
+msgstr "<span>Total VAT Only</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Trasporto a mezzo</span>"
+msgstr "<span>Transportation by means</span>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>UM</span>"
+msgstr "<span>UoM</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>Vettore</span>"
+msgstr "<span>Carrier</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>puleospa@legalmail.it</span>"
+msgstr "<span>puleospa@legalmail.it</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<span>service@puleoitalia.com</span>"
+msgstr "<span>service@puleoitalia.com</span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "<strong style=\"\">Indirizzo di Spedizione:</strong>"
+msgstr "<strong style=“”>Shipping Address:</strong>."
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "BIC:"
+msgstr "BIC:"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Bozza Fattura"
+msgstr "Draft Invoice"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.model.fields,field_description:abc_fattura_accomp_puleo.field_abc_fattura_accomp_puleo_abc_fattura_accomp_puleo__create_uid
+msgid "Created by"
+msgstr "Created by"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.model.fields,field_description:abc_fattura_accomp_puleo.field_abc_fattura_accomp_puleo_abc_fattura_accomp_puleo__create_date
+msgid "Created on"
+msgstr "Created on"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.model.fields,field_description:abc_fattura_accomp_puleo.field_abc_fattura_accomp_puleo_abc_fattura_accomp_puleo__display_name
+msgid "Display Name"
+msgstr "Display Name"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "F.M"
+msgstr "F.M"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Fattura"
+msgstr "Invoice"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.actions.report,name:abc_fattura_accomp_puleo.fattura_accomp_print_report_puleo
+msgid "Fattura Accompagnatoria Puleo"
+msgstr "Puleo Accompanying Invoice"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Fattura Annullata"
+msgstr "Cancelled Invoice"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Fattura di Acquisto"
+msgstr "Purchase Invoice"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Fax <span> +39 0923968920 </span>"
+msgstr "Fax <span> +39 0923968920 </span>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "IBAN:"
+msgstr "IBAN:"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.model.fields,field_description:abc_fattura_accomp_puleo.field_abc_fattura_accomp_puleo_abc_fattura_accomp_puleo__id
+msgid "ID"
+msgstr "ID"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Indirizzo di Fatturazione e Spedizione:"
+msgstr "Invoicing and Shipping Address:"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Indirizzo di Fatturazione:"
+msgstr "Invoicing Address:"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.model.fields,field_description:abc_fattura_accomp_puleo.field_abc_fattura_accomp_puleo_abc_fattura_accomp_puleo____last_update
+msgid "Last Modified on"
+msgstr "Last Modified on"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.model.fields,field_description:abc_fattura_accomp_puleo.field_abc_fattura_accomp_puleo_abc_fattura_accomp_puleo__write_uid
+msgid "Last Updated by"
+msgstr "Last Updated by"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.model.fields,field_description:abc_fattura_accomp_puleo.field_abc_fattura_accomp_puleo_abc_fattura_accomp_puleo__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Nomenclatura combinata:"
+msgstr "Combined Nomenclature:"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Nominativo di riferimento"
+msgstr "Contact name"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Nota di Credito"
+msgstr "Credit Note"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Nota di Credito Fornitore"
+msgstr "Supplier credit note"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "P.IVA:"
+msgstr "VAT NO:"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid ""
+"Pagina\n"
+"    <span class=\"page\"/>\n"
+"    di\n"
+"    <span class=\"topage\"/>"
+msgstr ""
+"Page\n"
+"    <span class=“page”/>\n"
+"    of\n"
+"    <span class=“topage”/>"
+
+#. module: abc_fattura_accomp_puleo
+#: model_terms:ir.ui.view,arch_db:abc_fattura_accomp_puleo.fattura_accomp_puleo_template_puleo
+msgid "Tel"
+msgstr "Tel"
+
+#. module: abc_fattura_accomp_puleo
+#: model:ir.model,name:abc_fattura_accomp_puleo.model_abc_fattura_accomp_puleo_abc_fattura_accomp_puleo
+msgid "abc_fattura_accomp_puleo.abc_fattura_accomp_puleo"
+msgstr ""

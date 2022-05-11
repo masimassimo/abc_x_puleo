@@ -419,7 +419,7 @@
                         <t t-set="totale_sconto" t-value="0"/>
                         <t t-set="numeroProdottiDDT" t-value="0"/>
                      
-                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: (l.sale_line_ids.order_id.partner_id.id), reverse=True)"/>
+                        <t t-set="lines" t-value="o.invoice_line_ids.sorted(key=lambda l: l.sequence)"/>
                         <t t-foreach="lines" t-as="line">
                         
                             <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded"/>

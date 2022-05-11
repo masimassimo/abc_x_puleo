@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 import logging
 _logger = logging.getLogger(__name__)
@@ -25,6 +25,7 @@ class saleOrder(models.Model):
         for record in self:
             simbolo_euro = (u"\N{euro sign}")                
             righe_ordine = record.order_line
+            lingua_cliente = record.partner_id.lang
             
             if(record.flag_prezzo_configurazione_variante):
                 _logger.info("Righe ordine %s", righe_ordine)
@@ -32,11 +33,21 @@ class saleOrder(models.Model):
                     if(riga_ordine.product_id.product_template_attribute_value_ids):
                         attributi = ""
                         descrizione_prodotto_attuale = riga_ordine.name
-                        nome_prodotto = riga_ordine.product_id.name
+                        
+                        if(self.env['ir.translation'].search([('src', '=', riga_ordine.product_id.name), ('lang', '=', lingua_cliente)], limit=1).value):
+                            nome_prodotto = self.env['ir.translation'].search([('src', '=', riga_ordine.product_id.name), ('lang', '=', lingua_cliente)], limit=1).value
+                        else:
+                            nome_prodotto = riga_ordine.product_id.name
+
                         attributi_prodotto = riga_ordine.product_id.product_template_attribute_value_ids
                         
                         for attributo_prodotto in attributi_prodotto:
-                            stringa_attributo = "- " + attributo_prodotto.name + " " + simbolo_euro + str(attributo_prodotto.price_extra)
+                            
+                            if(self.env['ir.translation'].search([('src', '=', attributo_prodotto.name), ('lang', '=', lingua_cliente)], limit=1).value):
+                                attr_name = self.env['ir.translation'].search([('src', '=', attributo_prodotto.name), ('lang', '=', lingua_cliente)], limit=1).value
+                            else:
+                                attr_name = attributo_prodotto.name
+                            stringa_attributo = "- " + attr_name + " " + simbolo_euro + str(attributo_prodotto.price_extra)
                             
                             if(stringa_attributo not in descrizione_prodotto_attuale):
                                 attributi = attributi + stringa_attributo + ", \n "
@@ -52,11 +63,20 @@ class saleOrder(models.Model):
                     else:
                         attributi = ""
                         descrizione_prodotto_attuale = riga_ordine.name
-                        nome_prodotto = riga_ordine.product_id.name
+                        
+                        if(self.env['ir.translation'].search([('src', '=', riga_ordine.product_id.name), ('lang', '=', lingua_cliente)], limit=1).value):
+                            nome_prodotto = self.env['ir.translation'].search([('src', '=', riga_ordine.product_id.name), ('lang', '=', lingua_cliente)], limit=1).value
+                        else:
+                            nome_prodotto = riga_ordine.product_id.name
+                            
                         attributi_prodotto = riga_ordine.product_id.product_template_attribute_value_ids
                         
                         for attributo_prodotto in attributi_prodotto:
-                            stringa_attributo = "- " + attributo_prodotto.name
+                            if(self.env['ir.translation'].search([('src', '=', attributo_prodotto.name), ('lang', '=', lingua_cliente)], limit=1).value):
+                                attr_name = self.env['ir.translation'].search([('src', '=', attributo_prodotto.name), ('lang', '=', lingua_cliente)], limit=1).value
+                            else:
+                                attr_name = attributo_prodotto.name
+                            stringa_attributo = "- " + attr_name
                             
                             if(stringa_attributo):
                                 attributi = attributi + stringa_attributo + ", \n "

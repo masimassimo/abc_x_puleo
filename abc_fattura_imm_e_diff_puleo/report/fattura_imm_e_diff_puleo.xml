@@ -548,7 +548,7 @@
                                     <t t-if="'DdT' not in line.name">
                                     <tr scope="row">
                                         <td colspan="10" class="p-1 align-middle text-left smaller-font col-12">
-                                        <strong t-field="line.name"/> 
+                                        <strong t-raw="line.name"/> 
                                        </td>
                                     </tr>
                                  </t>

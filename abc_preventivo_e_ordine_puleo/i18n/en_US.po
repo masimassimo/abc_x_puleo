@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Odoo Server 14.0+e\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-16 09:59+0000\n"
-"PO-Revision-Date: 2022-05-16 12:23+0200\n"
+"PO-Revision-Date: 2022-05-16 12:27+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -209,7 +209,7 @@ msgstr "<span>Cap. Soc. Int. vers. € 1.500.000.00</span>"
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Cod. IVA</span>"
-msgstr "<span>VAT Code</span>."
+msgstr "<span>VAT Code</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
@@ -253,7 +253,7 @@ msgstr ""
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Fattura Pro-forma</span>"
-msgstr "<span>Pro Forma Invoice</span>."
+msgstr "<span>Pro Forma Invoice</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
@@ -270,7 +270,7 @@ msgstr ""
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>I termini di pagamento decorreranno dalla data di avviso di merce Pronta.</span>"
-msgstr "<span>Payment terms will start from the date of notice of Ready goods.</span>."
+msgstr "<span>Payment terms will start from the date of notice of Ready goods.</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
@@ -447,7 +447,7 @@ msgstr "<span>P.IVA/C.F./REG.I. 01233360815</span>"
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Pagamento immediato</span>"
-msgstr "<span>Immediate Payment</span>."
+msgstr "<span>Immediate Payment</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
@@ -462,7 +462,7 @@ msgstr "<span>Page</span>"
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Partita IVA</span>"
-msgstr "<span>VAT Number</span>."
+msgstr "<span>VAT Number</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
@@ -520,7 +520,7 @@ msgstr "<span> Internal Ref. </span>"
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Rif. Ordine Cliente</span>"
-msgstr "<span>Customer Order Ref.</span>."
+msgstr "<span>Customer Order Ref.</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
@@ -540,12 +540,12 @@ msgstr "<span>Discount</span>"
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Spese Bolli</span>"
-msgstr "<span>Spending Stamps</span>."
+msgstr "<span>Spending Stamps</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Spese Imballo</span>"
-msgstr "<span>Packaging costs</span>."
+msgstr "<span>Packaging costs</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
@@ -575,22 +575,22 @@ msgstr "<span>Total Document</span>"
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Totale IVA</span>"
-msgstr "<span>Total VAT</span>."
+msgstr "<span>Total VAT</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Totale Imponibile</span>"
-msgstr "<span>Total Taxable</span>."
+msgstr "<span>Total Taxable</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Totale Sconto Merce</span>"
-msgstr "<span>Total Merchandise Discount</span>."
+msgstr "<span>Total Merchandise Discount</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<span>Totale Solo IVA</span>"
-msgstr "<span>Total VAT Only</span>."
+msgstr "<span>Total VAT Only</span>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
@@ -629,7 +629,7 @@ msgstr "<strong class=“mr16”>Subtotal</strong>"
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.fattura_pro_forma_puleo_template_puleo model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_e_ordine_puleo_template_puleo
 msgid "<strong style=\"\">Indirizzo di Spedizione:</strong>"
-msgstr "<strong style=“”>Shipping Address:</strong>."
+msgstr "<strong style=“”>Shipping Address:</strong>"
 
 #. module: abc_preventivo_e_ordine_puleo
 #: model_terms:ir.ui.view,arch_db:abc_preventivo_e_ordine_puleo.preventivo_acquisto_puleo_template

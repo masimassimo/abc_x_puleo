@@ -10,7 +10,7 @@
     'website': "https://www.abcstrategie.it/",
 
     'category': 'Sale',
-    'version': '1.8',
+    'version': '1.9',
 
     # any module necessary for this one to work correctly
     'depends': ['base', 'sale', 'purchase', 'purchase_order_secondary_unit', 'product_secondary_unit'],
@@ -21,7 +21,6 @@
         'data/preventivo_e_ordine_formato_carta.xml',
         'data/preventivo_e_ordine_formato_carta_acquisto.xml',
         'report/preventivo_e_ordine_puleo.xml',
-        'report/preventivo_e_ordine_puleo-Copy1.xml',
         'report/preventivo_acquisto_puleo.xml',
         'report/acquisto_print_report.xml',
         'report/ordine_acquisto_puleo.xml',
